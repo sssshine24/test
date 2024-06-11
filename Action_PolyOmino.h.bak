@@ -1,0 +1,210 @@
+#pragma once
+#include "afxcmn.h"
+#include "afxwin.h"
+
+
+// Action_PolyOmino dialog
+class CMesh3d;
+class GeoMapLandMark;
+class Action_PolyOmino : public CPropertyPage
+{
+	DECLARE_DYNAMIC(Action_PolyOmino)
+
+public:
+	Action_PolyOmino();
+	virtual ~Action_PolyOmino();
+
+// Dialog Data
+	enum { IDD = IDD_POLYOMINO };
+
+public:
+
+	std::vector<std::vector<int>> m_HorizontalSegments,m_VerticalSegments; //On a Same Horizontal line or a Vertical Line
+
+	std::vector<std::vector<int>> m_ArrayPointConnectedSelectEdgeIndex;
+
+	BOOL m_SplitLandmarkFirstRun;
+	BOOL m_SloppingedgesubdivisionFirstRun;
+	BOOL m_MergeOneEdgeWithSlopingFirstRun;
+	BOOL m_MergeSmallEdgesFirstRun;
+
+	int m_SplitAngle;
+	int m_MergeAngle;
+	int m_EdgeSubdivisionNum;
+	BOOL m_bSplitDirection;
+
+	//
+	void DeleteDuplicateEdges();
+
+	//
+	int InsertNewSelectedEdge(std::pair<int,int> newedge,int index,int isVertical,int ischeck);
+
+	//
+	void UpdatePointConnectedSelectedEdgeIndex();
+
+	//
+	void DeleteInnerHoles();
+
+	//
+	void DeleteUnusedVertices();
+
+	//
+	void DeleteDuplicateVertices();
+
+	//
+	void MergeConnectedSegments(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex);
+
+	//
+	void DetectandHandleEdgeWithZeroLength(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex);
+
+	//
+	void DetectandHandleVerticalIntersectingEdges(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex);
+
+	//
+	void DetectandHandleHorizontalIntersectingEdges(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex);
+
+	//
+	int MergeTwoSegments(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex,int index,int index1,int index2,int IsHorizontal);
+
+	//
+	void IsValidMesh();
+
+	//
+	void RemoveEdgeSet(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex,std::vector<int>& m_EdgeArray);
+
+	//
+	void CheckandFixTopologyValidation(int iterationnum);
+
+	//
+	int GetConnectedSegment_SameStyle(std::vector<std::vector<int>>& m_ArrayPointConnectedSelectEdgeIndex,int segmentindex,int vindex,int& nextvindex);
+
+	//
+	int GetConnectedSegment(std::vector<std::vector<int>>& m_ArrayPointConnectedSelectEdgeIndex,int segmentindex,int vindex,int& nextvindex);
+
+	//
+	int GetSegmentStyle(int index);
+
+	//
+	int SearchSamePositionVertices(CMesh3d* pMesh3d,std::vector<int> changedvertices,int index);
+
+	//
+	int	 UniformSimplificationOneIteration();
+
+	//
+	void Loadlandmark(CString FileName);
+
+	//
+	void DetectIntersectLandmarks();
+
+	//
+	void DetectSelfIntersectLandmarks();
+
+	//
+	void MergeSeletedlandmarks();
+
+	//
+	void InsertLandMark(std::vector<int> &landmarkpoints,int style);
+
+	//
+	CMesh3d* pMesh;  //The current mesh
+	CMesh3d* pUniformGridMesh; //Uniform Grid Mesh
+
+	void GenerateLandMarks();
+
+	//
+	void SplitLandmark();
+
+	//
+	void Sloppingedgesubdivision();
+
+	//
+	void MergeConnectedLandMarkswithSameStyle();
+
+	//
+	void MergeThreeConnectedLandmarks();
+
+	//
+	double GetLandMarkLength(std::vector<GeoMapLandMark*> &m_newlandmarks, int index);
+
+	//
+	BOOL MergeTwoLandmarks(std::vector<int> &landmark1,std::vector<int> &landmark2);
+
+	//
+	void MergeSmallEdges();
+
+	//
+	void DeleteVertexConnectedLandmarks();
+
+	//TJunction Rectification
+	void TJuctionRectification();
+
+	//
+	void MergeOneEdgeWithSloping();
+
+	//
+	void SaveGeoMap();
+
+	//
+	double GetAngleBetweenTwoLandmarks(int index);
+
+	//
+	void ExtendSmall();
+
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedGeneratelandmarks();
+	afx_msg void OnBnClickedPolyominoRectification();
+	afx_msg void OnBnClickedPolyominoMergeslope();
+	afx_msg void OnBnClickedPolyominoDeletelandmark();
+	afx_msg void OnBnClickedPolyominoMergesamestyle();
+	afx_msg void OnBnClickedPolyominoThreeconnected();
+	afx_msg void OnBnClickedPolyominoMergesmall();
+	afx_msg void OnBnClickedPolyominoSavelandmark();
+	afx_msg void OnBnClickedPolyominoExtendsmall();
+	afx_msg BOOL PreTranslateMessage(MSG* pMsg);
+
+	afx_msg void OnBnClickedPolyominoCurvestraight();
+	afx_msg void OnBnClickedOminoSetcurrentmesh();
+	afx_msg void OnBnClickedOminoSplitlandmark();
+	CSliderCtrl m_SplitAngleSlider;
+	CButton m_SplitDirection;
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	virtual BOOL OnInitDialog();
+	afx_msg void OnBnClickedSplitdirectioncheck1();
+	CSliderCtrl m_OminoMergeAngle;
+	afx_msg void OnBnClickedPolyominoSloppingedgesubdivision();
+	CSliderCtrl m_EdgeSubdivision;
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnBnClickedPolyominoDeleteselectedlandmarks();
+	afx_msg void OnBnClickedOminoLoadusamap();
+	afx_msg void OnBnClickedPolyominoMergeseletedlandmarks();
+	afx_msg void OnBnClickedPolyominoClearlandmarkselection();
+	afx_msg void OnBnClickedPolyominoInverseseletedlandmarkstyle();
+	afx_msg void OnBnClickedPolyominoSaveLandmark();
+	afx_msg void OnBnClickedPolyominoLoadlandmark();
+	afx_msg void OnBnClickedPolyominoSmoothlandmarks();
+	afx_msg void OnBnClickedPolyominoSmoothselectedlandmarks();
+	afx_msg void OnBnClickedPolyominoTriangulate();
+	afx_msg void OnBnClickedPolyominoSplitlandmarks();
+	afx_msg void OnBnClickedPolyominoClearvertexselection();
+	afx_msg void OnBnClickedPolyominoCheckinvalidedges();
+	afx_msg void OnBnClickedPolyominoAddlandmark();
+	afx_msg void OnBnClickedPolyominoBackuplandmarks();
+	afx_msg void OnBnClickedPolyominoSetauxillarylandmark();
+	afx_msg void OnBnClickedPolyominoAuxillaryvisiable();
+	CSliderCtrl m_MergeSmallLandmarkLength;
+	CSliderCtrl m_MergeSmallLandmarkAngle;
+	afx_msg void OnBnClickedPolyominoDeleteauxillarylandmarks();
+	afx_msg void OnBnClickedPolyominoFixpoints();
+	afx_msg void OnBnClickedPolyominoUnfixpoints();
+	afx_msg void OnBnClickedPolyominoCopyfixpoints();
+	afx_msg void OnBnClickedOminoLoadusastreighten();
+	afx_msg void OnBnClickedUniformgridInitialization();
+	afx_msg void OnBnClickedUniformgridProgessiveMeshIteration();
+	afx_msg void OnBnClickedPolyominoShortestpath();
+	afx_msg void OnBnClickedPolyominoSaveMLandmark();
+};

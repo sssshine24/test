@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SVNNurbs\\Surface_sewing\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\StringUtility.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:StringUtility.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\StructedStepFile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:StructedStepFile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SVNNurbs\\StepExchange\\Input\\TextFile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\StructedStepFileDataItem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:StructedStepFileDataItem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SVNNurbs\\StepExchange\\include\\StringUtility.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SVNNurbs\\StepExchange\\include\\StructedStepFileDataItem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StringUtility.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\StringUtility.cpp",
+              "RelativeDocumentMoniker": "StringUtility.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\StringUtility.cpp",
+              "RelativeToolTip": "StringUtility.cpp",
+              "ViewState": "AQIAAGYBAAAAAAAAAAAAAEwBAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-10T12:56:43.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StringUtility.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\StepExchange\\include\\StringUtility.h",
+              "RelativeDocumentMoniker": "..\\StepExchange\\include\\StringUtility.h",
+              "ToolTip": "D:\\SVNNurbs\\StepExchange\\include\\StringUtility.h",
+              "RelativeToolTip": "..\\StepExchange\\include\\StringUtility.h",
+              "ViewState": "AQIAAIkAAAAAAAAAAAAEwJAAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-10T12:54:03.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StructedStepFileDataItem.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\StepExchange\\include\\StructedStepFileDataItem.h",
+              "RelativeDocumentMoniker": "..\\StepExchange\\include\\StructedStepFileDataItem.h",
+              "ToolTip": "D:\\SVNNurbs\\StepExchange\\include\\StructedStepFileDataItem.h",
+              "RelativeToolTip": "..\\StepExchange\\include\\StructedStepFileDataItem.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-10T12:49:36.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StructedStepFileDataItem.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\StructedStepFileDataItem.cpp",
+              "RelativeDocumentMoniker": "StructedStepFileDataItem.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\StructedStepFileDataItem.cpp",
+              "RelativeToolTip": "StructedStepFileDataItem.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-10T12:47:27.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TextFile.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\StepExchange\\Input\\TextFile.cpp",
+              "RelativeDocumentMoniker": "..\\StepExchange\\Input\\TextFile.cpp",
+              "ToolTip": "D:\\SVNNurbs\\StepExchange\\Input\\TextFile.cpp",
+              "RelativeToolTip": "..\\StepExchange\\Input\\TextFile.cpp",
+              "ViewState": "AQIAAAMAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-10T12:36:15.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StructedStepFile.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\StructedStepFile.cpp",
+              "RelativeDocumentMoniker": "StructedStepFile.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\StructedStepFile.cpp",
+              "RelativeToolTip": "StructedStepFile.cpp",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAUwFMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-10T12:15:49.145Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

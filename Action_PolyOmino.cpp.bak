@@ -1,0 +1,4082 @@
+// Action_PolyOmino.cpp : implementation file
+//
+
+#include "stdafx.h"
+#include "SDIViewSwitch.h"
+#include "Action_PolyOmino.h"
+#include "FormView3.h"
+#include "SDIViewSwitchDoc.h"
+#include "lib3d/Mesh3d.h"
+#include "MyTreeView.h"
+#include <stack>
+// Action_PolyOmino dialog
+
+IMPLEMENT_DYNAMIC(Action_PolyOmino, CPropertyPage)
+
+Action_PolyOmino::Action_PolyOmino()
+	: CPropertyPage(Action_PolyOmino::IDD)
+{
+	m_SplitAngle = 90;
+	m_MergeAngle = 45;
+	m_EdgeSubdivisionNum = 3;
+	m_bSplitDirection = TRUE;
+
+	m_SplitLandmarkFirstRun = TRUE;
+	m_SloppingedgesubdivisionFirstRun = TRUE;
+	m_MergeOneEdgeWithSlopingFirstRun = TRUE;
+	m_MergeSmallEdgesFirstRun = TRUE;
+}
+
+Action_PolyOmino::~Action_PolyOmino()
+{
+}
+
+void Action_PolyOmino::DoDataExchange(CDataExchange* pDX)
+{
+	CPropertyPage::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_Omino_SplitAngleSlider, m_SplitAngleSlider);
+	DDX_Control(pDX, IDC_SplitDirectionCHECK1, m_SplitDirection);
+	DDX_Control(pDX, IDC_Omino_MergeAngleSlider, m_OminoMergeAngle);
+	DDX_Control(pDX, IDC_Omino_SloppingEdgeSubdivision, m_EdgeSubdivision);
+	DDX_Control(pDX, IDC_Omino_SmallLandmarkLengthSlider, m_MergeSmallLandmarkLength);
+	DDX_Control(pDX, IDC_Omino_MergeSmallAngleSlider, m_MergeSmallLandmarkAngle);
+}
+
+
+BEGIN_MESSAGE_MAP(Action_PolyOmino, CPropertyPage)
+	ON_BN_CLICKED(IDC_GENERATELANDMARKS, &Action_PolyOmino::OnBnClickedGeneratelandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_Rectification, &Action_PolyOmino::OnBnClickedPolyominoRectification)
+	ON_BN_CLICKED(IDC_Polyomino_MergeSlope, &Action_PolyOmino::OnBnClickedPolyominoMergeslope)
+	ON_BN_CLICKED(IDC_Polyomino_DeleteLandmark, &Action_PolyOmino::OnBnClickedPolyominoDeletelandmark)
+	ON_BN_CLICKED(IDC_Polyomino_MergeSameStyle, &Action_PolyOmino::OnBnClickedPolyominoMergesamestyle)
+	ON_BN_CLICKED(IDC_Polyomino_ThreeConnected, &Action_PolyOmino::OnBnClickedPolyominoThreeconnected)
+	ON_BN_CLICKED(IDC_Polyomino_MergeSmall, &Action_PolyOmino::OnBnClickedPolyominoMergesmall)
+	ON_BN_CLICKED(IDC_Polyomino_SaveLandmark, &Action_PolyOmino::OnBnClickedPolyominoSavelandmark)
+	ON_BN_CLICKED(IDC_Polyomino_ExtendSmall, &Action_PolyOmino::OnBnClickedPolyominoExtendsmall)
+	ON_BN_CLICKED(IDC_Polyomino_CurveStraight, &Action_PolyOmino::OnBnClickedPolyominoCurvestraight)
+	ON_BN_CLICKED(IDC_Omino_SetCurrentMesh, &Action_PolyOmino::OnBnClickedOminoSetcurrentmesh)
+	ON_BN_CLICKED(IDC_Omino_SPLITLANDMARK, &Action_PolyOmino::OnBnClickedOminoSplitlandmark)
+	ON_WM_HSCROLL()
+	ON_WM_CREATE()
+	ON_BN_CLICKED(IDC_SplitDirectionCHECK1, &Action_PolyOmino::OnBnClickedSplitdirectioncheck1)
+	ON_BN_CLICKED(IDC_Polyomino_SloppingEdgeSubdivision, &Action_PolyOmino::OnBnClickedPolyominoSloppingedgesubdivision)
+	ON_WM_CHAR()
+	ON_BN_CLICKED(IDC_Polyomino_DeleteSelectedLandmarks, &Action_PolyOmino::OnBnClickedPolyominoDeleteselectedlandmarks)
+	ON_BN_CLICKED(IDC_Omino_LoadUSAMap, &Action_PolyOmino::OnBnClickedOminoLoadusamap)
+	ON_BN_CLICKED(IDC_Polyomino_MergeSeletedLandMarks, &Action_PolyOmino::OnBnClickedPolyominoMergeseletedlandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_ClearLandMarkSelection, &Action_PolyOmino::OnBnClickedPolyominoClearlandmarkselection)
+	ON_BN_CLICKED(IDC_Polyomino_InverseSeletedLandMarkStyle, &Action_PolyOmino::OnBnClickedPolyominoInverseseletedlandmarkstyle)
+	ON_BN_CLICKED(IDC_Polyomino_Save_Landmark, &Action_PolyOmino::OnBnClickedPolyominoSaveLandmark)
+	ON_BN_CLICKED(IDC_Polyomino_LoadLandmark, &Action_PolyOmino::OnBnClickedPolyominoLoadlandmark)
+	ON_BN_CLICKED(IDC_Polyomino_SmoothLandMarks, &Action_PolyOmino::OnBnClickedPolyominoSmoothlandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_SmoothSelectedLandMarks, &Action_PolyOmino::OnBnClickedPolyominoSmoothselectedlandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_Triangulate, &Action_PolyOmino::OnBnClickedPolyominoTriangulate)
+	ON_BN_CLICKED(IDC_Polyomino_SplitLandmarks, &Action_PolyOmino::OnBnClickedPolyominoSplitlandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_ClearVertexSelection, &Action_PolyOmino::OnBnClickedPolyominoClearvertexselection)
+	ON_BN_CLICKED(IDC_Polyomino_CheckInvalidEdges, &Action_PolyOmino::OnBnClickedPolyominoCheckinvalidedges)
+	ON_BN_CLICKED(IDC_Polyomino_AddLandmark, &Action_PolyOmino::OnBnClickedPolyominoAddlandmark)
+	ON_BN_CLICKED(IDC_Polyomino_BackUpLandMarks, &Action_PolyOmino::OnBnClickedPolyominoBackuplandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_SetAuxillaryLandmark, &Action_PolyOmino::OnBnClickedPolyominoSetauxillarylandmark)
+	ON_BN_CLICKED(IDC_Polyomino_AuxillaryVisiable, &Action_PolyOmino::OnBnClickedPolyominoAuxillaryvisiable)
+	ON_BN_CLICKED(IDC_Polyomino_DeleteAuxillaryLandmarks, &Action_PolyOmino::OnBnClickedPolyominoDeleteauxillarylandmarks)
+	ON_BN_CLICKED(IDC_Polyomino_FixPoints, &Action_PolyOmino::OnBnClickedPolyominoFixpoints)
+	ON_BN_CLICKED(IDC_Polyomino_UnFixPoints, &Action_PolyOmino::OnBnClickedPolyominoUnfixpoints)
+	ON_BN_CLICKED(IDC_Polyomino_CopyFixPoints, &Action_PolyOmino::OnBnClickedPolyominoCopyfixpoints)
+	ON_BN_CLICKED(IDC_Omino_LoadUSAStreighten, &Action_PolyOmino::OnBnClickedOminoLoadusastreighten)
+	ON_BN_CLICKED(IDC_UniformGrid_Initialization, &Action_PolyOmino::OnBnClickedUniformgridInitialization)
+	ON_BN_CLICKED(IDC_UniformGrid_Progessive_Mesh_Iteration, &Action_PolyOmino::OnBnClickedUniformgridProgessiveMeshIteration)
+	ON_BN_CLICKED(IDC_Polyomino_ShortestPath, &Action_PolyOmino::OnBnClickedPolyominoShortestpath)
+	ON_BN_CLICKED(IDC_Polyomino_Save_M_Landmark, &Action_PolyOmino::OnBnClickedPolyominoSaveMLandmark)
+END_MESSAGE_MAP()
+
+
+// Action_PolyOmino message handlers
+extern char Post_Message[1000];
+void Action_PolyOmino::OnBnClickedGeneratelandmarks()
+{
+	// TODO: Add your control notification handler code here
+	GenerateLandMarks();
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoRectification()
+{
+	// TODO: Add your control notification handler code here
+	TJuctionRectification();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoMergeslope()
+{
+	// TODO: Add your control notification handler code here
+	MergeOneEdgeWithSloping();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoDeletelandmark()
+{
+	// TODO: Add your control notification handler code here
+	DeleteVertexConnectedLandmarks();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoMergesamestyle()
+{
+	// TODO: Add your control notification handler code here
+	MergeConnectedLandMarkswithSameStyle();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoThreeconnected()
+{
+	// TODO: Add your control notification handler code here
+	MergeThreeConnectedLandmarks();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoMergesmall()
+{
+	// TODO: Add your control notification handler code here
+	MergeSmallEdges();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSavelandmark()
+{
+	// TODO: Add your control notification handler code here
+	SaveGeoMap();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoExtendsmall()
+{
+	// TODO: Add your control notification handler code here
+	ExtendSmall();
+}
+void Action_PolyOmino::GenerateLandMarks()
+{
+	pMesh->m_LandMarkArray.clear();
+
+	//Find all the corners
+	std::vector<int> m_CornerPointArray;
+	m_CornerPointArray.resize(pMesh->m_ArrayVertex.GetSize(),0);
+
+	for(int i = 0; i < pMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pMesh->m_ArraySeletedEdges[i];
+		m_CornerPointArray[data.first]++; 
+		m_CornerPointArray[data.second]++; 
+	}
+	std::vector<std::vector<int>> m_ArrayPointConnectedSelectEdgeIndex;
+	m_ArrayPointConnectedSelectEdgeIndex.resize(pMesh->m_ArrayVertex.GetSize());
+	for(int i = 0; i < pMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pMesh->m_ArraySeletedEdges[i];
+		m_ArrayPointConnectedSelectEdgeIndex[data.first].push_back(i);
+		m_ArrayPointConnectedSelectEdgeIndex[data.second].push_back(i);
+	}
+
+	std::vector<GeoMapLandMark*> m_ArrayLandMarks;
+	std::vector<int> newlandmark;
+	std::vector<int> m_edghandledflag;
+	m_edghandledflag.resize(pMesh->m_ArraySeletedEdges.size(),0);
+	//while(1)
+	{
+		for(int i = 0; i < m_CornerPointArray.size(); i++)
+		{
+			if(m_CornerPointArray[i] >= 3 || m_CornerPointArray[i] == 1)
+			{
+				//m_CornerPointArray[i] = -3;
+				for(int j = 0; j < m_ArrayPointConnectedSelectEdgeIndex[i].size(); j++)
+				{
+					newlandmark.clear();
+					newlandmark.push_back(i);
+					int edgeindex = m_ArrayPointConnectedSelectEdgeIndex[i][j];
+
+					int prevertexindex = i;
+					std::pair<int,int> data;
+					if(m_edghandledflag[edgeindex] == 0)
+					{
+						while(1)
+						{
+							//handled edge
+							m_edghandledflag[edgeindex] = 1;
+
+							data = pMesh->m_ArraySeletedEdges[edgeindex];
+							if(data.first == prevertexindex)
+							{
+								newlandmark.push_back(data.second);
+								prevertexindex = data.second;
+							}else
+							{
+								newlandmark.push_back(data.first);
+								prevertexindex = data.first;
+							}
+							if(m_CornerPointArray[prevertexindex] >= 3 || m_CornerPointArray[prevertexindex] == 1 )
+								break;
+
+							if(m_ArrayPointConnectedSelectEdgeIndex[prevertexindex][0] == edgeindex)
+								edgeindex = m_ArrayPointConnectedSelectEdgeIndex[prevertexindex][1];
+							else
+								edgeindex = m_ArrayPointConnectedSelectEdgeIndex[prevertexindex][0];
+						}
+						GeoMapLandMark* pLandMark = new GeoMapLandMark();
+						pLandMark->landmark_points = newlandmark;
+						m_ArrayLandMarks.push_back(pLandMark);
+					}
+
+				}
+			}
+		}
+	}
+
+	pMesh->m_LandMarkArray = m_ArrayLandMarks;
+
+	//pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size());
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+}
+void Action_PolyOmino::InsertLandMark(std::vector<int> &landmarkpoints,int style)
+{
+	if(style == -1)
+	{
+		int start = landmarkpoints[0];
+		int end = landmarkpoints[landmarkpoints.size() - 1];
+		Vector3D line13vec(pMesh->m_ArrayVertex[start]->x() - pMesh->m_ArrayVertex[end]->x(),pMesh->m_ArrayVertex[start]->y() - pMesh->m_ArrayVertex[end]->y(),pMesh->m_ArrayVertex[start]->z() - pMesh->m_ArrayVertex[end]->z());
+		line13vec.SetUnit();
+		Vector3D yaxis(0,1,0);
+		double angle = acos(line13vec * yaxis ) * 180/ 3.1415926;
+		if(angle < 45 || angle > 135)
+			style = 1;
+		else
+			style = 0;
+	}
+
+	GeoMapLandMark* pLandMark = new GeoMapLandMark();
+	pLandMark->landmark_points = landmarkpoints;
+	pLandMark->style = style;
+	pMesh->m_LandMarkArray.push_back(pLandMark);
+}
+void Action_PolyOmino::SplitLandmark()
+{
+	if(m_SplitLandmarkFirstRun)
+	{
+		pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	}
+	m_SplitLandmarkFirstRun = FALSE;
+	//return;
+	//Split the landmarks
+	std::vector<GeoMapLandMark*> m_ArrayLandMarks = pMesh->m_ArrayLandMarks_Original;
+	std::vector<int> newlandmark;
+
+	pMesh->m_LandMarkArray.clear();
+
+	GeoMapLandMark* pLandMark;
+	std::vector<int> landmark;
+	pMesh->m_ArrayPointConnectedLandmarks.resize(pMesh->m_ArrayVertex.GetSize());
+	//std::vector<int> newlandmark;
+	int sign1,sign2;
+	//int inflectionpoint;
+	for(int i = 0; i < m_ArrayLandMarks.size(); i++)
+	{
+		//inflectionpoint = 0;
+		pLandMark = m_ArrayLandMarks[i];
+		landmark = pLandMark->landmark_points;
+		newlandmark.clear();
+		newlandmark.push_back(pLandMark->landmark_points[0]);
+		Vector3D yaxis(0,1,0);
+
+		Vector3D vv1(pMesh->m_ArrayVertex[landmark[0]]->x(),pMesh->m_ArrayVertex[landmark[0]]->y(),pMesh->m_ArrayVertex[landmark[0]]->z());
+		Vector3D vv2(pMesh->m_ArrayVertex[landmark[1]]->x(),pMesh->m_ArrayVertex[landmark[1]]->y(),pMesh->m_ArrayVertex[landmark[1]]->z());
+		Vector3D v1 = vv2 - vv1;
+		double angle1 = acos(v1 * yaxis / Length(v1)) * 180/ 3.1415926;
+		if(angle1 < 45 || angle1 >135)
+			sign1 = 1;
+		else 
+			sign1 = 0;
+
+		for(int j = 1; j < landmark.size() - 1 ; j++)
+		{
+			newlandmark.push_back(landmark[j]);
+			int index = landmark[j];
+			int preindex = landmark[j - 1];
+			int nextindex = landmark[j + 1];
+			Vector3D prev(pMesh->m_ArrayVertex[preindex]->x(),pMesh->m_ArrayVertex[preindex]->y(),pMesh->m_ArrayVertex[preindex]->z());
+			Vector3D v(pMesh->m_ArrayVertex[index]->x(),pMesh->m_ArrayVertex[index]->y(),pMesh->m_ArrayVertex[index]->z());
+			Vector3D nextv(pMesh->m_ArrayVertex[nextindex]->x(),pMesh->m_ArrayVertex[nextindex]->y(),pMesh->m_ArrayVertex[nextindex]->z());
+			v1 = v - prev;
+			Vector3D v2 = nextv - v;
+			double val = v1 * v2 / (Length(v1) * Length(v2));
+			double angle_ = acos(val) * 180/ 3.1415926;
+
+			double angle2 = acos(v2 * yaxis / Length(v2)) * 180/ 3.1415926;
+			if(angle2 < 45 || angle2 >135)
+				sign2 = 1;
+			else 
+				sign2 = 0;
+			//if(angle_ > 90 || sign2 != sign1)
+			//if(sign2 != sign1 && m_bSplitDirection) 
+			if(angle_ > m_SplitAngle || sign2 != sign1 && m_bSplitDirection) 
+			{
+				InsertLandMark(newlandmark,sign1);
+				//pMesh->m_LandMarkArray.push_back(newlandmark);
+				//pMesh->m_LandMarkArray_style.push_back(sign1);
+
+				//case 
+				if(angle_ > 90 && sign2 == sign1)
+				{
+					sign1 = 1 - sign2;
+					//inflectionpoint = 1;
+
+				}
+				//if(angle_ > 45 && sign2 == sign1)
+
+				else
+					sign1 = sign2;
+
+				newlandmark.clear();
+				newlandmark.push_back(landmark[j]);
+			}
+		}
+		newlandmark.push_back(landmark[landmark.size() - 1]);
+		InsertLandMark(newlandmark,sign1);
+		//pMesh->m_LandMarkArray.push_back(newlandmark);
+		//pMesh->m_LandMarkArray_style.push_back(sign1);
+	}
+	sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size());
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::SaveGeoMap()
+{
+	CString s1 = "D:\\papers\\code\\bin_Curve\\lamcc_dir_div_merge.m"; 
+	//CString s1 = "D:\\papers\\code\\bin_Curve\\USA_33.m";
+
+	std::ofstream file(s1);
+	std::ifstream *texturefile = NULL;
+	COLORREF color;
+	double r,g,b;
+
+	//CImage m_TextureImage; 
+	for(int i  = 0; i < pMesh->NbVertex(); i++)
+	{
+
+		CVertex3d* pVertex = pMesh->GetVertex(i);
+		pVertex->m_Flag = i + 1;
+
+		file << "Vertex " << i + 1 << " " << pVertex->m_Coord[0] << " " << pVertex->m_Coord[1] << " " << pVertex->m_Coord[2] << "\n";
+
+		//file << " {";
+		/*if(hasvt)
+		{
+			color = m_TextureImage.GetPixel(m_TextureImage.GetWidth() * pVertex->u,m_TextureImage.GetHeight() * (1 - pVertex->v));
+
+			b = ((color & 0xff0000) >> 16);
+			g = ((color & 0x00ff00) >> 8);
+			r = (color & 0x0000ff);
+
+			file << "rgb=("<<r/255.0<<" "<<g/255.0<<" "<<b/255.0<<") ";*/
+			//file << "uv=(" << pVertex->u << " " << pVertex->v << ") ";
+			//file << "uv=(" << pVertex->m_Coord[0] << " " << pVertex->m_Coord[1] << ") ";
+		//}
+		if(0)
+		{
+			file << "normal=(" << pVertex->GetNormal()->x() << " "<< pVertex->GetNormal()->y() << " " << pVertex->GetNormal()->z()<<") ";
+		}
+		//file << "}\n";
+	}
+	for(int i = 0; i < pMesh->NbFace(); i++)
+	{
+		CFace3d* pFace3d = pMesh->GetFace(i);
+		file << "Face " << i + 1 <<" " << pFace3d->v1()->m_Flag << " " << pFace3d->v2()->m_Flag << " " << pFace3d->v3()->m_Flag << "\n";
+	}
+
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		for(int j = 0; j < pLandMark->landmark_points.size() - 1;j++)
+		{
+			CVertex3d* pVertex1 = pMesh->GetVertex(pMesh->m_LandMarkArray[i]->landmark_points[j]);
+			CVertex3d* pVertex2 = pMesh->GetVertex(pMesh->m_LandMarkArray[i]->landmark_points[j + 1]);
+			file<< "Edge " << " " << pVertex1->m_Flag << " " << pVertex2->m_Flag << " {sharp landmark=("<<i<<") dir=("<<pMesh->m_LandMarkArray[i]->style<<")}" << "\n";
+		}
+	}
+	file<< "Edge 1 52488 {sharp}" << "\n";
+	file<< "Edge 4 52427 {sharp}" << "\n";
+	file<< "Edge 2 52416 {sharp}" << "\n";
+	file<< "Edge 3 52257 {sharp}" << "\n";
+
+	//file<< "Edge 1 122074 {sharp}" << "\n";
+	//file<< "Edge 2 110694 {sharp}" << "\n";
+	//file<< "Edge 3 102055 {sharp}" << "\n";
+	//file<< "Edge 4 121829 {sharp}" << "\n";
+	file.close();
+}
+void Action_PolyOmino::Sloppingedgesubdivision()
+{
+	if(m_SloppingedgesubdivisionFirstRun)
+	{
+		pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	}
+	m_SloppingedgesubdivisionFirstRun = FALSE;
+
+	pMesh->m_LandMarkArray = pMesh->m_ArrayLandMarks_Original;
+	//pMesh->m_LandMarkArray_style = m_newlandmarks_style_Original;
+
+	Vector3D vv1(pMesh->m_ArrayVertex[4696]->x() - pMesh->m_ArrayVertex[4695]->x(),pMesh->m_ArrayVertex[4696]->y() - pMesh->m_ArrayVertex[4695]->y(),pMesh->m_ArrayVertex[4696]->z() - pMesh->m_ArrayVertex[4695]->z());
+	double minedgelength_tol = Length(vv1) ;
+
+	//Merge one edge
+	std::vector<int> m_ArrayDeleteFlag;
+	m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		if(i < m_ArrayDeleteFlag.size())
+			if(m_ArrayDeleteFlag[i] == 1)
+				continue;
+
+		if(i >= m_ArrayDeleteFlag.size())
+			continue;
+		int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+		int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+		Vector3D vv1(pMesh->m_ArrayVertex[startvindex]->x(),pMesh->m_ArrayVertex[startvindex]->y(),pMesh->m_ArrayVertex[startvindex]->z());
+		Vector3D vv2(pMesh->m_ArrayVertex[endvindex]->x(),pMesh->m_ArrayVertex[endvindex]->y(),pMesh->m_ArrayVertex[endvindex]->z());
+
+		Vector3D dir = vv2 - vv1;
+		dir.SetUnit();
+		double angle_ = acos(fabs(dir[0])) * 180 / 3.1415926;
+		double len = Length(vv1 - vv2);
+		if(len > minedgelength_tol && angle_ > 30 && angle_ < 60)
+		{
+			//int segments = (int)(len / minedgelength_tol);
+			//if(segments % 2 == 0)
+			//	segments++;
+			int segments = m_EdgeSubdivisionNum * 2 - 1;
+			double edgenum = pMesh->m_LandMarkArray[i]->landmark_points.size() / (double)segments;
+			double landmarklength = GetLandMarkLength(pMesh->m_LandMarkArray,i);
+			double seglength = landmarklength / segments;
+			std::vector<int> newlandmark_;
+			int index = 0;
+			double edgelength = 0;
+			int style = pMesh->m_LandMarkArray[i]->style;
+
+			int segnum = 0;
+			newlandmark_.push_back(pMesh->m_LandMarkArray[i]->landmark_points[0]);
+			for(int jj = 1; jj < pMesh->m_LandMarkArray[i]->landmark_points.size(); jj++)
+			{
+				newlandmark_.push_back(pMesh->m_LandMarkArray[i]->landmark_points[jj]);
+				int currentindex = pMesh->m_LandMarkArray[i]->landmark_points[jj];
+				int preindex = pMesh->m_LandMarkArray[i]->landmark_points[jj - 1];
+				Vector3D prevv(pMesh->m_ArrayVertex[currentindex]->x(),pMesh->m_ArrayVertex[currentindex]->y(),pMesh->m_ArrayVertex[currentindex]->z());
+				Vector3D currentvv(pMesh->m_ArrayVertex[preindex]->x(),pMesh->m_ArrayVertex[preindex]->y(),pMesh->m_ArrayVertex[preindex]->z());
+				edgelength += Length(currentvv - prevv);	
+				index++;
+				if(index >= edgenum && segnum < segments - 1 || jj == pMesh->m_LandMarkArray[i]->landmark_points.size() - 1)
+					//if(edgelength >= seglength && segnum < segments - 1 || jj == pMesh->m_LandMarkArray[i].size() - 1)
+				{
+					InsertLandMark(newlandmark_,style);
+					pMesh->m_LandMarkArray[pMesh->m_LandMarkArray.size() - 1]->fixedflag = 1;
+					//pMesh->m_LandMarkArray.push_back(newlandmark_);
+					//pMesh->m_LandMarkArray_style.push_back(style);
+					style = 1 - style;
+					newlandmark_.clear();
+					newlandmark_.push_back(pMesh->m_LandMarkArray[i]->landmark_points[jj]);
+					index = 1;
+					edgelength = 0;
+					segnum++;
+				}
+			}
+			m_ArrayDeleteFlag[i] = 1;
+		}
+	}
+	for(int ii = m_ArrayDeleteFlag.size() - 1; ii >= 0; ii--)
+	{
+		if(m_ArrayDeleteFlag[ii])
+		{
+			pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + ii);
+			//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + ii);
+		}
+	}
+	//pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::MergeOneEdgeWithSloping()
+{
+	if(m_MergeOneEdgeWithSlopingFirstRun)
+	{
+		pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	}
+	m_MergeOneEdgeWithSlopingFirstRun = FALSE;
+
+	pMesh->m_LandMarkArray = pMesh->m_ArrayLandMarks_Original;
+	//pMesh->m_LandMarkArray_style = m_newlandmarks_style_Original;
+
+	//Find all the corners
+	std::vector<int> m_CornerPointArray;
+	m_CornerPointArray.resize(pMesh->m_ArrayVertex.GetSize(),0);
+	for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+	{
+		pMesh->m_ArrayPointConnectedLandmarks[i].clear();
+	}
+
+	for(int i = 0; i < pMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pMesh->m_ArraySeletedEdges[i];
+		m_CornerPointArray[data.first]++; 
+		m_CornerPointArray[data.second]++; 
+	}
+	std::vector<std::vector<int>> m_ArrayPointConnectedSelectEdgeIndex;
+	m_ArrayPointConnectedSelectEdgeIndex.resize(pMesh->m_ArrayVertex.GetSize());
+	for(int i = 0; i < pMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pMesh->m_ArraySeletedEdges[i];
+		m_ArrayPointConnectedSelectEdgeIndex[data.first].push_back(i);
+		m_ArrayPointConnectedSelectEdgeIndex[data.second].push_back(i);
+	}
+
+	Vector3D vv1(pMesh->m_ArrayVertex[4696]->x() - pMesh->m_ArrayVertex[4695]->x(),pMesh->m_ArrayVertex[4696]->y() - pMesh->m_ArrayVertex[4695]->y(),pMesh->m_ArrayVertex[4696]->z() - pMesh->m_ArrayVertex[4695]->z());
+	double minedgelength_tol = Length(vv1) ;
+
+	//Merge one edge
+	std::vector<int> m_ArrayDeleteFlag;
+	m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		if(pMesh->m_LandMarkArray[i]->fixedflag)
+			continue;
+		if(i < m_ArrayDeleteFlag.size())
+			if(m_ArrayDeleteFlag[i] == 1)
+				continue;
+		if(pMesh->m_LandMarkArray[i]->landmark_points.size() == 2)
+		{
+			int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+			int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[1];
+
+			if(pMesh->m_ArrayPointConnectedLandmarks[startvindex].size() == 2 && pMesh->m_ArrayPointConnectedLandmarks[endvindex].size() == 2)
+			{
+				int preedgeindex = pMesh->m_ArrayPointConnectedLandmarks[startvindex][0];
+				if(preedgeindex == i)
+					preedgeindex = pMesh->m_ArrayPointConnectedLandmarks[startvindex][1];
+				int nextedgeindex = pMesh->m_ArrayPointConnectedLandmarks[endvindex][0];
+				if(nextedgeindex == i)
+					nextedgeindex = pMesh->m_ArrayPointConnectedLandmarks[endvindex][1];
+
+				//if(m_ArrayDeleteFlag[preedgeindex] == 1 || )
+				int prestartvindex = pMesh->m_LandMarkArray[preedgeindex]->landmark_points[0];
+				int preendvindex;
+				if(prestartvindex != startvindex)
+				{
+					prestartvindex = pMesh->m_LandMarkArray[preedgeindex]->landmark_points[pMesh->m_LandMarkArray[preedgeindex]->landmark_points.size() - 1];
+					preendvindex = pMesh->m_LandMarkArray[preedgeindex]->landmark_points[pMesh->m_LandMarkArray[preedgeindex]->landmark_points.size() - 2];
+				}else
+				{
+					prestartvindex = pMesh->m_LandMarkArray[preedgeindex]->landmark_points[0];
+					preendvindex = pMesh->m_LandMarkArray[preedgeindex]->landmark_points[1];
+				}
+
+				int nextstartvindex = pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[0];
+				int nextendvindex;
+				if(nextstartvindex != endvindex)
+				{
+					nextstartvindex = pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[pMesh->m_LandMarkArray[nextedgeindex]->landmark_points.size() - 1];
+					nextendvindex = pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[pMesh->m_LandMarkArray[nextedgeindex]->landmark_points.size() - 2];
+				}else
+				{
+					nextstartvindex = pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[0];
+					nextendvindex = pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[1];
+				}
+				Vector3D currentedge(pMesh->m_ArrayVertex[endvindex]->x() - pMesh->m_ArrayVertex[startvindex]->x(),pMesh->m_ArrayVertex[endvindex]->y() - pMesh->m_ArrayVertex[startvindex]->y(),pMesh->m_ArrayVertex[endvindex]->z() - pMesh->m_ArrayVertex[startvindex]->z());
+				Vector3D preedge(pMesh->m_ArrayVertex[preendvindex]->x() - pMesh->m_ArrayVertex[prestartvindex]->x(),pMesh->m_ArrayVertex[preendvindex]->y() - pMesh->m_ArrayVertex[prestartvindex]->y(),pMesh->m_ArrayVertex[preendvindex]->z() - pMesh->m_ArrayVertex[prestartvindex]->z());
+				Vector3D nextedge(pMesh->m_ArrayVertex[nextendvindex]->x() - pMesh->m_ArrayVertex[nextstartvindex]->x(),pMesh->m_ArrayVertex[nextendvindex]->y() - pMesh->m_ArrayVertex[nextstartvindex]->y(),pMesh->m_ArrayVertex[nextendvindex]->z() - pMesh->m_ArrayVertex[nextstartvindex]->z());
+
+				double edgelength = Length(currentedge);
+				currentedge.SetUnit();
+				preedge.SetUnit();
+				nextedge.SetUnit();
+
+				double angle1 = acos(fabs(currentedge * preedge)) * 180 / 3.1415926;
+				double angle2 = acos(fabs(currentedge * nextedge)) * 180 / 3.1415926;
+
+				//if(angle1 < 45 && angle2 < 45 || edgelength <= minedgelength_tol * 0.8)
+				if(angle1 < m_MergeAngle && angle2 < m_MergeAngle)
+				{
+					//Merge
+					std::vector<int> newlandmark_;
+					GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+					newlandmark_ = pLandMark->landmark_points;
+
+					if(pMesh->m_LandMarkArray[preedgeindex]->deleteflag == 0)
+					//if(m_ArrayDeleteFlag[preedgeindex] == 0)
+						if(pMesh->m_LandMarkArray[preedgeindex]->landmark_points[0] == startvindex)
+						//if(pMesh->m_LandMarkArray[preedgeindex][0] == startvindex)
+						{
+							for(int ii = 1; ii < pMesh->m_LandMarkArray[preedgeindex]->landmark_points.size(); ii++)
+							{
+								newlandmark_.insert(newlandmark_.begin(),pMesh->m_LandMarkArray[preedgeindex]->landmark_points[ii]);
+							}
+						}else
+						{
+							for(int ii = pMesh->m_LandMarkArray[preedgeindex]->landmark_points.size() - 2; ii >= 0 ; ii--)
+							{
+								newlandmark_.insert(newlandmark_.begin(),pMesh->m_LandMarkArray[preedgeindex]->landmark_points[ii]);
+							}
+						}
+						
+						if(pMesh->m_LandMarkArray[nextedgeindex]->deleteflag == 0)
+						//if(m_ArrayDeleteFlag[nextedgeindex] == 0)
+							if(pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[0] == endvindex)
+							{
+								for(int ii = 1; ii < pMesh->m_LandMarkArray[nextedgeindex]->landmark_points.size(); ii++)
+								{
+									newlandmark_.push_back(pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[ii]);
+								}
+							}else
+							{
+								for(int ii = pMesh->m_LandMarkArray[nextedgeindex]->landmark_points.size() - 2; ii >= 0 ; ii--)
+								{
+									newlandmark_.push_back(pMesh->m_LandMarkArray[nextedgeindex]->landmark_points[ii]);
+								}
+							}
+							int style = pMesh->m_LandMarkArray[preedgeindex]->style;
+							//int style = pMesh->m_LandMarkArray_style[preedgeindex];
+							InsertLandMark(newlandmark_,style);
+							//pMesh->m_LandMarkArray.push_back(newlandmark_);
+							//pMesh->m_LandMarkArray_style.push_back(style);
+							m_ArrayDeleteFlag[preedgeindex] = 1;
+							m_ArrayDeleteFlag[i] = 1;
+							m_ArrayDeleteFlag[nextedgeindex] = 1;
+							//delete
+							//std::vector<int> m_deleteitems;
+							//m_deleteitems.push_back(nextedgeindex);
+							//m_deleteitems.push_back(i);
+							//m_deleteitems.push_back(preedgeindex);
+
+							//std::sort(m_deleteitems.begin(),m_deleteitems.end());
+							//m_newlandmarks.erase(m_newlandmarks.begin() + m_deleteitems[2]);
+							//m_newlandmarks.erase(m_newlandmarks.begin() + m_deleteitems[1]);
+							//m_newlandmarks.erase(m_newlandmarks.begin() + m_deleteitems[0]);
+
+
+							//m_newlandmarks_style.erase(m_newlandmarks_style.begin() + m_deleteitems[2]);
+							//m_newlandmarks_style.erase(m_newlandmarks_style.begin() + m_deleteitems[1]);
+							//m_newlandmarks_style.erase(m_newlandmarks_style.begin() + m_deleteitems[0]);
+
+							//i = 0;
+				}
+			}
+		}
+	}
+	for(int ii = m_ArrayDeleteFlag.size() - 1; ii >= 0; ii--)
+	{
+		if(m_ArrayDeleteFlag[ii])
+		{
+			pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + ii);
+			//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + ii);
+		}
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::TJuctionRectification()
+{
+	pMesh->m_ArrayPointConnectedLandmarks.resize(pMesh->m_ArrayVertex.GetSize());
+	for(int i = 0; i < pMesh->m_ArrayVertex.GetSize(); i++)
+	{
+		pMesh->m_ArrayPointConnectedLandmarks[i].clear();
+	}
+	//Modify the direction At T-Junction
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		int start = pMesh->m_LandMarkArray[i]->landmark_points[0];
+		int end = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+		pMesh->m_ArrayPointConnectedLandmarks[start].push_back(i);
+		pMesh->m_ArrayPointConnectedLandmarks[end].push_back(i);
+	}
+
+	for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+	{
+		int size1 = pMesh->m_ArrayPointConnectedLandmarks[i].size();
+		if (size1 == 3)
+		{
+			//T-Junction
+			int index1 = pMesh->m_ArrayPointConnectedLandmarks[i][0];
+			int index2 = pMesh->m_ArrayPointConnectedLandmarks[i][1];
+			int index3 = pMesh->m_ArrayPointConnectedLandmarks[i][2];
+
+			//
+			int line1start = pMesh->m_LandMarkArray[index1]->landmark_points[0];
+			int line1end = pMesh->m_LandMarkArray[index1]->landmark_points[pMesh->m_LandMarkArray[index1]->landmark_points.size() / 2];
+			if(line1start == line1end)
+				line1end = pMesh->m_LandMarkArray[index1]->landmark_points[pMesh->m_LandMarkArray[index1]->landmark_points.size() - 1];
+			if(line1start != i)
+			{
+				line1start = pMesh->m_LandMarkArray[index1]->landmark_points[pMesh->m_LandMarkArray[index1]->landmark_points.size() - 1];
+				line1end = pMesh->m_LandMarkArray[index1]->landmark_points[pMesh->m_LandMarkArray[index1]->landmark_points.size() / 2];
+				if(line1start == line1end)
+					line1end = pMesh->m_LandMarkArray[index1]->landmark_points[0];
+			}
+
+			int line2start = pMesh->m_LandMarkArray[index2]->landmark_points[0];
+			int line2end = pMesh->m_LandMarkArray[index2]->landmark_points[pMesh->m_LandMarkArray[index2]->landmark_points.size() / 2];
+			if(line2start == line2end)
+				line2end = pMesh->m_LandMarkArray[index2]->landmark_points[pMesh->m_LandMarkArray[index2]->landmark_points.size() - 1];
+			if(line2start != i)
+			{
+				line2start = pMesh->m_LandMarkArray[index2]->landmark_points[pMesh->m_LandMarkArray[index2]->landmark_points.size() - 1];
+				line2end = pMesh->m_LandMarkArray[index2]->landmark_points[pMesh->m_LandMarkArray[index2]->landmark_points.size() / 2];
+				if(line2start == line2end)
+					line2end = pMesh->m_LandMarkArray[index2]->landmark_points[0];
+			}
+
+			int line3start = pMesh->m_LandMarkArray[index3]->landmark_points[0];
+			int line3end = pMesh->m_LandMarkArray[index3]->landmark_points[pMesh->m_LandMarkArray[index3]->landmark_points.size() / 2];
+			if(line3start == line3end)
+				line3end = pMesh->m_LandMarkArray[index3]->landmark_points[pMesh->m_LandMarkArray[index3]->landmark_points.size() - 1];
+			if(line3start != i)
+			{
+				line3start = pMesh->m_LandMarkArray[index3]->landmark_points[pMesh->m_LandMarkArray[index3]->landmark_points.size() - 1];
+				line3end = pMesh->m_LandMarkArray[index3]->landmark_points[pMesh->m_LandMarkArray[index3]->landmark_points.size() / 2];
+				if(line3start == line3end)
+					line3end = pMesh->m_LandMarkArray[index3]->landmark_points[0];
+			}
+			Vector3D line1vec(pMesh->m_ArrayVertex[line1end]->x() - pMesh->m_ArrayVertex[line1start]->x(),pMesh->m_ArrayVertex[line1end]->y() - pMesh->m_ArrayVertex[line1start]->y(),pMesh->m_ArrayVertex[line1end]->z() - pMesh->m_ArrayVertex[line1start]->z());
+			Vector3D line2vec(pMesh->m_ArrayVertex[line2end]->x() - pMesh->m_ArrayVertex[line2start]->x(),pMesh->m_ArrayVertex[line2end]->y() - pMesh->m_ArrayVertex[line2start]->y(),pMesh->m_ArrayVertex[line2end]->z() - pMesh->m_ArrayVertex[line2start]->z());
+			Vector3D line3vec(pMesh->m_ArrayVertex[line3end]->x() - pMesh->m_ArrayVertex[line3start]->x(),pMesh->m_ArrayVertex[line3end]->y() - pMesh->m_ArrayVertex[line3start]->y(),pMesh->m_ArrayVertex[line3end]->z() - pMesh->m_ArrayVertex[line3start]->z());
+
+			line1vec.SetUnit();
+			line2vec.SetUnit();
+			line3vec.SetUnit();
+
+			double angle12= acos(line1vec * line2vec) * 180 / 3.1415926;
+			double angle23= acos(line2vec * line3vec) * 180 / 3.1415926;
+			double angle13= acos(line1vec * line3vec) * 180 / 3.1415926;
+
+			Vector3D yaxis(0,1,0);
+			if(angle12 >= angle23 && angle12 >= angle13)
+			{
+				Vector3D line12vec(pMesh->m_ArrayVertex[line1end]->x() - pMesh->m_ArrayVertex[line2end]->x(),pMesh->m_ArrayVertex[line1end]->y() - pMesh->m_ArrayVertex[line2end]->y(),pMesh->m_ArrayVertex[line1end]->z() - pMesh->m_ArrayVertex[line2end]->z());
+				line12vec.SetUnit();
+
+				double angle2 = acos(line12vec * yaxis ) * 180/ 3.1415926;
+				double angle3 = acos(line3vec * yaxis ) * 180/ 3.1415926;
+				if(fabs(angle2 - 90) < fabs(angle3 - 90))
+				{
+					//line12 xaxis, line3 yaxis
+					pMesh->m_LandMarkArray[index1]->style = 0;
+					pMesh->m_LandMarkArray[index2]->style = 0;
+					pMesh->m_LandMarkArray[index3]->style = 1;
+					//pMesh->m_LandMarkArray_style[index1] = 0;
+					//pMesh->m_LandMarkArray_style[index2] = 0;
+					//pMesh->m_LandMarkArray_style[index3] = 1;
+				}else
+				{
+					//line3 xaxis, line12 yaxis
+					pMesh->m_LandMarkArray[index1]->style = 1;
+					pMesh->m_LandMarkArray[index2]->style = 1;
+					pMesh->m_LandMarkArray[index3]->style = 0;
+					//pMesh->m_LandMarkArray_style[index1] = 1;
+					//pMesh->m_LandMarkArray_style[index2] = 1;
+					//pMesh->m_LandMarkArray_style[index3] = 0;
+				}
+			}else
+				if(angle23 >= angle12 && angle23 >= angle13)
+				{
+					Vector3D line23vec(pMesh->m_ArrayVertex[line3end]->x() - pMesh->m_ArrayVertex[line2end]->x(),pMesh->m_ArrayVertex[line3end]->y() - pMesh->m_ArrayVertex[line2end]->y(),pMesh->m_ArrayVertex[line3end]->z() - pMesh->m_ArrayVertex[line2end]->z());
+					line23vec.SetUnit();
+
+					double angle2 = acos(line23vec * yaxis ) * 180/ 3.1415926;
+					double angle3 = acos(line1vec * yaxis ) * 180/ 3.1415926;
+					if(fabs(angle2 - 90) < fabs(angle3 - 90))
+					{
+						//line23 xaxis, line1 yaxis
+						pMesh->m_LandMarkArray[index1]->style = 1;
+						pMesh->m_LandMarkArray[index2]->style = 0;
+						pMesh->m_LandMarkArray[index3]->style = 0;
+						//pMesh->m_LandMarkArray_style[index1] = 1;
+						//pMesh->m_LandMarkArray_style[index2] = 0;
+						//pMesh->m_LandMarkArray_style[index3] = 0;
+					}else
+					{
+						//line1 xaxis, line23 yaxis
+						pMesh->m_LandMarkArray[index1]->style = 0;
+						pMesh->m_LandMarkArray[index2]->style = 1;
+						pMesh->m_LandMarkArray[index3]->style = 1;
+						//pMesh->m_LandMarkArray_style[index1] = 0;
+						//pMesh->m_LandMarkArray_style[index2] = 1;
+						//pMesh->m_LandMarkArray_style[index3] = 1;
+					}
+				}else
+					if(angle13 >= angle12 && angle13 >= angle23)
+					{
+						Vector3D line13vec(pMesh->m_ArrayVertex[line3end]->x() - pMesh->m_ArrayVertex[line1end]->x(),pMesh->m_ArrayVertex[line3end]->y() - pMesh->m_ArrayVertex[line1end]->y(),pMesh->m_ArrayVertex[line3end]->z() - pMesh->m_ArrayVertex[line1end]->z());
+						line13vec.SetUnit();
+
+						double angle2 = acos(line13vec * yaxis ) * 180/ 3.1415926;
+						double angle3 = acos(line2vec * yaxis ) * 180/ 3.1415926;
+						if(fabs(angle2 - 90) < fabs(angle3 - 90))
+						{
+							//line13 xaxis, line2 yaxis
+							pMesh->m_LandMarkArray[index1]->style = 0;
+							pMesh->m_LandMarkArray[index2]->style = 1;
+							pMesh->m_LandMarkArray[index3]->style = 0;
+							//pMesh->m_LandMarkArray_style[index1] = 0;
+							//pMesh->m_LandMarkArray_style[index2] = 1;
+							//pMesh->m_LandMarkArray_style[index3] = 0;
+						}else
+						{
+							//line2 xaxis, line13 yaxis
+							pMesh->m_LandMarkArray[index1]->style = 1;
+							pMesh->m_LandMarkArray[index2]->style = 0;
+							pMesh->m_LandMarkArray[index3]->style = 1;
+							//pMesh->m_LandMarkArray_style[index1] = 1;
+							//pMesh->m_LandMarkArray_style[index2] = 0;
+							//pMesh->m_LandMarkArray_style[index3] = 1;
+						}
+					}
+		}
+	}
+	//pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	//m_newlandmarks_style_Original = pMesh->m_LandMarkArray_style;
+	pDoc->UpdateAllViews(NULL);
+}
+double Action_PolyOmino::GetAngleBetweenTwoLandmarks(int index)
+{
+	if(pMesh->m_ArrayPointConnectedLandmarks[index].size() != 2)
+		return -1;
+
+	int landmark1 = pMesh->m_ArrayPointConnectedLandmarks[index][0];
+	int landmark2 = pMesh->m_ArrayPointConnectedLandmarks[index][1];
+
+	int landmark1start = pMesh->m_LandMarkArray[landmark1]->landmark_points[0];
+	int landmark1end = pMesh->m_LandMarkArray[landmark1]->landmark_points[pMesh->m_LandMarkArray[landmark1]->landmark_points.size() - 1];
+
+	int landmark2start = pMesh->m_LandMarkArray[landmark2]->landmark_points[0];
+	int landmark2end = pMesh->m_LandMarkArray[landmark2]->landmark_points[pMesh->m_LandMarkArray[landmark2]->landmark_points.size() - 1];
+
+	int index1,index2,index3;
+	if(landmark1start == landmark2start)
+	{
+		index1 = landmark1end;
+		index2 = landmark1start;
+		index3 = landmark2end;
+	}else
+	if(landmark1end == landmark2start)
+	{
+		index1 = landmark1start;
+		index2 = landmark1end;
+		index3 = landmark2end;	
+	}else
+	if(landmark1start == landmark2end)
+	{
+		index1 = landmark1end;
+		index2 = landmark1start;
+		index3 = landmark2start;	
+	}else
+	if(landmark1end == landmark2end)
+	{
+		index1 = landmark1start;
+		index2 = landmark1end;
+		index3 = landmark2start;	
+	}
+
+	Vector3D vec1(pMesh->m_ArrayVertex[index1]->x(),pMesh->m_ArrayVertex[index1]->y(),pMesh->m_ArrayVertex[index1]->z());
+	Vector3D vec2(pMesh->m_ArrayVertex[index2]->x(),pMesh->m_ArrayVertex[index2]->y(),pMesh->m_ArrayVertex[index2]->z());
+	Vector3D vec3(pMesh->m_ArrayVertex[index3]->x(),pMesh->m_ArrayVertex[index3]->y(),pMesh->m_ArrayVertex[index3]->z());
+
+	//vec1.SetUnit();
+	//vec2.SetUnit();
+	//vec3.SetUnit();
+
+	Vector3D dir1 = vec2 - vec1;
+	Vector3D dir2 = vec3 - vec2;
+
+	dir1.SetUnit();
+	dir2.SetUnit();
+
+	double angle = acos(dir1 * dir2) * 180 / 3.1415926;
+	return angle;
+}
+void Action_PolyOmino::MergeSmallEdges()
+{
+	if(m_MergeSmallEdgesFirstRun)
+	{
+		pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+	}
+
+	pMesh->m_LandMarkArray = pMesh->m_ArrayLandMarks_Original;
+	
+	m_MergeSmallEdgesFirstRun = FALSE;
+	pMesh->m_ArrayPointConnectedLandmarks.resize(pMesh->m_ArrayVertex.GetSize());
+	
+	Vector3D vv1(pMesh->m_ArrayVertex[4696]->x() - pMesh->m_ArrayVertex[4695]->x(),pMesh->m_ArrayVertex[4696]->y() - pMesh->m_ArrayVertex[4695]->y(),pMesh->m_ArrayVertex[4696]->z() - pMesh->m_ArrayVertex[4695]->z());
+	double minedgelength_tol = Length(vv1) ;
+	//double tol = minedgelength_tol * 0.2;
+	double lengthscale = m_MergeSmallLandmarkLength.GetPos();
+	double tol = minedgelength_tol * lengthscale / 20.0;
+	double angle_tol = m_MergeSmallLandmarkAngle.GetPos();
+	while(1)
+	{
+		int num = pMesh->m_LandMarkArray.size();
+		//pMesh->m_ArrayDeleteFlag.clear();
+		//pMesh->m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+		for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+		{
+			pMesh->m_ArrayPointConnectedLandmarks[i].clear();	
+		}
+		for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		{
+			int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+			int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+			pMesh->m_ArrayPointConnectedLandmarks[startvindex].push_back(i);
+			pMesh->m_ArrayPointConnectedLandmarks[endvindex].push_back(i);
+		}
+		for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		{
+			GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+			int startindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+			int endindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+			double landmarklength = GetLandMarkLength(pMesh->m_LandMarkArray,i);
+			if(pLandMark->deleteflag)
+				continue;
+
+			//if(landmarklength < tol)
+			{
+				if(pMesh->m_ArrayPointConnectedLandmarks[startindex].size() == 2 && pMesh->m_ArrayPointConnectedLandmarks[endindex].size() == 2)
+				{
+					int prelandmarkindex,nextlandmarkindex;
+					if(pMesh->m_ArrayPointConnectedLandmarks[startindex][0] != i)
+						prelandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[startindex][0];
+					else
+						prelandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[startindex][1];
+
+					if(pMesh->m_ArrayPointConnectedLandmarks[endindex][0] != i)
+						nextlandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[endindex][0];
+					else
+						nextlandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[endindex][1];
+
+					if(pMesh->m_LandMarkArray[prelandmarkindex]->deleteflag || pMesh->m_LandMarkArray[nextlandmarkindex]->deleteflag)
+					//if(pMesh->m_ArrayDeleteFlag[prelandmarkindex] || pMesh->m_ArrayDeleteFlag[nextlandmarkindex])
+						continue;
+
+					double angle1 = GetAngleBetweenTwoLandmarks(startindex);
+					double angle2 = GetAngleBetweenTwoLandmarks(endindex);
+
+					int fixstart,fixend;
+					std::vector<int>::iterator fiterator;
+					fiterator = std::find(pMesh->m_FixVerticesArray.begin(),pMesh->m_FixVerticesArray.end(),startindex);
+					if(fiterator != pMesh->m_FixVerticesArray.end())
+						fixstart = TRUE;
+					else
+						fixstart = FALSE;
+					fiterator = std::find(pMesh->m_FixVerticesArray.begin(),pMesh->m_FixVerticesArray.end(),endindex);
+					if(fiterator != pMesh->m_FixVerticesArray.end())
+						fixend = TRUE;
+					else
+						fixend = FALSE;
+					//if(angle1 < angle_tol && angle2 < angle_tol)
+					if(!fixstart || !fixend)
+					if(landmarklength < tol || angle1 < angle_tol && angle2 < angle_tol )
+					//if(GetLandMarkLength(m_newlandmarks,prelandmarkindex) < tol && GetLandMarkLength(m_newlandmarks,nextlandmarkindex) < tol)
+					{
+						std::vector<int> newlandmark = pMesh->m_LandMarkArray[i]->landmark_points;
+						if(!fixstart)
+						{
+							MergeTwoLandmarks(newlandmark,pMesh->m_LandMarkArray[prelandmarkindex]->landmark_points);
+							pMesh->m_LandMarkArray[prelandmarkindex]->deleteflag = 1;
+						}
+						if(!fixend)
+						{
+							MergeTwoLandmarks(newlandmark,pMesh->m_LandMarkArray[nextlandmarkindex]->landmark_points);
+							pMesh->m_LandMarkArray[nextlandmarkindex]->deleteflag = 1;
+						}
+					
+						pMesh->m_LandMarkArray[i]->deleteflag = 1;
+						
+						//pMesh->m_ArrayDeleteFlag[i] = 1;
+						//pMesh->m_ArrayDeleteFlag[prelandmarkindex] = 1;
+						//pMesh->m_ArrayDeleteFlag[nextlandmarkindex] = 1;
+						//InsertLandMark(newlandmark,pMesh->m_LandMarkArray[prelandmarkindex]->style);
+						InsertLandMark(newlandmark,-1);
+						//pMesh->m_LandMarkArray.push_back(newlandmark);
+						//pMesh->m_LandMarkArray_style.push_back(pMesh->m_LandMarkArray_style[prelandmarkindex]);
+					}
+				}
+			}
+		}
+
+		for(int i = pMesh->m_LandMarkArray.size() - 1; i >= 0; i--)
+		{
+			if(pMesh->m_LandMarkArray[i]->deleteflag)
+			{
+				pMesh->m_LandMarkArray[i]->deleteflag = 0;
+				pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + i);
+				//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + i);
+			}
+		}
+		if(pMesh->m_LandMarkArray.size() == num)
+			break;
+	}
+	sprintf(Post_Message,"Length:%d,Angle %d,Landmark num:%d",lengthscale,angle_tol,pMesh->m_LandMarkArray.size());
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::ExtendSmall()
+{
+	//
+	Vector3D vv1(pMesh->m_ArrayVertex[4696]->x() - pMesh->m_ArrayVertex[4695]->x(),pMesh->m_ArrayVertex[4696]->y() - pMesh->m_ArrayVertex[4695]->y(),pMesh->m_ArrayVertex[4696]->z() - pMesh->m_ArrayVertex[4695]->z());
+	double minedgelength_tol = Length(vv1) ;
+	double tol = minedgelength_tol * 0.2;
+	double angle_tol = 60;
+	int num = pMesh->m_LandMarkArray.size();
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		pMesh->m_LandMarkArray[i]->deleteflag = 0;
+	}
+	//pMesh->m_ArrayDeleteFlag.clear();
+	//pMesh->m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+	for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+	{
+		pMesh->m_ArrayPointConnectedLandmarks[i].clear();	
+	}
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+		int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+		pMesh->m_ArrayPointConnectedLandmarks[startvindex].push_back(i);
+		pMesh->m_ArrayPointConnectedLandmarks[endvindex].push_back(i);
+	}
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		int startindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+		int endindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+		double landmarklength = GetLandMarkLength(pMesh->m_LandMarkArray,i);
+		if(pMesh->m_LandMarkArray[i]->deleteflag)
+			continue;
+
+		if(landmarklength < tol)
+		{
+			if(pMesh->m_ArrayPointConnectedLandmarks[startindex].size() == 2 && pMesh->m_ArrayPointConnectedLandmarks[endindex].size() == 2)
+			{
+				int prelandmarkindex,nextlandmarkindex;
+				if(pMesh->m_ArrayPointConnectedLandmarks[startindex][0] != i)
+					prelandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[startindex][0];
+				else
+					prelandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[startindex][1];
+
+				if(pMesh->m_ArrayPointConnectedLandmarks[endindex][0] != i)
+					nextlandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[endindex][0];
+				else
+					nextlandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[endindex][1];
+
+				if(pMesh->m_LandMarkArray[prelandmarkindex]->deleteflag || pMesh->m_LandMarkArray[nextlandmarkindex]->deleteflag)
+				//if(pMesh->m_ArrayDeleteFlag[prelandmarkindex] || pMesh->m_ArrayDeleteFlag[nextlandmarkindex])
+					continue;
+
+				double angle1 = GetAngleBetweenTwoLandmarks(startindex);
+				double angle2 = GetAngleBetweenTwoLandmarks(endindex);
+
+				if(!(angle1 < angle_tol && angle2 < angle_tol))
+					continue;
+
+				int prelength = pMesh->m_LandMarkArray[prelandmarkindex]->landmark_points.size();
+				int nextlength = pMesh->m_LandMarkArray[nextlandmarkindex]->landmark_points.size();
+				if(prelength >  6 || nextlength >  6)
+				{
+					int shringlandmarkindex;
+					if(prelength > nextlength)
+					{
+						shringlandmarkindex = prelandmarkindex;
+					}
+					else
+						shringlandmarkindex = nextlandmarkindex;
+
+					int shrinklandmarkstartv = pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points[0];
+					int shrinklandmarkendv = pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points[pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.size() - 1];
+
+					if(startindex == shrinklandmarkstartv)
+					{
+						for(int  j = 0; j < 3; j++)
+						{
+							pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.erase(pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.begin());
+							pMesh->m_LandMarkArray[i]->landmark_points.insert(pMesh->m_LandMarkArray[i]->landmark_points.begin(),pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points[0]);
+						}
+
+					}else
+						if(startindex == shrinklandmarkendv)
+						{
+							for(int  j = 0; j < 3; j++)
+							{
+								pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.erase(pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.begin() + pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.size() - 1);
+								pMesh->m_LandMarkArray[i]->landmark_points.insert(pMesh->m_LandMarkArray[i]->landmark_points.begin(),pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points[pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.size() - 1]);
+							}
+						}else
+							if(endindex == shrinklandmarkstartv)
+							{
+								for(int  j = 0; j < 3; j++)
+								{
+									pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.erase(pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.begin());
+									pMesh->m_LandMarkArray[i]->landmark_points.push_back(pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points[0]);
+								}
+							}else
+								if(endindex == shrinklandmarkendv)
+								{
+									for(int  j = 0; j < 3; j++)
+									{
+										pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.erase(pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.begin() + pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.size() - 1);
+										pMesh->m_LandMarkArray[i]->landmark_points.push_back(pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points[pMesh->m_LandMarkArray[shringlandmarkindex]->landmark_points.size() - 1]);
+									}
+								}
+
+
+				}
+			}
+		}
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::DeleteVertexConnectedLandmarks()
+{
+	//1:delete the two landmarks connected with vertex 936
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		pMesh->m_LandMarkArray[i]->deleteflag = 0;
+	//pMesh->m_ArrayDeleteFlag.clear();
+	//pMesh->m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+
+	std::vector<int> m_deleteLandmarkconnectedwithpoints;
+	m_deleteLandmarkconnectedwithpoints.push_back(4288);
+	m_deleteLandmarkconnectedwithpoints.push_back(4281);
+	m_deleteLandmarkconnectedwithpoints.push_back(4284);
+	m_deleteLandmarkconnectedwithpoints.push_back(927);
+	m_deleteLandmarkconnectedwithpoints.push_back(936);
+	for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+	{
+		pMesh->m_ArrayPointConnectedLandmarks[i].clear();	
+	}
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+		int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+		pMesh->m_ArrayPointConnectedLandmarks[startvindex].push_back(i);
+		pMesh->m_ArrayPointConnectedLandmarks[endvindex].push_back(i);
+	}
+
+	for(int i = 0; i < m_deleteLandmarkconnectedwithpoints.size(); i++)
+	{
+		int index1 = pMesh->m_ArrayPointConnectedLandmarks[m_deleteLandmarkconnectedwithpoints[i]][0];
+		int index2 = pMesh->m_ArrayPointConnectedLandmarks[m_deleteLandmarkconnectedwithpoints[i]][1];
+		pMesh->m_LandMarkArray[index1]->deleteflag = 1;
+		pMesh->m_LandMarkArray[index2]->deleteflag = 1;
+		//pMesh->m_ArrayDeleteFlag[index1] = 1;
+		//pMesh->m_ArrayDeleteFlag[index2] = 1;
+	}
+	for(int i = pMesh->m_LandMarkArray.size() - 1; i >= 0; i--)
+	{
+		if(pMesh->m_LandMarkArray[i]->deleteflag)
+		{
+			pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + i);
+			//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + i);
+		}
+
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::MergeThreeConnectedLandmarks()
+{
+	Vector3D vv1(pMesh->m_ArrayVertex[4696]->x() - pMesh->m_ArrayVertex[4695]->x(),pMesh->m_ArrayVertex[4696]->y() - pMesh->m_ArrayVertex[4695]->y(),pMesh->m_ArrayVertex[4696]->z() - pMesh->m_ArrayVertex[4695]->z());
+	double minedgelength_tol = Length(vv1) ;
+	double tol = minedgelength_tol * 0.2;
+	double angle_tol = 60;
+	while(1)
+	{
+		int num = pMesh->m_LandMarkArray.size();
+		for(int i = 0; i < num; i++)
+			pMesh->m_LandMarkArray[i]->deleteflag = 0;
+		//pMesh->m_ArrayDeleteFlag.clear();
+		//pMesh->m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+
+		for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+		{
+			pMesh->m_ArrayPointConnectedLandmarks[i].clear();	
+		}
+		for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		{
+			int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+			int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+			pMesh->m_ArrayPointConnectedLandmarks[startvindex].push_back(i);
+			pMesh->m_ArrayPointConnectedLandmarks[endvindex].push_back(i);
+		}
+		for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		{
+			int startindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+			int endindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+			double landmarklength = GetLandMarkLength(pMesh->m_LandMarkArray,i);
+			if(pMesh->m_LandMarkArray[i]->deleteflag)
+				continue;
+
+			if(landmarklength < tol)
+			{
+				if(pMesh->m_ArrayPointConnectedLandmarks[startindex].size() == 2 && pMesh->m_ArrayPointConnectedLandmarks[endindex].size() == 2)
+				{
+					int prelandmarkindex,nextlandmarkindex;
+					if(pMesh->m_ArrayPointConnectedLandmarks[startindex][0] != i)
+						prelandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[startindex][0];
+					else
+						prelandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[startindex][1];
+
+					if(pMesh->m_ArrayPointConnectedLandmarks[endindex][0] != i)
+						nextlandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[endindex][0];
+					else
+						nextlandmarkindex = pMesh->m_ArrayPointConnectedLandmarks[endindex][1];
+
+					if(pMesh->m_LandMarkArray[prelandmarkindex]->deleteflag || pMesh->m_LandMarkArray[nextlandmarkindex]->deleteflag)
+					//if(pMesh->m_ArrayDeleteFlag[prelandmarkindex] || pMesh->m_ArrayDeleteFlag[nextlandmarkindex])
+						continue;
+
+
+					if(GetLandMarkLength(pMesh->m_LandMarkArray,prelandmarkindex) < tol && GetLandMarkLength(pMesh->m_LandMarkArray,nextlandmarkindex) < tol)
+					{
+						std::vector<int> newlandmark = pMesh->m_LandMarkArray[i]->landmark_points;
+						double angle1 = GetAngleBetweenTwoLandmarks(startindex);
+						double angle2 = GetAngleBetweenTwoLandmarks(endindex);
+
+						if(!(angle1 < angle_tol && angle2 < angle_tol))
+							continue;
+
+						MergeTwoLandmarks(newlandmark,pMesh->m_LandMarkArray[prelandmarkindex]->landmark_points);
+						MergeTwoLandmarks(newlandmark,pMesh->m_LandMarkArray[nextlandmarkindex]->landmark_points);
+						pMesh->m_LandMarkArray[i]->deleteflag = 1;
+						pMesh->m_LandMarkArray[prelandmarkindex]->deleteflag = 1;
+						pMesh->m_LandMarkArray[nextlandmarkindex]->deleteflag = 1;
+						//pMesh->m_ArrayDeleteFlag[i] = 1;
+						//pMesh->m_ArrayDeleteFlag[prelandmarkindex] = 1;
+						//pMesh->m_ArrayDeleteFlag[nextlandmarkindex] = 1;
+						InsertLandMark(newlandmark,pMesh->m_LandMarkArray[prelandmarkindex]->style);
+						//pMesh->m_LandMarkArray.push_back(newlandmark);
+						//pMesh->m_LandMarkArray_style.push_back(pMesh->m_LandMarkArray_style[prelandmarkindex]);
+					}
+				}
+			}
+		}
+
+		for(int i = pMesh->m_LandMarkArray.size() - 1; i >= 0; i--)
+		{
+			if(pMesh->m_LandMarkArray[i]->deleteflag)
+			{
+				pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + i);
+				//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + i);
+			}
+		}
+		if(pMesh->m_LandMarkArray.size() == num)
+			break;
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::MergeSeletedlandmarks()
+{
+	if(pMesh->m_SelectedLandmarkIndexArray.size() < 1)
+		return;
+
+	int HorizontalLandmarkNum = 0; 
+	int VerticalLandmarkNum = 0;
+	GeoMapLandMark* pLandMark,*pLandMark1;
+	for(int i = 0; i < pMesh->m_SelectedLandmarkIndexArray.size(); i++)
+	{
+		if(pMesh->m_SelectedLandmarkIndexArray[i] >= pMesh->m_LandMarkArray.size())
+			return;
+
+		pLandMark = pMesh->m_LandMarkArray[pMesh->m_SelectedLandmarkIndexArray[i]];
+		if(pLandMark->style == 0)
+			HorizontalLandmarkNum++;
+		else
+			VerticalLandmarkNum++;
+	}
+	pLandMark = pMesh->m_LandMarkArray[pMesh->m_SelectedLandmarkIndexArray[0]];
+	std::vector<int> mergedlandmarkpointarray = pLandMark->landmark_points;
+	pLandMark->deleteflag = 1;
+
+	std::vector<int> selectedlandmarks = pMesh->m_SelectedLandmarkIndexArray;
+	selectedlandmarks.erase(selectedlandmarks.begin());
+	
+	//
+
+	for(int i = 0; i < selectedlandmarks.size(); i++)
+	{
+		pLandMark1 = pMesh->m_LandMarkArray[selectedlandmarks[i]];
+		BOOL IsMerged = MergeTwoLandmarks(mergedlandmarkpointarray,pLandMark1->landmark_points);
+		if(IsMerged)
+		{
+			selectedlandmarks.erase(selectedlandmarks.begin() + i);
+			pLandMark1->deleteflag = 1;
+			i = -1;
+		}
+	}
+
+	
+	int style = 0;
+	if(VerticalLandmarkNum > HorizontalLandmarkNum)
+		style = 1;
+	InsertLandMark(mergedlandmarkpointarray,style);
+	pMesh->m_SelectedLandmarkIndexArray.clear();
+
+	for(int i = pMesh->m_LandMarkArray.size() - 1; i >= 0; i-- )
+	{
+		pLandMark = pMesh->m_LandMarkArray[i];
+		if(pLandMark->deleteflag)
+		{
+			pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + i);
+			i++;
+		}
+	}
+}
+BOOL Action_PolyOmino::MergeTwoLandmarks(std::vector<int> &landmark1,std::vector<int> &landmark2)
+{
+
+	if(landmark2[0] == landmark1[0])
+	{
+		for(int i = 1; i < landmark2.size(); i++)
+		{
+			landmark1.insert(landmark1.begin(),landmark2[i]);
+		}
+		return TRUE;
+	}else
+	if(landmark2[landmark2.size() - 1] == landmark1[0])
+	{
+		for(int i = landmark2.size() - 2; i >= 0; i--)
+		{
+			landmark1.insert(landmark1.begin(),landmark2[i]);
+		}
+		return TRUE;
+	}else
+	if(landmark2[0] == landmark1[landmark1.size() - 1])
+	{
+		for(int i = 1; i < landmark2.size(); i++)
+		{
+			landmark1.push_back(landmark2[i]);
+		}
+		return TRUE;
+	}else
+	if(landmark2[landmark2.size() - 1] == landmark1[landmark1.size() - 1])
+	{
+		for(int i = landmark2.size() - 2; i >= 0; i--)
+		{
+			landmark1.push_back(landmark2[i]);
+		}
+		return TRUE;
+	}
+	return FALSE;
+}
+double Action_PolyOmino::GetLandMarkLength(std::vector<GeoMapLandMark*> &m_newlandmarks, int index)
+{
+	int startindex = m_newlandmarks[index]->landmark_points[0];
+	int endindex = m_newlandmarks[index]->landmark_points[m_newlandmarks[index]->landmark_points.size() - 1];
+
+	Vector3D startvec(pMesh->m_ArrayVertex[startindex]->x(),pMesh->m_ArrayVertex[startindex]->y(),pMesh->m_ArrayVertex[startindex]->z());
+	Vector3D endvec(pMesh->m_ArrayVertex[endindex]->x(),pMesh->m_ArrayVertex[endindex]->y(),pMesh->m_ArrayVertex[endindex]->z());
+
+	double landmarklength = Length(endvec - startvec);
+	return landmarklength;
+}
+void Action_PolyOmino::MergeConnectedLandMarkswithSameStyle()
+{
+	//return;
+	//Merge the connected landmarks of the same style horizontal or vertical
+	int initialnum;
+	while(1)
+	{
+		initialnum = pMesh->m_LandMarkArray.size();
+
+		for(int i = 0; i < initialnum; i++)
+			pMesh->m_LandMarkArray[i]->deleteflag = 0;
+		//pMesh->m_ArrayDeleteFlag.clear();
+		//pMesh->m_ArrayDeleteFlag.resize(pMesh->m_LandMarkArray.size(),0);
+		//Merge connected landmarks.
+		pMesh->m_ArrayPointConnectedLandmarks.resize(pMesh->m_ArrayVertex.GetSize());
+		for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+		{
+			pMesh->m_ArrayPointConnectedLandmarks[i].clear();	
+		}
+		for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		{
+			int startvindex = pMesh->m_LandMarkArray[i]->landmark_points[0];
+			int endvindex = pMesh->m_LandMarkArray[i]->landmark_points[pMesh->m_LandMarkArray[i]->landmark_points.size() - 1];
+			pMesh->m_ArrayPointConnectedLandmarks[startvindex].push_back(i);
+			pMesh->m_ArrayPointConnectedLandmarks[endvindex].push_back(i);
+		}
+		for(int i = 0; i < pMesh->m_ArrayPointConnectedLandmarks.size(); i++)
+		{
+			if(pMesh->m_ArrayPointConnectedLandmarks[i].size() == 2)
+			{
+
+				if(pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][0]]->deleteflag || pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->deleteflag)
+				//if(pMesh->m_ArrayDeleteFlag[pMesh->m_ArrayPointConnectedLandmarks[i][0]] || pMesh->m_ArrayDeleteFlag[pMesh->m_ArrayPointConnectedLandmarks[i][1]])
+					continue;
+				if(pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][0]]->style == pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->style)
+				{
+					pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][0]]->deleteflag = 1;
+					pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->deleteflag = 1;
+					//Merge the two landmarks.
+					std::vector<int> landmark;
+					landmark = pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][0]]->landmark_points;
+					int starvindex = landmark[0];
+					int endvindex = landmark[landmark.size() - 1];
+					int startvindexnew = pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points[0];
+					int endvindexnew = pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points[pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points.size() - 1];
+					if(startvindexnew == starvindex)
+					{
+						for(int ii = 1; ii < pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points.size(); ii++)
+						{
+							landmark.insert(landmark.begin(),pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points[ii]);
+						}
+					}else
+						if(endvindexnew == starvindex)
+						{
+							for(int ii = pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points.size() - 2; ii >= 0; ii--)
+							{
+								landmark.insert(landmark.begin(),pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points[ii]);
+							}
+						}else
+							if(startvindexnew == endvindex)
+							{
+								for(int ii = 1; ii < pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points.size(); ii++)
+								{
+									landmark.push_back(pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points[ii]);
+								}
+							}else
+								if(endvindexnew == endvindex)
+								{
+									for(int ii = pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points.size() - 2; ii >= 0; ii--)
+									{
+										landmark.push_back(pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][1]]->landmark_points[ii]);
+									}
+								}
+								InsertLandMark(landmark,pMesh->m_LandMarkArray[pMesh->m_ArrayPointConnectedLandmarks[i][0]]->style);
+								//pMesh->m_LandMarkArray.push_back(landmark);
+								//pMesh->m_LandMarkArray_style.push_back(pMesh->m_LandMarkArray_style[pMesh->m_ArrayPointConnectedLandmarks[i][0]]);
+				}
+			}
+		}
+		for(int ii = pMesh->m_LandMarkArray.size() - 1; ii >= 0; ii--)
+		{
+			if(pMesh->m_LandMarkArray[ii]->deleteflag)
+			{
+				pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + ii);
+				//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + ii);
+			}
+		}
+		if(pMesh->m_LandMarkArray.size() == initialnum)
+			break;
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::OnBnClickedPolyominoCurvestraight()
+{
+	// TODO: Add your control notification handler code here
+	SaveGeoMap();
+
+	char meshname[100];
+	sprintf(meshname,"lamcc_dir_div_merge");
+	//Step one
+	char step1[200];
+	SetCurrentDirectory("D:\\papers\\code\\bin_Curve");
+	system("echo 0 > tmp");
+	sprintf(step1,"conformalmodulous.exe -holo_form_landmark %s.m %s <tmp",meshname,meshname);
+	system(step1);
+	remove("tmp");
+
+	//step 2
+	char step2[200];
+	sprintf(step2,"holomorphicform.exe %s_0.du.m %s_1.du.m",meshname,meshname);
+	system(step2);
+
+	//step 3
+	char step3[200];
+	sprintf(step3,"integrate_conformalmodulous.exe test_0.m %s.m %s_0.uv.m",meshname,meshname); 
+	system(step3);
+
+	//step 4
+	char step4[200];
+	sprintf(step4,"filtermesh.exe %s_0.uv.m -uvtopos > %s_0.pos.m",meshname,meshname); 
+	system(step4);
+
+	//step 5
+	char step5[200];
+	sprintf(step5,"integrate_conformalmodulous.exe test_1.m %s.m %s_1.uv.m ",meshname,meshname); 
+	system(step5);
+
+	//step 6
+	char step6[200];
+	sprintf(step6,"filtermesh.exe %s_1.uv.m -uvtopos > %s_1.pos.m",meshname,meshname); 
+	system(step6);
+
+	//%mesh%_0.pos.m
+	char resultmeshname[100];
+	sprintf(resultmeshname,"D:\\papers\\code\\bin_Curve\\%s_1.pos.m",meshname);
+	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)p_FormView3->GetDocument();
+	ASSERT_VALID(pDoc);
+	pDoc->OnOpenDocument(resultmeshname);
+
+	//
+	CMesh3d* pMesh3doriginal = (CMesh3d*)pDoc->m_SceneGraph[0];
+	CMesh3d* pMesh3d1 = (CMesh3d*)pDoc->m_SceneGraph[pDoc->m_SceneGraph.NbObject() - 1];
+	for(int i = 0; i < pMesh3d1->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> pair;
+		pair = pMesh3d1->m_ArraySeletedEdges[i];
+		if(pair.first == 0 && pair.second == 122073 || pair.first == 122073 && pair.second == 0)
+		{
+			pMesh3d1->m_ArraySeletedEdges.erase(pMesh3d1->m_ArraySeletedEdges.begin() + i);
+			i--;
+		}
+		if(pair.first == 1 && pair.second == 110693 || pair.first == 110693 && pair.second == 1)
+		{
+			pMesh3d1->m_ArraySeletedEdges.erase(pMesh3d1->m_ArraySeletedEdges.begin() + i);
+			i--;
+		}
+		if(pair.first == 2 && pair.second == 102054 || pair.first == 102054 && pair.second == 2)
+		{
+			pMesh3d1->m_ArraySeletedEdges.erase(pMesh3d1->m_ArraySeletedEdges.begin() + i);
+			i--;
+		}
+		if(pair.first == 3 && pair.second == 121828 || pair.first == 121828 && pair.second == 3)
+		{
+			pMesh3d1->m_ArraySeletedEdges.erase(pMesh3d1->m_ArraySeletedEdges.begin() + i);
+			i--;
+		}
+	}
+	pMesh = (CMesh3d*)pDoc->m_SceneGraph[pDoc->m_SceneGraph.NbObject() - 1];
+	pMesh->m_LandMarkArray = pMesh3doriginal->m_LandMarkArray;
+	//GenerateLandMarks();
+	for(int i = 0; i < pMesh->m_ArrayVertex.GetSize(); i++)
+	{
+		CVertex3d* pVertex = pMesh->GetVertex(i);
+		double x = pVertex->x();
+		double y = pVertex->y();
+		double z = pVertex->z();
+		pVertex->Set(-x,-y,-z);
+	}
+	Point3D lower,upper;
+	pMesh->ComputeBoundingBox(lower,upper);
+	Point3D center = (lower + upper) / 2;
+	for(int i = 0; i < pMesh->m_ArrayVertex.GetSize(); i++)
+	{
+		CVertex3d* pVertex = pMesh->GetVertex(i);
+		double x = pVertex->x() - lower.x;
+		double y = pVertex->y() - lower.y;
+		double z = pVertex->z() - lower.z;
+		pVertex->Set(x,y,z);
+	}
+	pMesh->m_showFace = FALSE;
+	pMesh->m_showLandmarkEdge = TRUE;
+	pMesh->m_showLandmarkVertex = TRUE;
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedOminoSetcurrentmesh()
+{
+	// TODO: Add your control notification handler code here
+	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)p_FormView3->GetDocument();
+	ASSERT_VALID(pDoc);
+
+	int num = pDoc->m_SceneGraph.NbObject();
+	if(p_FormView3->currentindex < 0 || p_FormView3->currentindex >= num)
+	{
+		AfxMessageBox("No mesh is selected!");
+		return;
+	}
+
+	pMesh = (CMesh3d*)pDoc->m_SceneGraph[p_FormView3->currentindex];
+}
+
+void Action_PolyOmino::OnBnClickedOminoSplitlandmark()
+{
+	// TODO: Add your control notification handler code here
+	SplitLandmark();
+}
+
+void Action_PolyOmino::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+{
+	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)p_FormView3->GetDocument();
+	ASSERT_VALID(pDoc);
+	// TODO: Add your message handler code here and/or call default
+	CSliderCtrl* pSlider = reinterpret_cast<CSliderCtrl*>(pScrollBar);  
+
+	// Check which slider sent the notification  
+	if (pSlider == &m_SplitAngleSlider)  
+	{  
+		m_SplitAngle = m_SplitAngleSlider.GetPos();
+		SplitLandmark();
+		sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d, Angle: %d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size(),m_SplitAngle);
+		::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+	}else
+	if(pSlider == &m_OminoMergeAngle)
+	{
+		m_MergeAngle = m_OminoMergeAngle.GetPos();
+		MergeOneEdgeWithSloping();
+		sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d, Angle: %d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size(),m_MergeAngle);
+		::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+	}else
+	if(pSlider == &m_EdgeSubdivision)
+	{
+		m_EdgeSubdivisionNum = m_EdgeSubdivision.GetPos();
+		Sloppingedgesubdivision();
+		sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d, Edge Subdivision Num: %d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size(),m_EdgeSubdivisionNum * 2 -1);
+		::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);	
+	}else
+	if(pSlider == &m_MergeSmallLandmarkLength || pSlider == &m_MergeSmallLandmarkAngle)
+	{
+		MergeSmallEdges();
+		sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d, Edge Subdivision Num: %d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size(),m_EdgeSubdivisionNum * 2 -1);
+		::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);	
+	}
+	
+	CPropertyPage::OnHScroll(nSBCode, nPos, pScrollBar);
+}
+
+int Action_PolyOmino::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	if (CPropertyPage::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	// TODO:  Add your specialized creation code here
+
+	return 0;
+}
+
+BOOL Action_PolyOmino::OnInitDialog()
+{
+	CPropertyPage::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+	m_SplitAngleSlider.SetRangeMin(0);
+	m_SplitAngleSlider.SetRangeMax(180);
+	m_SplitAngleSlider.SetRange(0,180);
+	m_OminoMergeAngle.SetRange(0,180);
+	m_EdgeSubdivision.SetRange(0,10);
+	m_MergeSmallLandmarkLength.SetRange(0,2000);
+	m_MergeSmallLandmarkAngle.SetRange(0,180);
+	m_EdgeSubdivision.SetPos(m_EdgeSubdivisionNum);
+	m_SplitAngleSlider.SetPos(m_SplitAngle);
+	m_OminoMergeAngle.SetPos(m_MergeAngle);
+	m_SplitDirection.SetCheck(m_bSplitDirection);
+	m_MergeSmallLandmarkLength.SetPos(50);
+	m_MergeSmallLandmarkAngle.SetPos(50);	
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void Action_PolyOmino::OnBnClickedSplitdirectioncheck1()
+{
+	// TODO: Add your control notification handler code here
+	m_bSplitDirection = m_SplitDirection.GetCheck();
+	SplitLandmark();
+	sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d, Angle: %d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size(),m_SplitAngle);
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSloppingedgesubdivision()
+{
+	// TODO: Add your control notification handler code here
+	Sloppingedgesubdivision();
+}
+
+extern CMyTreeView* pTreeView;
+
+
+void Action_PolyOmino::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: Add your message handler code here and/or call default
+	
+	CPropertyPage::OnChar(nChar, nRepCnt, nFlags);
+}
+BOOL Action_PolyOmino::PreTranslateMessage(MSG* pMsg) 
+{   // TODO: 在此添加专用代码和/或调用基类  
+	//判断是否为键盘消息   
+	if (WM_KEYFIRST <= pMsg->message && pMsg->message <= WM_KEYLAST)  
+	{    
+		//判断是否按下键盘Enter键   
+		if(pMsg->wParam==VK_RETURN)   
+		{      
+			//Do anything what you want to    return TRUE;  
+			return TRUE;
+		}  
+	}   
+	return CDialog::PreTranslateMessage(pMsg); 
+} 
+void Action_PolyOmino::OnBnClickedPolyominoDeleteselectedlandmarks()
+{
+	// TODO: Add your control notification handler code here
+	std::sort(pMesh->m_SelectedLandmarkIndexArray.begin(),pMesh->m_SelectedLandmarkIndexArray.end());
+	for(int i = pMesh->m_SelectedLandmarkIndexArray.size() - 1; i >= 0; i--)
+	{
+		if(pMesh->m_SelectedLandmarkIndexArray[i] >= pMesh->m_LandMarkArray.size() || pMesh->m_SelectedLandmarkIndexArray[i] < 0)
+			return;
+		pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + pMesh->m_SelectedLandmarkIndexArray[i]);
+		//pMesh->m_LandMarkArray_style.erase(pMesh->m_LandMarkArray_style.begin() + pMesh->m_SelectedLandmarkIndexArray[i]);
+
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedOminoLoadusamap()
+{
+	// TODO: Add your control notification handler code here
+	//pDoc->OnOpenDocument("D:\\Razib\\lamcc_smooth_org_normalize.m");
+	pDoc->OnOpenDocument("D:\\papers\\code\\data\\Geo\\USA_33.m");
+	p_FormView3->currentindex = pDoc->m_SceneGraph.NbObject() - 1;
+	OnBnClickedOminoSetcurrentmesh();
+	pMesh->m_showLandmarkEdge = TRUE;
+	pMesh->m_showLandmarkVertex = TRUE;
+	pMesh->m_showFace = FALSE;
+
+	OnBnClickedGeneratelandmarks();
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoMergeseletedlandmarks()
+{
+	// TODO: Add your control notification handler code here
+	MergeSeletedlandmarks();
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoClearlandmarkselection()
+{
+	// TODO: Add your control notification handler code here
+	pMesh->m_SelectedLandmarkIndexArray.clear();
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoInverseseletedlandmarkstyle()
+{
+	// TODO: Add your control notification handler code here
+	GeoMapLandMark* pLandMark,*pLandMark1;
+	for(int i = 0; i < pMesh->m_SelectedLandmarkIndexArray.size(); i++)
+	{
+		pLandMark = pMesh->m_LandMarkArray[pMesh->m_SelectedLandmarkIndexArray[i]];
+		pLandMark->style = 1 - pLandMark->style;
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSaveLandmark()
+{
+	// TODO: Add your control notification handler code here
+	CString FileName;
+	CFileDialog dlg(FALSE);
+	if(dlg.DoModal() == IDOK)
+	{
+		FileName = dlg.GetPathName();
+	}else
+		return;
+
+	std::ofstream file(FileName);
+
+	file << pMesh->m_LandMarkArray.size() << "\n";
+
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		file << pLandMark->deleteflag << "\n";
+		file << pLandMark->fixedflag << "\n";
+		file << pLandMark->style << "\n";
+		file << pLandMark->isAuxillary << "\n";
+		file << pLandMark->landmark_points.size() << "\n";
+		for(int j = 0; j < pLandMark->landmark_points.size(); j++)
+		{
+			file << pLandMark->landmark_points[j]<< " ";
+		}
+	}
+	int num = pMesh->m_FixVerticesArray.size();
+	file << num << "\n";
+	for(int i = 0; i < num; i++)
+	{
+		file << pMesh->m_FixVerticesArray[i] << " ";
+	}
+	file.close();
+}
+void Action_PolyOmino::Loadlandmark(CString FileName)
+{
+	pMesh->m_LandMarkArray.clear();
+	std::ifstream file(FileName);
+
+	int num,pointnum;
+	file >> num;
+	pMesh->m_LandMarkArray.resize(num);
+	GeoMapLandMark* pLandMark;
+	for(int i = 0; i < num; i++)
+	{
+		pLandMark = new GeoMapLandMark();
+		file >> pLandMark->deleteflag;
+		file >> pLandMark->fixedflag;
+		file >> pLandMark->style;
+		file >> pLandMark->isAuxillary;
+		file >> pointnum ;
+		pLandMark->landmark_points.resize(pointnum);
+		for(int j = 0; j < pointnum; j++)
+		{
+			file >> pLandMark->landmark_points[j];
+		}
+		pMesh->m_LandMarkArray[i] = pLandMark;
+	}
+	file >> num;
+	int val;
+	pMesh->m_FixVerticesArray.clear();
+	for(int i = 0; i < num; i++)
+	{
+		file >> val;
+		pMesh->m_FixVerticesArray.push_back(val);
+	}
+	file.close();
+}
+void Action_PolyOmino::OnBnClickedPolyominoLoadlandmark()
+{
+	// TODO: Add your control notification handler code here
+	CString FileName;
+	CFileDialog dlg(TRUE);
+	if(dlg.DoModal() == IDOK)
+	{
+		FileName = dlg.GetPathName();
+	}else
+		return;
+
+	Loadlandmark(FileName);
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSmoothlandmarks()
+{
+	// TODO: Add your control notification handler code here
+	std::vector<Point3D> m_ArrayPointArray;
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		m_ArrayPointArray.clear();
+		m_ArrayPointArray.resize(pLandMark->landmark_points.size());
+		for(int j = 1; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			int preindex = pLandMark->landmark_points[j - 1];
+			int nextindex = pLandMark->landmark_points[j + 1];
+			double x1 = pMesh->m_ArrayVertex[preindex]->x();
+			double y1 = pMesh->m_ArrayVertex[preindex]->y();
+			double z1 = pMesh->m_ArrayVertex[preindex]->z();
+			double x2 = pMesh->m_ArrayVertex[nextindex]->x();
+			double y2 = pMesh->m_ArrayVertex[nextindex]->y();
+			double z2 = pMesh->m_ArrayVertex[nextindex]->z();
+			double x = (x1 + x2) / 2;
+			double y = (y1 + y2) / 2;
+			double z = (z1 + z2) / 2;
+			Point3D point;
+			point.x = x;
+			point.y = y;
+			point.z = z;
+			m_ArrayPointArray[j] = point;
+		}
+		for(int j = 1; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			Point3D point = m_ArrayPointArray[j];
+			pMesh->m_ArrayVertex[pLandMark->landmark_points[j]]->Set(point.x,point.y,point.z);
+		}
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSmoothselectedlandmarks()
+{
+	// TODO: Add your control notification handler code here
+	std::vector<Point3D> m_ArrayPointArray;
+	for(int i = 0; i < pMesh->m_SelectedLandmarkIndexArray.size(); i++)
+	{
+		int index = pMesh->m_SelectedLandmarkIndexArray[i];
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[index];
+		m_ArrayPointArray.clear();
+		m_ArrayPointArray.resize(pLandMark->landmark_points.size());
+		for(int j = 1; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			int preindex = pLandMark->landmark_points[j - 1];
+			int nextindex = pLandMark->landmark_points[j + 1];
+			double x1 = pMesh->m_ArrayVertex[preindex]->x();
+			double y1 = pMesh->m_ArrayVertex[preindex]->y();
+			double z1 = pMesh->m_ArrayVertex[preindex]->z();
+			double x2 = pMesh->m_ArrayVertex[nextindex]->x();
+			double y2 = pMesh->m_ArrayVertex[nextindex]->y();
+			double z2 = pMesh->m_ArrayVertex[nextindex]->z();
+			double x = (x1 + x2) / 2;
+			double y = (y1 + y2) / 2;
+			double z = (z1 + z2) / 2;
+			Point3D point;
+			point.x = x;
+			point.y = y;
+			point.z = z;
+			m_ArrayPointArray[j] = point;
+		}
+		for(int j = 1; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			Point3D point = m_ArrayPointArray[j];
+			pMesh->m_ArrayVertex[pLandMark->landmark_points[j]]->Set(point.x,point.y,point.z);
+		}
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoTriangulate()
+{
+	// TODO: Add your control notification handler code here
+	//first write the smooth results to A pslg file
+	//First Get the four boundary vertices
+	Point3D lower,upper;
+	pMesh->ComputeBoundingBox(lower,upper);
+	CVertex3d* pVertex;
+	int index00,index10,index11,index01;
+	for(int i = 0; i < pMesh->m_ArrayVertex.GetSize(); i++)
+	{
+		pVertex = pMesh->m_ArrayVertex[i];
+		if(pVertex->x() == lower.x && pVertex->y() == lower.y)
+			index00 = i;
+		else
+		if(pVertex->x() == upper.x && pVertex->y() == lower.y)
+			index10 = i;
+		else
+		if(pVertex->x() == upper.x && pVertex->y() == upper.y)
+			index11 = i;
+		else
+		if(pVertex->x() == lower.x && pVertex->y() == upper.y)
+			index01 = i;
+	}
+	std::vector<int> m_ArrayOutputVerticesIndex;
+	m_ArrayOutputVerticesIndex.push_back(index00);
+	m_ArrayOutputVerticesIndex.push_back(index10);
+	m_ArrayOutputVerticesIndex.push_back(index11);
+	m_ArrayOutputVerticesIndex.push_back(index01);
+	std::vector<int>::iterator finditerator;
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		finditerator = std::find(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end(),pLandMark->landmark_points[0]);
+		if(finditerator == m_ArrayOutputVerticesIndex.end())
+		{
+			m_ArrayOutputVerticesIndex.push_back(pLandMark->landmark_points[0]);
+		}
+		finditerator = std::find(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end(),pLandMark->landmark_points[pLandMark->landmark_points.size() - 1]);
+		if(finditerator == m_ArrayOutputVerticesIndex.end())
+		{
+			m_ArrayOutputVerticesIndex.push_back(pLandMark->landmark_points[pLandMark->landmark_points.size() - 1]);
+		}
+		for(int j = 1; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			m_ArrayOutputVerticesIndex.push_back(pLandMark->landmark_points[j]);
+		}
+	}
+
+	//
+	//std::sort(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end());
+
+	//
+	
+	std::ofstream outfile("D:\\papers\\code\\Triangle\\Geo.poly");
+	outfile << m_ArrayOutputVerticesIndex.size() << " 2 0 1" << "\n";
+	for(int i = 0; i < m_ArrayOutputVerticesIndex.size(); i++)
+	{
+		CVertex3d* pVertex = pMesh->GetVertex(m_ArrayOutputVerticesIndex[i]);
+		if(i < 4)
+			outfile << i  << " " << pVertex->x() << " " << pVertex->y() << " 1 " << "\n";
+		else
+			outfile << i  << " " << pVertex->x() << " " << pVertex->y() << " 0 " << "\n";
+	}
+	int numofsegments = 4;
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		numofsegments += pLandMark->landmark_points.size() - 1;
+	}
+
+	outfile << numofsegments << " 1 " << "\n";
+
+	outfile << " 0  0 1 1" <<"\n"; 
+	outfile << " 1  1 2 1" <<"\n"; 
+	outfile << " 2  2 3 1" <<"\n"; 
+	outfile << " 3  3 0 1" <<"\n"; 
+
+	int triangleid = 4;
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		for(int j = 0; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			int start = pLandMark->landmark_points[j];
+			int end = pLandMark->landmark_points[j + 1];
+
+			finditerator = std::find(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end(),start);
+			start = finditerator - m_ArrayOutputVerticesIndex.begin();
+			finditerator = std::find(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end(),end);
+			end = finditerator - m_ArrayOutputVerticesIndex.begin();
+			outfile << triangleid << " " << start << " " << end << " 0 "<< "\n";
+			triangleid++;
+		}
+	}
+	outfile << " 0 " << "\n";
+	outfile.close();
+
+
+	char step1[200];
+	SetCurrentDirectory("D:\\papers\\code\\triangle");
+	sprintf(step1,"triangle.exe -pq33.8 Geo");
+	//sprintf(step1,"triangle.exe -pq25 Geo");
+	system(step1);
+
+	char resultmeshname[100];
+	sprintf(resultmeshname,"D:\\papers\\code\\triangle\\Geo.1.ele");
+	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)p_FormView3->GetDocument();
+	ASSERT_VALID(pDoc);
+	pDoc->OnOpenDocument(resultmeshname);
+
+	CMesh3d* pMesh1 = (CMesh3d*)pDoc->m_SceneGraph[pDoc->m_SceneGraph.NbObject() - 1];
+	std::pair<int,int> pair;
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		for(int j = 0; j < pLandMark->landmark_points.size() - 1; j++)
+		{
+			int start = pLandMark->landmark_points[j];
+			int end = pLandMark->landmark_points[j + 1];
+
+			finditerator = std::find(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end(),start);
+			start = finditerator - m_ArrayOutputVerticesIndex.begin();
+			finditerator = std::find(m_ArrayOutputVerticesIndex.begin(),m_ArrayOutputVerticesIndex.end(),end);
+			end = finditerator - m_ArrayOutputVerticesIndex.begin();
+			pair.first = start;
+			pair.second = end;
+			pMesh1->m_ArraySeletedEdges.push_back(pair);
+		}
+	}
+	//Check whether steiner points lies on selected edges
+	for(int i = m_ArrayOutputVerticesIndex.size(); i < pMesh1->NbVertex(); i++)
+	{
+		CVertex3d* pVertex = pMesh1->GetVertex(i);
+		for(int j = 0; j < pMesh1->m_ArraySeletedEdges.size(); j++)
+		{
+			pair = pMesh1->m_ArraySeletedEdges[j];
+			int start = pair.first;
+			int end = pair.second;
+			CVertex3d* pStartVertex = pMesh1->m_ArrayVertex[start];
+			CVertex3d* pEndVertex = pMesh1->m_ArrayVertex[end];
+
+			BOOL flag = pTreeView->JudgeWhetherPointLiesOnLineSegment(pVertex->x(),pVertex->y(),pStartVertex->x(),pStartVertex->y(),pEndVertex->x(),pEndVertex->y(),1e-5);
+			if(flag)
+			{
+				pMesh1->m_ArraySeletedEdges.erase(pMesh1->m_ArraySeletedEdges.begin() + j);
+				pair.first = start;
+				pair.second = i;
+				pMesh1->m_ArraySeletedEdges.push_back(pair);
+				pair.first = i;
+				pair.second = end;
+				pMesh1->m_ArraySeletedEdges.push_back(pair);
+				break;
+			}
+		}
+	}
+	this->pMesh = pMesh1;
+	GenerateLandMarks();
+	pMesh1->m_showFace = FALSE;
+	pMesh1->m_showSelectedEdge = FALSE;
+	pMesh1->m_showLandmarkEdge = TRUE;
+	pMesh1->m_showLandmarkVertex = FALSE;
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSplitlandmarks()
+{
+	// TODO: Add your control notification handler code here
+	//if(pMesh->m_ArraySeletedVertexIndex.size() != 1)
+	//	return;
+	int flag = 0;
+	for(int ii = 0; ii < pMesh->m_ArraySeletedVertexIndex.size(); ii++)
+	{
+		int index = pMesh->m_ArraySeletedVertexIndex[ii];
+		flag = 0;
+		for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+		{
+			GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+			for(int j = 1; j < pLandMark->landmark_points.size() - 1; j++)
+			{
+				if(pLandMark->landmark_points[j] == index)
+				{
+					GeoMapLandMark* pLandMark1 = new GeoMapLandMark();
+					GeoMapLandMark* pLandMark2 = new GeoMapLandMark();
+					pLandMark1->deleteflag = pLandMark->deleteflag;
+					pLandMark2->deleteflag = pLandMark->deleteflag;
+					pLandMark1->fixedflag = pLandMark->fixedflag;
+					pLandMark2->fixedflag = pLandMark->fixedflag;
+					pLandMark1->style = pLandMark->style;
+					pLandMark2->style = pLandMark->style;
+					pLandMark1->landmark_points.insert(pLandMark1->landmark_points.begin(),pLandMark->landmark_points.begin(),pLandMark->landmark_points.begin() + j + 1);
+					pLandMark2->landmark_points.insert(pLandMark2->landmark_points.begin(),pLandMark->landmark_points.begin() + j,pLandMark->landmark_points.end());
+					pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + i);
+					pMesh->m_LandMarkArray.push_back(pLandMark1);
+					pMesh->m_LandMarkArray.push_back(pLandMark2);
+					flag = 1;
+					break;
+				}
+			}
+			if(flag)
+				break;
+		}
+		
+	}
+	sprintf(Post_Message,"Face num: %10d; Vertex num: %10d; Selected Edge num: %10d; Landmark num: %10d",pMesh->NbFace(),pMesh->NbVertex(),pMesh->m_ArraySeletedEdges.size(),pMesh->m_LandMarkArray.size());
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoClearvertexselection()
+{
+	// TODO: Add your control notification handler code here
+	pMesh->m_ArraySeletedVertexIndex.clear();
+
+	sprintf(Post_Message,"total %d points",pMesh->m_ArraySeletedVertexIndex.size());
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+	pDoc->UpdateAllViews(NULL);
+}
+void Action_PolyOmino::DetectSelfIntersectLandmarks()
+{
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandmark = pMesh->m_LandMarkArray[i];
+		int style = pLandmark->style;
+		for(int j = 1; j < pLandmark->landmark_points.size() - 1; j++)
+		{
+			if(style == 0)
+			{
+				//Horizontal
+				int preindex = pLandmark->landmark_points[j - 1];
+				int index = pLandmark->landmark_points[j];
+				int nextindex = pLandmark->landmark_points[j + 1];
+
+				double prex = pMesh->GetVertex(preindex)->x();
+				double x = pMesh->GetVertex(index)->x();
+				double nextx = pMesh->GetVertex(nextindex)->x();
+
+				if(x >= prex && x >= nextx || x <= prex && x <= nextx)
+				{
+					pMesh->m_SelectedLandmarkIndexArray.push_back(i);
+					pMesh->m_ArraySeletedVertexIndex.push_back(index);
+					break;
+				}
+			}else
+			{
+				//Vertical
+				int preindex = pLandmark->landmark_points[j - 1];
+				int index = pLandmark->landmark_points[j];
+				int nextindex = pLandmark->landmark_points[j + 1];
+
+				double prey = pMesh->GetVertex(preindex)->y();
+				double y = pMesh->GetVertex(index)->y();
+				double nexty = pMesh->GetVertex(nextindex)->y();
+
+				if(y >= prey && y >= nexty || y <= prey && y <= nexty)
+				{
+					pMesh->m_SelectedLandmarkIndexArray.push_back(i);
+					pMesh->m_ArraySeletedVertexIndex.push_back(index);
+					break;
+				}
+			}
+		}
+	}
+}
+void Action_PolyOmino::DetectIntersectLandmarks()
+{
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandmark = pMesh->m_LandMarkArray[i];
+		for(int j = 0; j < pMesh->m_LandMarkArray.size(); j++)
+		{
+			if (j == i)
+				continue;
+			//
+			GeoMapLandMark* pLandmark1 = pMesh->m_LandMarkArray[j];
+
+			if(pLandmark->style != pLandmark1->style)
+			{
+				double x,y,minx,maxx,miny,maxy;
+				//
+				if(pLandmark->style == 1)
+				{
+					x = pMesh->m_ArrayVertex[pLandmark->landmark_points[0]]->x();
+					miny = pMesh->m_ArrayVertex[pLandmark->landmark_points[0]]->y();
+					maxy = pMesh->m_ArrayVertex[pLandmark->landmark_points[pLandmark->landmark_points.size() - 1]]->y();
+
+					if(miny > maxy)
+					{
+						double bak = miny;
+						miny = maxy;
+						maxy = bak;
+					}
+				}else
+				{
+					y = pMesh->m_ArrayVertex[pLandmark->landmark_points[0]]->y();
+					minx = pMesh->m_ArrayVertex[pLandmark->landmark_points[0]]->x();
+					maxx = pMesh->m_ArrayVertex[pLandmark->landmark_points[pLandmark->landmark_points.size() - 1]]->x();
+
+					if(minx > maxx)
+					{
+						double bak = minx;
+						minx = maxx;
+						maxx = bak;
+					}
+				}
+
+				if(pLandmark1->style == 1)
+				{
+					x = pMesh->m_ArrayVertex[pLandmark1->landmark_points[0]]->x();
+					miny = pMesh->m_ArrayVertex[pLandmark1->landmark_points[0]]->y();
+					maxy = pMesh->m_ArrayVertex[pLandmark1->landmark_points[pLandmark1->landmark_points.size() - 1]]->y();
+
+					if(miny > maxy)
+					{
+						double bak = miny;
+						miny = maxy;
+						maxy = bak;
+					}
+				}else
+				{
+					y = pMesh->m_ArrayVertex[pLandmark1->landmark_points[0]]->y();
+					minx = pMesh->m_ArrayVertex[pLandmark1->landmark_points[0]]->x();
+					maxx = pMesh->m_ArrayVertex[pLandmark1->landmark_points[pLandmark1->landmark_points.size() - 1]]->x();
+
+					if(minx > maxx)
+					{
+						double bak = minx;
+						minx = maxx;
+						maxx = bak;
+					}
+				}
+
+				//
+				if(x > minx + 1e-3 && x < maxx - 1e-3 && y > miny + 1e-3 && y < maxy - 1e-3)
+				{
+					pMesh->m_SelectedLandmarkIndexArray.push_back(i);
+					pMesh->m_SelectedLandmarkIndexArray.push_back(j);
+				}
+			}
+
+		}
+	}
+}
+void Action_PolyOmino::OnBnClickedPolyominoCheckinvalidedges()
+{
+	// TODO: Add your control notification handler code here
+	//Detect all invalid landmarks
+	//First self intersect landmarks
+	DetectSelfIntersectLandmarks();
+
+	//Second detect intersect landmarks
+	DetectIntersectLandmarks();
+
+	sprintf(Post_Message,"Invalid LandMarks %d",pMesh->m_SelectedLandmarkIndexArray.size());
+	::PostMessage(g_hwndMain, WM_MESSAGE, 0, (LPARAM)Post_Message);
+
+	if(pDoc->m_SceneGraph.NbObject() == 2)
+	{
+		CMesh3d* pMesh1 = (CMesh3d*)pDoc->m_SceneGraph.GetAt(1 - p_FormView3->currentindex);
+		pMesh1->m_SelectedLandmarkIndexArray = pMesh->m_SelectedLandmarkIndexArray;
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoAddlandmark()
+{
+	// TODO: Add your control notification handler code here
+	GeoMapLandMark* pLandmark = new GeoMapLandMark();
+	pLandmark->deleteflag = 0;
+	pLandmark->style = 0;
+	pLandmark->isAuxillary = 1;
+	pLandmark->landmark_points = pMesh->m_ArraySeletedVertexIndex;
+	pMesh->m_LandMarkArray.push_back(pLandmark);
+	pMesh->m_ArraySeletedVertexIndex.clear();
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoBackuplandmarks()
+{
+	// TODO: Add your control notification handler code here
+	pMesh->m_ArrayLandMarks_Original = pMesh->m_LandMarkArray;
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSetauxillarylandmark()
+{
+	// TODO: Add your control notification handler code here
+	if(!pMesh)
+		return ;
+	for(int i = 0; i < pMesh->m_SelectedLandmarkIndexArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[pMesh->m_SelectedLandmarkIndexArray[i]];
+		pLandMark->isAuxillary = !pLandMark->isAuxillary;
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoAuxillaryvisiable()
+{
+	// TODO: Add your control notification handler code here
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		if(pLandMark->isAuxillary)
+			pLandMark->isVisible = !pLandMark->isVisible;
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoDeleteauxillarylandmarks()
+{
+	// TODO: Add your control notification handler code here
+	for(int i = pMesh->m_LandMarkArray.size() - 1; i >= 0; i--)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		if(pLandMark->isAuxillary)
+			pMesh->m_LandMarkArray.erase(pMesh->m_LandMarkArray.begin() + i);
+	}
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoFixpoints()
+{
+	// TODO: Add your control notification handler code here
+	if(!pMesh)
+		return;
+	for(int i = 0; i < pMesh->m_ArraySeletedVertexIndex.size(); i++)
+	{
+		int index = pMesh->m_ArraySeletedVertexIndex[i];
+		std::vector<int>::iterator fiterator;
+		fiterator = std::find(pMesh->m_FixVerticesArray.begin(),pMesh->m_FixVerticesArray.end(),index);
+		if(fiterator == pMesh->m_FixVerticesArray.end())
+		{
+			pMesh->m_FixVerticesArray.push_back(index);
+		}
+	}
+	//pMesh->m_FixVerticesArray = pMesh->m_ArraySeletedVertexIndex;
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoUnfixpoints()
+{
+	// TODO: Add your control notification handler code here
+	if(!pMesh)
+		return;
+	for(int i = 0; i < pMesh->m_ArraySeletedVertexIndex.size(); i++)
+	{
+		int index = pMesh->m_ArraySeletedVertexIndex[i];
+		std::vector<int>::iterator fiterator;
+		fiterator = std::find(pMesh->m_FixVerticesArray.begin(),pMesh->m_FixVerticesArray.end(),index);
+		if(fiterator != pMesh->m_FixVerticesArray.end())
+		{
+			pMesh->m_FixVerticesArray.erase(fiterator);
+		}
+	}
+	//pMesh->m_FixVerticesArray = pMesh->m_ArraySeletedVertexIndex;
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoCopyfixpoints()
+{
+	// TODO: Add your control notification handler code here
+	if(!pMesh)
+		return;
+	pMesh->m_ArraySeletedVertexIndex = pMesh->m_FixVerticesArray;
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedOminoLoadusastreighten()
+{
+	// TODO: Add your control notification handler code here
+	pDoc->OnOpenDocument("D:\\papers\\code\\data\\Geo\\dense\\USA_Streighten.m");
+	p_FormView3->currentindex = pDoc->m_SceneGraph.NbObject() - 1;
+	OnBnClickedOminoSetcurrentmesh();
+	pMesh->m_showLandmarkEdge = TRUE;
+	pMesh->m_showLandmarkVertex = TRUE;
+	pMesh->m_showFace = FALSE;
+
+	//Generate Landmarks
+	OnBnClickedGeneratelandmarks();
+
+	//Load Landmarks
+	char message[200];
+	sprintf(message,"D:\\papers\\code\\data\\Geo\\dense\\Dense_mesh_Landmark.txt");
+	CString landmarkname = message;
+	Loadlandmark(landmarkname);
+
+	//Delete Auxillary Landmarks
+	//OnBnClickedPolyominoDeleteauxillarylandmarks();
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedUniformgridInitialization()
+{
+	// TODO: Add your control notification handler code here
+	if(!pMesh)
+		return;
+
+	//Initialization
+	Point3D lower,upper;
+	pMesh->ComputeBoundingBox(lower,upper);
+	pUniformGridMesh = new CMesh3d();
+	pDoc->m_SceneGraph.Add(pUniformGridMesh);
+	
+	std::vector<int> m_ArrayLandmarkEndpoints;
+	std::vector<int>::iterator literator;
+
+	//Add All endpoints of the landmark to the uniformgrid
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandmark = pMesh->m_LandMarkArray[i];
+		int start = pLandmark->landmark_points[0];
+		int end = pLandmark->landmark_points[pLandmark->landmark_points.size() - 1];
+		literator = std::find(m_ArrayLandmarkEndpoints.begin(),m_ArrayLandmarkEndpoints.end(),start);
+		if(literator == m_ArrayLandmarkEndpoints.end())
+		{
+			m_ArrayLandmarkEndpoints.push_back(start);
+		}
+		literator = std::find(m_ArrayLandmarkEndpoints.begin(),m_ArrayLandmarkEndpoints.end(),end);
+		if(literator == m_ArrayLandmarkEndpoints.end())
+		{
+			m_ArrayLandmarkEndpoints.push_back(end);
+		}
+	}
+
+	//Add new points to the new mesh
+	for(int i = 0; i < m_ArrayLandmarkEndpoints.size(); i++)
+	{
+		CVertex3d* pCurrentVertex = pMesh->GetVertex(m_ArrayLandmarkEndpoints[i]);
+		CVertex3d* pVertex = new CVertex3d(pCurrentVertex);
+		pUniformGridMesh->AddVertex(pVertex);
+	}
+
+	std::pair<int,int> pair;
+
+	//Add four corner points
+	int vindex1 = pUniformGridMesh->NbVertex();
+	CVertex3d* pVertex = new CVertex3d(lower.x,lower.y,lower.z);
+	pUniformGridMesh->AddVertex(pVertex);
+	pVertex = new CVertex3d(lower.x,upper.y,lower.z);
+	pUniformGridMesh->AddVertex(pVertex);
+	pVertex = new CVertex3d(upper.x,upper.y,lower.z);
+	pUniformGridMesh->AddVertex(pVertex);
+	pVertex = new CVertex3d(upper.x,lower.y,lower.z);
+	pUniformGridMesh->AddVertex(pVertex);
+
+	//pair.first = vindex1;
+	//pair.second = vindex1 + 1;
+	//pUniformGridMesh->m_ArraySeletedEdges.push_back(pair);
+
+	//pair.first = vindex1;
+	//pair.second = vindex1 + 3;
+	//pUniformGridMesh->m_ArraySeletedEdges.push_back(pair);
+
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandmark = pMesh->m_LandMarkArray[i];
+		int start = pLandmark->landmark_points[0];
+		int end = pLandmark->landmark_points[pLandmark->landmark_points.size() - 1];
+
+		literator = std::find(m_ArrayLandmarkEndpoints.begin(),m_ArrayLandmarkEndpoints.end(),start);
+		int startindex = literator - m_ArrayLandmarkEndpoints.begin();
+		literator = std::find(m_ArrayLandmarkEndpoints.begin(),m_ArrayLandmarkEndpoints.end(),end);
+		int endindex = literator - m_ArrayLandmarkEndpoints.begin();
+		
+		pair.first = startindex;
+		pair.second = endindex;
+		pUniformGridMesh->m_ArraySeletedEdges.push_back(pair);
+	}
+	pUniformGridMesh->SetTransform(*pMesh->GetTransform());
+	pUniformGridMesh->m_showSelectedEdge = TRUE;
+	pUniformGridMesh->m_showVertex = TRUE;
+
+	std::vector<std::vector<int>> m_ArrayPointConnectedSelectEdgeIndex;
+	m_ArrayPointConnectedSelectEdgeIndex.resize(pMesh->m_ArrayVertex.GetSize());
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pUniformGridMesh->m_ArraySeletedEdges[i];
+		m_ArrayPointConnectedSelectEdgeIndex[data.first].push_back(i);
+		m_ArrayPointConnectedSelectEdgeIndex[data.second].push_back(i);
+	}
+
+			
+	//If mutiple curves are on the same horizontal or vertical line, combine them together.
+	std::vector<int> m_ArrayFlag;
+	std::vector<int> segments;
+	m_ArrayFlag.resize(pUniformGridMesh->m_ArraySeletedEdges.size(),0);
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		segments.clear();
+
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		int start = pair.first;
+		int end = pair.second;
+
+		if(m_ArrayFlag[i])
+			continue;
+
+		m_ArrayFlag[i] = 1;
+
+		int style = GetSegmentStyle(i);
+
+		segments.push_back(i);
+
+		int nextvindex;	
+		int nextsegment;
+		nextsegment = i;
+		while(1)
+		{
+			nextsegment = GetConnectedSegment_SameStyle(m_ArrayPointConnectedSelectEdgeIndex,nextsegment,start,nextvindex);
+			if(nextsegment == -1)
+				break;
+			segments.push_back(nextsegment);
+			m_ArrayFlag[nextsegment] = 1;
+			start = nextvindex;
+		}
+		nextsegment = i;
+		while(1)
+		{
+			nextsegment = GetConnectedSegment_SameStyle(m_ArrayPointConnectedSelectEdgeIndex,nextsegment,end,nextvindex);
+			if(nextsegment == -1)
+				break;
+			segments.push_back(nextsegment);
+			m_ArrayFlag[nextsegment] = 1;
+			end = nextvindex;
+		}
+
+		if(style == 0)
+			m_HorizontalSegments.push_back(segments);
+		else
+			m_VerticalSegments.push_back(segments);
+	}
+
+	//Add Vertices of Segments
+	std::vector<int> m_vertices;
+	std::vector<int>::iterator fiterator;
+
+	//Horizontal lines
+	for(int i = 0; i < m_HorizontalSegments.size(); i++)
+	{
+		m_vertices.clear();
+
+		segments = m_HorizontalSegments[i];
+		for(int j = 0; j < segments.size(); j++)
+		{
+			pair = pUniformGridMesh->m_ArraySeletedEdges[segments[j]];
+			int start = pair.first;
+			int end = pair.second;
+
+			fiterator = std::find(m_vertices.begin(),m_vertices.end(),start);
+			if(fiterator == m_vertices.end())
+				m_vertices.push_back(start);
+
+			fiterator = std::find(m_vertices.begin(),m_vertices.end(),end);
+			if(fiterator == m_vertices.end())
+				m_vertices.push_back(end);
+
+		}
+
+		//Average the y coordinates
+		double sumy = 0;
+		for(int j = 0; j < m_vertices.size(); j++)
+		{
+			CVertex3d* pVertex = pUniformGridMesh->GetVertex(m_vertices[j]);
+			sumy += pVertex->y();
+		}
+		double averagey = sumy / m_vertices.size();
+
+		//Set the y coordinates		
+		for(int j = 0; j < m_vertices.size(); j++)
+		{
+			CVertex3d* pVertex = pUniformGridMesh->GetVertex(m_vertices[j]);
+			pVertex->y(averagey);
+		}
+	}
+
+	//Vertical lines
+	for(int i = 0; i < m_VerticalSegments.size(); i++)
+	{
+		m_vertices.clear();
+
+		segments = m_VerticalSegments[i];
+		for(int j = 0; j < segments.size(); j++)
+		{
+			pair = pUniformGridMesh->m_ArraySeletedEdges[segments[j]];
+			int start = pair.first;
+			int end = pair.second;
+
+			fiterator = std::find(m_vertices.begin(),m_vertices.end(),start);
+			if(fiterator == m_vertices.end())
+				m_vertices.push_back(start);
+
+			fiterator = std::find(m_vertices.begin(),m_vertices.end(),end);
+			if(fiterator == m_vertices.end())
+				m_vertices.push_back(end);
+
+		}
+
+		//Average the y coordinates
+		double sumx = 0;
+		for(int j = 0; j < m_vertices.size(); j++)
+		{
+			CVertex3d* pVertex = pUniformGridMesh->GetVertex(m_vertices[j]);
+			sumx += pVertex->x();
+		}
+		double averagex = sumx / m_vertices.size();
+
+		//Set the y coordinates		
+		for(int j = 0; j < m_vertices.size(); j++)
+		{
+			CVertex3d* pVertex = pUniformGridMesh->GetVertex(m_vertices[j]);
+			pVertex->x(averagex);
+		}
+	}
+
+	std::pair<int,int> edgepair;
+	double x,y;
+	std::vector<double> xinterval,yinterval;
+	std::vector<int> valarray;
+	//sort
+	for(int i = 0; i < m_HorizontalSegments.size(); i++)
+	{
+		int edgeindex = m_HorizontalSegments[i][0];
+		edgepair = pUniformGridMesh->m_ArraySeletedEdges[edgeindex];
+
+		CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+		y = pVertex->y();
+		yinterval.push_back(y);
+	}
+	for(int i = 0; i < yinterval.size(); i++)
+		for(int j = 0; j < yinterval.size() - 1; j++)
+		{
+			//exchange
+			if(yinterval[j] > yinterval[j + 1])
+			{
+				double val = yinterval[j];
+				yinterval[j] = yinterval[j + 1];
+				yinterval[j + 1] = val;
+
+				valarray = m_HorizontalSegments[j];
+				m_HorizontalSegments[j] = m_HorizontalSegments[j + 1];
+				m_HorizontalSegments[j + 1] = valarray;
+			}
+		}
+
+	for(int i = 0; i < m_VerticalSegments.size(); i++)
+	{
+		int edgeindex = m_VerticalSegments[i][0];
+		edgepair = pUniformGridMesh->m_ArraySeletedEdges[edgeindex];
+
+		CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+		x = pVertex->x();
+		xinterval.push_back(x);
+	}
+	for(int i = 0; i < xinterval.size(); i++)
+		for(int j = 0; j < xinterval.size() - 1; j++)
+		{
+			//exchange
+			if(xinterval[j] > xinterval[j + 1])
+			{
+				double val = xinterval[j];
+				xinterval[j] = xinterval[j + 1];
+				xinterval[j + 1] = val;
+
+				valarray = m_VerticalSegments[j];
+				m_VerticalSegments[j] = m_VerticalSegments[j + 1];
+				m_VerticalSegments[j + 1] = valarray;
+			}
+		}
+
+	for(int i = 0; i < pUniformGridMesh->NbVertex(); i++)
+	{
+		pUniformGridMesh->GetVertex(i)->m_Flag = i;
+	}
+	pDoc->UpdateTreeControl();
+	pDoc->UpdateAllViews(NULL);
+}
+int Action_PolyOmino::GetConnectedSegment_SameStyle(std::vector<std::vector<int>>& m_ArrayPointConnectedSelectEdgeIndex,int segmentindex,int vindex,int& nextvindex)
+{
+	int style = GetSegmentStyle(segmentindex);
+	std::pair<int,int> pair;
+	for(int ii = 0; ii < m_ArrayPointConnectedSelectEdgeIndex[vindex].size(); ii++)
+	{
+		int index = m_ArrayPointConnectedSelectEdgeIndex[vindex][ii];
+		int style1 = GetSegmentStyle(index);
+		if(index != segmentindex && style == style1)
+		{
+			pair = pUniformGridMesh->m_ArraySeletedEdges[index];
+			if(pair.first == vindex)
+				nextvindex = pair.second;
+			else
+				nextvindex = pair.first;
+			return index;
+		}
+	}
+	return -1;
+}
+
+int Action_PolyOmino::GetConnectedSegment(std::vector<std::vector<int>>& m_ArrayPointConnectedSelectEdgeIndex,int segmentindex,int vindex,int& nextvindex)
+{
+	if(m_ArrayPointConnectedSelectEdgeIndex[vindex].size() != 2)
+		return -1;
+
+	std::pair<int,int> pair;
+	for(int ii = 0; ii < m_ArrayPointConnectedSelectEdgeIndex[vindex].size(); ii++)
+	{
+		int index = m_ArrayPointConnectedSelectEdgeIndex[vindex][ii];
+		if(index != segmentindex)
+		{
+			pair = pUniformGridMesh->m_ArraySeletedEdges[index];
+			if(pair.first == vindex)
+				nextvindex = pair.second;
+			else
+				nextvindex = pair.first;
+			return index;
+		}
+	}
+	return -1;
+}
+
+int Action_PolyOmino::GetSegmentStyle(int index)
+{
+	//Get the style of the segement, if horizontal 0, vertical 1
+	std::pair<int,int> pair;
+	pair = pUniformGridMesh->m_ArraySeletedEdges[index];
+	int start = pair.first;
+	int end = pair.second;
+
+	CVertex3d* pStartVertex = pUniformGridMesh->GetVertex(start);
+	CVertex3d* pEndVertex = pUniformGridMesh->GetVertex(end);
+	if(fabs(pStartVertex->y() - pEndVertex->y()) >  fabs(pStartVertex->x() - pEndVertex->x()))
+		return 1;
+	else
+		return 0;
+}
+int Action_PolyOmino::InsertNewSelectedEdge(std::pair<int,int> newedge,int index,int isVertical,int ischeck)
+{
+	//First Judege whether there is already has such a edge
+	std::pair<int,int> edge;
+	if(ischeck)
+	{
+		for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+		{
+			edge = pUniformGridMesh->m_ArraySeletedEdges[i];
+			if(edge.first == newedge.first && edge.second == newedge.second || 
+				edge.second == newedge.first && edge.first == newedge.second)
+				return 0;
+		}
+	}
+
+	//
+	pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+	if(isVertical)
+		m_VerticalSegments[index].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+	else
+		m_HorizontalSegments[index].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+	return 1;
+}
+void Action_PolyOmino::DetectandHandleVerticalIntersectingEdges(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex)
+{
+	int edgeindex1,edgeindex2;
+	std::vector<int> edgeset;
+	int edgesetsize;
+	std::pair<int,int> edgepair1,edgepair2;
+	for(int i = 0; i < m_VerticalSegments.size(); i++)
+	{
+		edgeset = m_VerticalSegments[i];
+		edgesetsize = edgeset.size();
+		for(int j = 0; j < edgesetsize; j++)
+		{
+			for(int k = 0; k < edgesetsize; k++)
+			{
+				if(j == k)
+					continue;
+				int edgeindex1 = edgeset[j];
+				int edgeindex2 = edgeset[k];
+
+				edgepair1 = pUniformGridMesh->m_ArraySeletedEdges[edgeindex1];
+				edgepair2 = pUniformGridMesh->m_ArraySeletedEdges[edgeindex2];
+				CVertex3d* pEdge1Start = pUniformGridMesh->GetVertex(edgepair1.first);
+				CVertex3d* pEdge1End = pUniformGridMesh->GetVertex(edgepair1.second);
+				CVertex3d* pEdge2Start = pUniformGridMesh->GetVertex(edgepair2.first);
+				CVertex3d* pEdge2End = pUniformGridMesh->GetVertex(edgepair2.second);
+
+				double edge1starty = pEdge1Start->y();
+				double edge1endy = pEdge1End->y();
+				double edge2starty = pEdge2Start->y();
+				double edge2endy = pEdge2End->y();
+
+				if(edge1endy > edge2starty + 1e-4 && edge1endy < edge2endy - 1e-4 || edge1starty > edge2starty + 1e-4 && edge1starty < edge2endy - 1e-4)
+				{
+					//Invalid
+					int nextvindex;
+					std::vector<int> m_EdgeArray;
+					m_EdgeArray.push_back(edgeindex1);
+					int vindex = edgepair1.first;
+					int firstvindex = edgepair1.second;
+					while(1)
+					{
+						int nextedgeindex = GetConnectedSegment(m_ArrayPointConnectedSelectEdgeIndex,edgeindex1,vindex,nextvindex);
+						if(nextedgeindex != -1)
+						{
+							if(nextedgeindex == edgeindex2)
+							{
+								m_EdgeArray.push_back(nextedgeindex);
+								std::pair<int,int> newedge;
+								newedge.first = firstvindex;
+								newedge.second = nextvindex;
+								InsertNewSelectedEdge(newedge,i,1,0);
+								//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+								//m_VerticalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+								RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_EdgeArray);
+								
+								i--;
+								goto label4;
+							}else
+							{
+								m_EdgeArray.push_back(nextedgeindex);
+								vindex = nextvindex;
+								edgeindex1 = nextedgeindex;
+							}
+
+						}else
+						{
+							edgeindex1 = edgeset[j];
+							m_EdgeArray.clear();
+							m_EdgeArray.push_back(edgeindex1);
+							vindex = edgepair1.second;
+							firstvindex = edgepair1.first;
+							while(1)
+							{
+								int nextedgeindex = GetConnectedSegment(m_ArrayPointConnectedSelectEdgeIndex,edgeindex1,vindex,nextvindex);
+								if(nextedgeindex != -1)
+								{
+									if(nextedgeindex == edgeindex2)
+									{
+										m_EdgeArray.push_back(nextedgeindex);
+										std::pair<int,int> newedge;
+										newedge.first = firstvindex;
+										newedge.second = nextvindex;
+										InsertNewSelectedEdge(newedge,i,1,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_VerticalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+										RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_EdgeArray);
+										
+										i--;
+										goto label4;
+									}else
+									{
+										m_EdgeArray.push_back(nextedgeindex);
+										vindex = nextvindex;
+										edgeindex1 = nextedgeindex;
+									}
+								}else
+								{
+									std::pair<int,double> pair;
+									std::vector<std::pair<int,double>> fourpointsarray;
+
+									//first add the end points of the two segments
+									pair.first = edgepair1.first;
+									pair.second = edge1starty;
+									fourpointsarray.push_back(pair);
+
+									pair.first = edgepair1.second;
+									pair.second = edge1endy;
+									fourpointsarray.push_back(pair);
+
+									pair.first = edgepair2.first;
+									pair.second = edge2starty;
+									fourpointsarray.push_back(pair);
+
+									pair.first = edgepair2.second;
+									pair.second = edge2endy;
+									fourpointsarray.push_back(pair);
+
+									struct sort_pred {
+										bool operator()(const std::pair<int,double> &left, const std::pair<int,double> &right) {
+											return left.second < right.second;
+										}
+									};
+
+									std::sort(fourpointsarray.begin(), fourpointsarray.end(), sort_pred());
+
+									std::pair<int,int> newedge;
+									newedge.first = fourpointsarray[0].first;
+									newedge.second = fourpointsarray[1].first;
+
+									if(newedge.first != newedge.second)
+									{
+										InsertNewSelectedEdge(newedge,i,1,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_VerticalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+									}
+
+									newedge.first = fourpointsarray[1].first;
+									newedge.second = fourpointsarray[2].first;
+									if(newedge.first != newedge.second)
+									{
+										InsertNewSelectedEdge(newedge,i,1,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_VerticalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+									}
+
+									newedge.first = fourpointsarray[2].first;
+									newedge.second = fourpointsarray[3].first;
+									if(newedge.first != newedge.second)
+									{
+										InsertNewSelectedEdge(newedge,i,1,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_VerticalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+									}
+									m_EdgeArray.clear();
+									m_EdgeArray.push_back(edgeset[j]);
+									m_EdgeArray.push_back(edgeset[k]);
+									RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_EdgeArray);
+									
+									i--;
+									goto label4;
+									//ASSERT(0);
+								}
+							}
+						}
+					}
+
+				}
+			}
+		}
+label4:
+		int ij = 0;
+	}
+}
+void Action_PolyOmino::DetectandHandleHorizontalIntersectingEdges(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex)
+{
+	int edgeindex1,edgeindex2;
+	std::vector<int> edgeset;
+	int edgesetsize;
+	std::pair<int,int> edgepair1,edgepair2;
+	for(int i = 0; i < m_HorizontalSegments.size(); i++)
+	{
+		edgeset = m_HorizontalSegments[i];
+		edgesetsize = edgeset.size();
+		for(int j = 0; j < edgesetsize; j++)
+		{
+			for(int k = 0; k < edgesetsize; k++)
+			{
+				if(j == k)
+					continue;
+				int edgeindex1 = edgeset[j];
+				int edgeindex2 = edgeset[k];
+
+				edgepair1 = pUniformGridMesh->m_ArraySeletedEdges[edgeindex1];
+				edgepair2 = pUniformGridMesh->m_ArraySeletedEdges[edgeindex2];
+				CVertex3d* pEdge1Start = pUniformGridMesh->GetVertex(edgepair1.first);
+				CVertex3d* pEdge1End = pUniformGridMesh->GetVertex(edgepair1.second);
+				CVertex3d* pEdge2Start = pUniformGridMesh->GetVertex(edgepair2.first);
+				CVertex3d* pEdge2End = pUniformGridMesh->GetVertex(edgepair2.second);
+
+				double edge1startx = pEdge1Start->x();
+				double edge1endx = pEdge1End->x();
+				double edge2startx = pEdge2Start->x();
+				double edge2endx = pEdge2End->x();
+
+				if(edge1endx > edge2startx + 1e-4 && edge1endx < edge2endx - 1e-4 || edge1startx > edge2startx + 1e-4 && edge1startx < edge2endx - 1e-4)
+				{
+					//Invalid
+					int nextvindex;
+					std::vector<int> m_EdgeArray;
+					m_EdgeArray.push_back(edgeindex1);
+					int vindex = edgepair1.first;
+					int firstvindex = edgepair1.second;
+					while(1)
+					{
+						int nextedgeindex = GetConnectedSegment(m_ArrayPointConnectedSelectEdgeIndex,edgeindex1,vindex,nextvindex);
+						if(nextedgeindex != -1)
+						{
+							if(nextedgeindex == edgeindex2)
+							{
+								m_EdgeArray.push_back(nextedgeindex);
+								std::pair<int,int> newedge;
+								newedge.first = firstvindex;
+								newedge.second = nextvindex;
+								InsertNewSelectedEdge(newedge,i,0,0);
+								//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+								//m_HorizontalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+								RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_EdgeArray);
+								
+								i--;
+								goto label3;
+								break;
+							}else
+							{
+								m_EdgeArray.push_back(nextedgeindex);
+								vindex = nextvindex;
+								edgeindex1 = nextedgeindex;
+							}
+
+						}else
+						{
+							edgeindex1 = edgeset[j];
+							m_EdgeArray.clear();
+							m_EdgeArray.push_back(edgeindex1);
+							vindex = edgepair1.second;
+							firstvindex = edgepair1.first;
+							while(1)
+							{
+								int nextedgeindex = GetConnectedSegment(m_ArrayPointConnectedSelectEdgeIndex,edgeindex1,vindex,nextvindex);
+								if(nextedgeindex != -1)
+								{
+									if(nextedgeindex == edgeindex2)
+									{
+										m_EdgeArray.push_back(nextedgeindex);
+										std::pair<int,int> newedge;
+										newedge.first = firstvindex;
+										newedge.second = nextvindex;
+										InsertNewSelectedEdge(newedge,i,0,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_HorizontalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+										RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_EdgeArray);
+										
+										i--;
+										goto label3;
+									}else
+									{
+										m_EdgeArray.push_back(nextedgeindex);
+										vindex = nextvindex;
+										edgeindex1 = nextedgeindex;
+									}
+								}else
+								{
+									std::pair<int,double> pair;
+									std::vector<std::pair<int,double>> fourpointsarray;
+
+									//first add the end points of the two segments
+									pair.first = edgepair1.first;
+									pair.second = edge1startx;
+									fourpointsarray.push_back(pair);
+
+									pair.first = edgepair1.second;
+									pair.second = edge1endx;
+									fourpointsarray.push_back(pair);
+
+									pair.first = edgepair2.first;
+									pair.second = edge2startx;
+									fourpointsarray.push_back(pair);
+
+									pair.first = edgepair2.second;
+									pair.second = edge2endx;
+									fourpointsarray.push_back(pair);
+
+									struct sort_pred {
+										bool operator()(const std::pair<int,double> &left, const std::pair<int,double> &right) {
+											return left.second < right.second;
+										}
+									};
+
+									std::sort(fourpointsarray.begin(), fourpointsarray.end(), sort_pred());
+
+									std::pair<int,int> newedge;
+									newedge.first = fourpointsarray[0].first;
+									newedge.second = fourpointsarray[1].first;
+
+									if(newedge.first != newedge.second)
+									{
+										InsertNewSelectedEdge(newedge,i,0,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_HorizontalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+									}
+
+									newedge.first = fourpointsarray[1].first;
+									newedge.second = fourpointsarray[2].first;
+									if(newedge.first != newedge.second)
+									{
+										InsertNewSelectedEdge(newedge,i,0,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_HorizontalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+									}
+
+									newedge.first = fourpointsarray[2].first;
+									newedge.second = fourpointsarray[3].first;
+									if(newedge.first != newedge.second)
+									{
+										InsertNewSelectedEdge(newedge,i,0,0);
+										//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+										//m_HorizontalSegments[i].push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+									}
+									m_EdgeArray.clear();
+									m_EdgeArray.push_back(edgeset[j]);
+									m_EdgeArray.push_back(edgeset[k]);
+									RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_EdgeArray);
+									i--;
+									goto label3;
+								}
+							}
+						}
+					}
+
+				}
+			}
+		}
+label3:
+		int ij = 0;
+	}
+}
+void Action_PolyOmino::UpdatePointConnectedSelectedEdgeIndex()
+{
+	std::vector<int> m_CornerPointArray;
+	m_CornerPointArray.resize(pUniformGridMesh->m_ArrayVertex.GetSize(),0);
+
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pUniformGridMesh->m_ArraySeletedEdges[i];
+		m_CornerPointArray[data.first]++; 
+		m_CornerPointArray[data.second]++; 
+	}
+	
+	m_ArrayPointConnectedSelectEdgeIndex.resize(pUniformGridMesh->m_ArrayVertex.GetSize());
+	for(int i = 0; i < pUniformGridMesh->m_ArrayVertex.GetSize(); i++)
+	{
+		m_ArrayPointConnectedSelectEdgeIndex[i].clear();
+	}
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		std::pair<int,int> data;
+		data = pUniformGridMesh->m_ArraySeletedEdges[i];
+		m_ArrayPointConnectedSelectEdgeIndex[data.first].push_back(i);
+		m_ArrayPointConnectedSelectEdgeIndex[data.second].push_back(i);
+	}
+}
+void Action_PolyOmino::CheckandFixTopologyValidation(int iterationnum)
+{
+	//std::pair<int,int> edge1,edge2;
+	//edge1 = pUniformGridMesh->m_ArraySeletedEdges[893];
+	//edge2 = pUniformGridMesh->m_ArraySeletedEdges[894];
+	//pUniformGridMesh->m_ArraySeletedEdges.clear();
+	//pUniformGridMesh->m_ArraySeletedEdges.push_back(edge1);
+	//pUniformGridMesh->m_ArraySeletedEdges.push_back(edge2);
+	//return;
+	/*if(iterationnum == 972)
+	{
+		CMesh3d* pTestMesh1 = new CMesh3d(*pUniformGridMesh);
+		pDoc->m_SceneGraph.Add(pTestMesh1);
+		CMesh3d* pTestMesh2 = new CMesh3d(*pUniformGridMesh);
+		pDoc->m_SceneGraph.Add(pTestMesh2);
+
+		std::pair<int,int> edge1,edge2;
+		edge1.first = 1126;
+		edge1.second = 1865;
+		edge2.first = 1126;
+		edge2.second = 1866;
+		//edge1 = pUniformGridMesh->m_ArraySeletedEdges[764];
+		//edge2 = pUniformGridMesh->m_ArraySeletedEdges[1534];
+		pTestMesh1->m_ArraySeletedEdges.clear();
+		pTestMesh1->m_ArraySeletedEdges.push_back(edge1);
+		pTestMesh2->m_ArraySeletedEdges.clear();
+		pTestMesh2->m_ArraySeletedEdges.push_back(edge2);
+		pDoc->UpdateTreeControl();
+		return;
+	}*/
+
+	//Delete Unused Vertices, only keep the end points of the edges
+
+	//
+	DeleteDuplicateEdges();
+
+	DeleteInnerHoles();
+
+	DeleteUnusedVertices();
+
+	//Delete Duplicate Vertices
+	DeleteDuplicateVertices();
+
+	//
+	UpdatePointConnectedSelectedEdgeIndex();
+
+	//detect the edge with zero length
+	DetectandHandleEdgeWithZeroLength(m_ArrayPointConnectedSelectEdgeIndex);
+
+	//Detect and handle Horizontal intersecting edges
+	DetectandHandleHorizontalIntersectingEdges(m_ArrayPointConnectedSelectEdgeIndex);
+	
+	//Detect and handle Vertical intersecting edges
+	DetectandHandleVerticalIntersectingEdges(m_ArrayPointConnectedSelectEdgeIndex);
+
+	//Merge Connected Segments
+	MergeConnectedSegments(m_ArrayPointConnectedSelectEdgeIndex);
+
+}
+void Action_PolyOmino::DeleteInnerHoles()
+{
+	//Delete Inner Holes
+
+	std::vector<int> m_ArrayFlag;
+	m_ArrayFlag.resize(pUniformGridMesh->m_ArraySeletedEdges.size(),0);
+	std::stack<int> m_ArrayStackEdges;
+	std::vector<int> m_ArrayCurrentLoops;
+	std::vector<int> m_ArrayEndPoints;
+	std::pair<int,int> pair;
+	//
+	UpdatePointConnectedSelectedEdgeIndex();
+
+	int nextvindex;
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		if(m_ArrayFlag[i] == 0)
+		{			
+			m_ArrayCurrentLoops.clear();
+			m_ArrayStackEdges.push(i);
+			m_ArrayCurrentLoops.push_back(i);
+			m_ArrayFlag[i] = 1;
+			m_ArrayEndPoints.clear();
+			while(!m_ArrayStackEdges.empty())
+			{
+				int top = m_ArrayStackEdges.top();
+				pair = pUniformGridMesh->m_ArraySeletedEdges[top];
+				m_ArrayStackEdges.pop();
+				int nextedgeindex = GetConnectedSegment(m_ArrayPointConnectedSelectEdgeIndex,top,pair.first,nextvindex);
+
+				if(nextedgeindex == -1)
+				{
+					m_ArrayEndPoints.push_back(pair.first);
+				}else
+				if(m_ArrayFlag[nextedgeindex] == 0)
+				{
+					m_ArrayStackEdges.push(nextedgeindex);
+					m_ArrayCurrentLoops.push_back(nextedgeindex);
+					m_ArrayFlag[nextedgeindex] = 1;
+				}
+
+				nextedgeindex = GetConnectedSegment(m_ArrayPointConnectedSelectEdgeIndex,top,pair.second,nextvindex);
+
+				if(nextedgeindex == -1)
+				{
+					m_ArrayEndPoints.push_back(pair.second);
+				}else
+					if(m_ArrayFlag[nextedgeindex] == 0)
+					{
+						m_ArrayStackEdges.push(nextedgeindex);
+						m_ArrayCurrentLoops.push_back(nextedgeindex);
+						m_ArrayFlag[nextedgeindex] = 1;
+					}
+			}
+			if(m_ArrayEndPoints.size() == 2 && m_ArrayEndPoints[0] == m_ArrayEndPoints[1])
+			{
+				//Delete the holes
+				RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_ArrayCurrentLoops);
+			}
+		}
+	}
+}
+void Action_PolyOmino::DeleteUnusedVertices()
+{
+	//This function aims to delete the unused vertices,
+	//only keep the end points of the selected edges
+	std::vector<int> m_VerticesArray;
+	std::vector<int>::iterator viterator;
+	std::pair<int,int> pair;
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		viterator = std::find(m_VerticesArray.begin(),m_VerticesArray.end(),pair.first);
+		if(viterator == m_VerticesArray.end())
+			m_VerticesArray.push_back(pair.first);
+		viterator = std::find(m_VerticesArray.begin(),m_VerticesArray.end(),pair.second);
+		if(viterator == m_VerticesArray.end())
+			m_VerticesArray.push_back(pair.second);
+	}
+	std::vector<int> m_ArrayFlag;
+	m_ArrayFlag.resize(pUniformGridMesh->m_ArrayVertex.GetSize(),0);
+	for(int i = 0; i < m_VerticesArray.size(); i++)
+	{
+		m_ArrayFlag[m_VerticesArray[i]] = 1;
+	}
+
+	//delete the vertices with flag 0
+	std::vector<int> m_ArrayIndex;
+	m_ArrayIndex.resize(pUniformGridMesh->m_ArrayVertex.GetSize(),0);
+	for(int i = 0; i < m_ArrayIndex.size(); i++)
+	{
+		m_ArrayIndex[i] = i;
+	}
+	for(int i = m_ArrayFlag.size() - 1; i >= 0; i--)
+	{
+		if(m_ArrayFlag[i] == 0)
+		{
+			//delete it
+			pUniformGridMesh->m_ArrayVertex.RemoveAt(i);
+			for(int ii = i + 1; ii < m_ArrayIndex.size(); ii++)
+			{
+				m_ArrayIndex[ii]--;
+			}
+		}
+	}
+
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		pair.first = m_ArrayIndex[pair.first];
+		pair.second = m_ArrayIndex[pair.second];
+		pUniformGridMesh->m_ArraySeletedEdges[i] = pair;
+	}
+}
+void Action_PolyOmino::DeleteDuplicateEdges()
+{
+	UpdatePointConnectedSelectedEdgeIndex();
+
+	std::vector<int> m_ArrayDeletedEdgeSet;
+	int size = pUniformGridMesh->m_ArrayVertex.GetSize();
+	for(int i = 0; i < size; i++)
+	{
+		std::vector<int> edgeset = m_ArrayPointConnectedSelectEdgeIndex[i];
+		for(int j = 0; j < edgeset.size(); j++)
+		{
+			for(int k = j + 1; k < edgeset.size(); k++)
+			{
+				std::pair<int,int> pair1 = pUniformGridMesh->m_ArraySeletedEdges[edgeset[j]];
+				std::pair<int,int> pair2 = pUniformGridMesh->m_ArraySeletedEdges[edgeset[k]];
+				if(pair1.first == pair2.first && pair1.second == pair2.second || 
+					pair1.second == pair2.first && pair1.first == pair2.second)
+				{
+					m_ArrayDeletedEdgeSet.push_back(edgeset[j]);
+				}
+
+			}
+		}
+	}
+
+	if(m_ArrayDeletedEdgeSet.size() > 0)
+		RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,m_ArrayDeletedEdgeSet);
+}
+void Action_PolyOmino::DeleteDuplicateVertices()
+{
+	std::vector<int> m_VerticesArray;
+	std::vector<int>::iterator viterator;
+	std::pair<int,int> pair;
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		viterator = std::find(m_VerticesArray.begin(),m_VerticesArray.end(),pair.first);
+		if(viterator == m_VerticesArray.end())
+			m_VerticesArray.push_back(pair.first);
+		viterator = std::find(m_VerticesArray.begin(),m_VerticesArray.end(),pair.second);
+		if(viterator == m_VerticesArray.end())
+			m_VerticesArray.push_back(pair.second);
+	}
+	std::pair<int,std::pair<double,double>> vertex,vertex1;
+	std::vector<std::pair<int,std::pair<double,double>>> vertices_array;
+
+	for(int i = 0; i < m_VerticesArray.size(); i++)
+	{
+		CVertex3d* pVertex = pUniformGridMesh->GetVertex(m_VerticesArray[i]);
+		double x = pVertex->x();
+		double y = pVertex->y();
+		vertex.first = m_VerticesArray[i];
+		vertex.second.first = x;
+		vertex.second.second = y;
+		vertices_array.push_back(vertex);
+	}
+	struct sort_pred {
+		bool operator()(const std::pair<int,std::pair<double,double>> &left, const std::pair<int,std::pair<double,double>> &right) 
+		{
+			if(fabs(left.second.first - right.second.first) < 1e-8)
+			{
+				return left.second.second < right.second.second;
+			}else
+				return left.second.first < right.second.first;
+		}
+	};
+	std::sort(vertices_array.begin(),vertices_array.end(),sort_pred());
+	for(int i = 0; i < vertices_array.size() - 1; i++)
+	{
+		vertex =  vertices_array[i];
+		vertex1 =  vertices_array[i + 1];
+
+		if(fabs(vertex.second.first - vertex1.second.first) < 1e-8 && fabs(vertex.second.second - vertex1.second.second) < 1e-8)
+		{
+			int index = vertex.first;
+			int index1 = vertex1.first;
+			for(int ii = 0; ii < pUniformGridMesh->m_ArraySeletedEdges.size(); ii++)
+			{
+				pair = pUniformGridMesh->m_ArraySeletedEdges[ii];
+				if(pair.first == index)
+					pair.first = index1;
+				if(pair.second == index)
+					pair.second = index1;
+				pUniformGridMesh->m_ArraySeletedEdges[ii] = pair;
+			}
+		}
+	}
+}
+void Action_PolyOmino::DetectandHandleEdgeWithZeroLength(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex)
+{
+	//Detect the zero length edge
+	std::pair<int,int> pair,pair1;
+	std::vector<int> edgeset;
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		CVertex3d* pStartVertex = pUniformGridMesh->GetVertex(pair.first);
+		CVertex3d* pEndVertex = pUniformGridMesh->GetVertex(pair.second);
+
+		double x1 = pStartVertex->x();
+		double y1 = pStartVertex->y();
+
+		double x2 = pEndVertex->x();
+		double y2 = pEndVertex->y();
+
+		if(fabs(x1 - x2) < 1e-8 && fabs(y1 - y2) < 1e-8)
+		{
+			//Delete the edge.
+			//pUniformGridMesh->m_ArraySeletedEdges.erase(pUniformGridMesh->m_ArraySeletedEdges.begin() + i);
+			edgeset.push_back(i);
+
+			for(int j = 0; j < pUniformGridMesh->m_ArraySeletedEdges.size(); j++)
+			{
+				if(j == i)
+					continue;
+
+				pair1 = pUniformGridMesh->m_ArraySeletedEdges[j];
+				if(pair1.first == pair.second)
+					pair1.first = pair.first;
+				else
+				if(pair1.second == pair.second)
+					pair1.second = pair.first;
+
+				pUniformGridMesh->m_ArraySeletedEdges[j] = pair1;
+			}
+			//i--;
+		}
+	}
+
+	if(edgeset.size() > 0)
+		RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,edgeset);
+}
+void Action_PolyOmino::MergeConnectedSegments(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex)
+{
+	int flag = 0;
+	//check whether to merge the segments
+	for(int i = 0; i < m_HorizontalSegments.size(); i++)
+	{
+		flag = 0;
+		for(int j = 0; j < m_HorizontalSegments[i].size(); j++)
+		{
+			for(int k = 0; k < m_HorizontalSegments[i].size(); k++)
+			{
+				if(j == k)
+					continue;
+
+				flag = MergeTwoSegments(m_ArrayPointConnectedSelectEdgeIndex,i,m_HorizontalSegments[i][j],m_HorizontalSegments[i][k],1);
+
+				if(flag)
+				{
+					i--;
+					break;
+				}
+			}
+			if(flag)
+				break;
+		}
+	}
+	for(int i = 0; i < m_VerticalSegments.size(); i++)
+	{
+		flag = 0;
+		for(int j = 0; j < m_VerticalSegments[i].size(); j++)
+		{
+			for(int k = 0; k < m_VerticalSegments[i].size(); k++)
+			{
+				if(j == k)
+					continue;
+
+				flag = MergeTwoSegments(m_ArrayPointConnectedSelectEdgeIndex,i,m_VerticalSegments[i][j],m_VerticalSegments[i][k],0);
+
+				if(flag)
+				{
+					i--;
+					break;
+				}
+			}
+			if(flag)
+				break;
+		}
+	}
+}
+int Action_PolyOmino::MergeTwoSegments(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex,int index,int index1,int index2,int IsHorizontal)
+{
+	std::pair<int,int> edgepair1 = pUniformGridMesh->m_ArraySeletedEdges[index1];
+	std::pair<int,int> edgepair2 = pUniformGridMesh->m_ArraySeletedEdges[index2];
+
+	CVertex3d* pEdge1Start = pUniformGridMesh->GetVertex(edgepair1.first);
+	CVertex3d* pEdge1End = pUniformGridMesh->GetVertex(edgepair1.second);
+	CVertex3d* pEdge2Start = pUniformGridMesh->GetVertex(edgepair2.first);
+	CVertex3d* pEdge2End = pUniformGridMesh->GetVertex(edgepair2.second);
+
+	double edge1start;
+	double edge1end;
+	double edge2start;
+	double edge2end;
+	if(IsHorizontal)
+	{
+		edge1start = pEdge1Start->x();
+		edge1end = pEdge1End->x();
+		edge2start = pEdge2Start->x();
+		edge2end = pEdge2End->x();
+	}else
+	{
+		edge1start = pEdge1Start->y();
+		edge1end = pEdge1End->y();
+		edge2start = pEdge2Start->y();
+		edge2end = pEdge2End->y();
+	}
+
+	std::pair<int,int> newedge;
+	std::vector<int> edgeset;
+	edgeset.push_back(index1);
+	edgeset.push_back(index2);
+	//if(fabs(edge1start - edge2start) < 1e-8)
+	if(edgepair1.first == edgepair2.first)
+	{
+		if(m_ArrayPointConnectedSelectEdgeIndex[edgepair1.first].size() == 2)
+		{
+			newedge.first = edgepair1.second;
+			newedge.second = edgepair2.second;
+			InsertNewSelectedEdge(newedge,index,!IsHorizontal,0);	
+			//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+			//edgesArray.push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+			RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,edgeset);
+
+			return 1;
+		}
+	}else
+	if(edgepair1.first == edgepair2.second)
+	//if(fabs(edge1start - edge2end) < 1e-8)
+	{
+		if(m_ArrayPointConnectedSelectEdgeIndex[edgepair1.first].size() == 2)
+		{
+			newedge.first = edgepair1.second;
+			newedge.second = edgepair2.first;
+			InsertNewSelectedEdge(newedge,index,!IsHorizontal,0);	
+			//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+			//edgesArray.push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+			RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,edgeset);
+
+			return 1;
+		}
+	}else
+	if(edgepair1.second == edgepair2.second)
+	//if(fabs(edge1end - edge2end) < 1e-8)
+	{
+		if(m_ArrayPointConnectedSelectEdgeIndex[edgepair1.second].size() == 2)
+		{
+			newedge.first = edgepair1.first;
+			newedge.second = edgepair2.first;
+			InsertNewSelectedEdge(newedge,index,!IsHorizontal,0);
+			//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+			//edgesArray.push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+			RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,edgeset);
+
+			return 1;
+		}
+	}else
+	if(edgepair1.second == edgepair2.first)
+	//if(fabs(edge1end - edge2start) < 1e-8)
+	{
+		if(m_ArrayPointConnectedSelectEdgeIndex[edgepair1.second].size() == 2)
+		{
+			newedge.first = edgepair1.first;
+			newedge.second = edgepair2.second;
+			InsertNewSelectedEdge(newedge,index,!IsHorizontal,0);
+			//pUniformGridMesh->m_ArraySeletedEdges.push_back(newedge);
+			//edgesArray.push_back(pUniformGridMesh->m_ArraySeletedEdges.size() - 1);
+			RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,edgeset);
+			//RemoveEdgeSet(m_ArrayPointConnectedSelectEdgeIndex,edgeset);
+			return 1;
+		}
+	}
+	return 0;
+}
+void Action_PolyOmino::RemoveEdgeSet(std::vector<std::vector<int>> &m_ArrayPointConnectedSelectEdgeIndex,std::vector<int>& m_EdgeArray)
+{
+
+	//first remove the edges from the horizontal and vertical array
+	std::vector<int> m_EdgeArrayBak = m_EdgeArray;
+	for(int ii = 0; ii < m_EdgeArray.size(); ii++)
+	{
+		for(int i = 0; i < m_HorizontalSegments.size(); i++)
+		{
+			for(int j = 0; j < m_HorizontalSegments[i].size(); j++)
+			{
+				if( m_HorizontalSegments[i][j] == m_EdgeArray[ii])
+				{
+					m_HorizontalSegments[i].erase(m_HorizontalSegments[i].begin() + j);
+					if(m_HorizontalSegments[i].size() == 0)
+					{
+						m_HorizontalSegments.erase(m_HorizontalSegments.begin() + i);
+						i--;
+					}
+					m_EdgeArray.erase(m_EdgeArray.begin() + ii);
+					if(m_EdgeArray.size() == 0)
+						goto label11;
+					ii--;
+					j--;
+					goto label2;
+				}
+			}
+		}
+label2:
+		int ij = -1;
+	}
+	for(int ii = 0; ii < m_EdgeArray.size(); ii++)
+	{
+		for(int i = 0; i < m_VerticalSegments.size(); i++)
+		{
+			for(int j = 0; j < m_VerticalSegments[i].size(); j++)
+			{
+				if( m_VerticalSegments[i][j] == m_EdgeArray[ii])
+				{
+					m_VerticalSegments[i].erase(m_VerticalSegments[i].begin() + j);
+					if(m_VerticalSegments[i].size() == 0)
+					{
+						m_VerticalSegments.erase(m_VerticalSegments.begin() + i);
+						i--;
+					}
+					m_EdgeArray.erase(m_EdgeArray.begin() + ii);
+					if(m_EdgeArray.size() == 0)
+						goto label11;
+					ii--;
+					j--;
+					goto label1;
+				}
+			}
+		}
+label1:
+		int ij = -1;
+	}
+label11:
+	//Remove the edges from the SelectedEdge Array and modify its index in horizontal and vertical array
+	std::vector<int> m_SelectedEdgeIndex;
+	m_SelectedEdgeIndex.resize(pUniformGridMesh->m_ArraySeletedEdges.size(),0);
+	for(int ii = 0; ii < pUniformGridMesh->m_ArraySeletedEdges.size(); ii++)
+	{
+		m_SelectedEdgeIndex[ii] = ii;
+	}
+	int edgesize = pUniformGridMesh->m_ArraySeletedEdges.size();
+	std::sort(m_EdgeArrayBak.begin(),m_EdgeArrayBak.end());
+	for(int ii = m_EdgeArrayBak.size() - 1; ii >= 0; ii--)
+	{
+		for(int jj = m_EdgeArrayBak[ii] + 1; jj < edgesize; jj++)
+		{
+			m_SelectedEdgeIndex[jj]--;
+		}
+		pUniformGridMesh->m_ArraySeletedEdges.erase(pUniformGridMesh->m_ArraySeletedEdges.begin() + m_EdgeArrayBak[ii]);
+	}
+
+	//change the edge index
+	for(int i = 0; i < m_HorizontalSegments.size(); i++)
+	{
+		for(int j = 0; j < m_HorizontalSegments[i].size(); j++)
+		{
+			m_HorizontalSegments[i][j] = m_SelectedEdgeIndex[m_HorizontalSegments[i][j]];
+			if(m_HorizontalSegments[i][j] >= pUniformGridMesh->m_ArraySeletedEdges.size())
+			{
+				ASSERT(0);
+			}
+		}
+	}
+	for(int i = 0; i < m_VerticalSegments.size(); i++)
+	{
+		for(int j = 0; j < m_VerticalSegments[i].size(); j++)
+		{
+			m_VerticalSegments[i][j] = m_SelectedEdgeIndex[m_VerticalSegments[i][j]];
+			if(m_VerticalSegments[i][j] >= pUniformGridMesh->m_ArraySeletedEdges.size())
+			{
+				ASSERT(0);
+			}
+		}
+	}
+
+
+	//point edge connection
+	UpdatePointConnectedSelectedEdgeIndex();
+}
+int Action_PolyOmino::SearchSamePositionVertices(CMesh3d* pMesh3d,std::vector<int> changedvertices,int index)
+{
+	CVertex3d* pCurrentVertex = pMesh3d->GetVertex(index);
+	double x = pCurrentVertex->x();
+	double y = pCurrentVertex->y();
+	double z = pCurrentVertex->z();
+	for(int i = 0; i < changedvertices.size(); i++)
+	{
+		CVertex3d* pVertex = pMesh3d->GetVertex(changedvertices[i]);
+		double x1 = pVertex->x();
+		double y1 = pVertex->y();
+		double z1 = pVertex->z();
+
+		if(fabs(x - x1) < 1e-8 && fabs(y - y1) < 1e-8 && fabs(z - z1) < 1e-8)
+		{
+			return changedvertices[i];
+		}
+	}
+	return -1;
+}
+int Action_PolyOmino::UniformSimplificationOneIteration()
+{
+	std::pair<int,int> pair;
+	//Check the valid
+	IsValidMesh();
+
+	pUniformGridMesh = (CMesh3d*)pDoc->m_SceneGraph.GetAt(pDoc->m_SceneGraph.NbObject() - 1);
+
+	Point3D lower,upper;
+	pMesh->ComputeBoundingBox(lower,upper);
+
+	std::vector<double> xinterval,yinterval;
+
+	//show the x lines on the bottom and y lines on the left
+	/*if(pUniformGridMesh->m_ArraySeletedVertexIndex.size() > 0)
+	{
+		std::sort(pUniformGridMesh->m_ArraySeletedVertexIndex.begin(),pUniformGridMesh->m_ArraySeletedVertexIndex.end());
+		for(int i = pUniformGridMesh->m_ArraySeletedVertexIndex.size() - 1; i >= 0; i--)
+		{
+			int index = pUniformGridMesh->m_ArraySeletedVertexIndex[i];
+			CVertex3d* pVertex = pUniformGridMesh->m_ArrayVertex.GetAt(index);
+			pUniformGridMesh->m_ArrayVertex.RemoveAt(index);
+			delete pVertex;
+		}
+		pUniformGridMesh->m_ArraySeletedVertexIndex.clear();
+	}*/
+
+	/*for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		int start = pair.first;
+		int end = pair.second;
+		CVertex3d* pStartVertex = pUniformGridMesh->GetVertex(start);
+		CVertex3d* pEndVertex = pUniformGridMesh->GetVertex(end);
+		if(fabs(pStartVertex->y() - pEndVertex->y()) < 1e-8)
+		{
+			//Horizontal
+			CVertex3d* pNewVertex = new CVertex3d();
+			pNewVertex->Set(lower.x,pStartVertex->y(),0);
+			pUniformGridMesh->AddVertex(pNewVertex);
+			//pUniformGridMesh->m_ArraySeletedVertexIndex.push_back(pUniformGridMesh->NbVertex() - 1);
+		}else
+		{
+			//Vertical
+			CVertex3d* pNewVertex = new CVertex3d();
+			pNewVertex->Set(pStartVertex->x(),lower.y,0);
+			pUniformGridMesh->AddVertex(pNewVertex);
+			//pUniformGridMesh->m_ArraySeletedVertexIndex.push_back(pUniformGridMesh->NbVertex() - 1);
+		}
+	}*/
+
+	//Search for the closest edges.
+	int ii;
+	std::pair<int,int> edgepair;
+	double x,y;
+	for(int i = 0; i < m_HorizontalSegments.size(); i++)
+	{
+		int edgeindex = m_HorizontalSegments[i][0];
+		edgepair = pUniformGridMesh->m_ArraySeletedEdges[edgeindex];
+			
+		CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+		y = pVertex->y();
+		yinterval.push_back(y);
+	}
+	for(int i = 0; i < m_VerticalSegments.size(); i++)
+	{
+		int edgeindex = m_VerticalSegments[i][0];
+		edgepair = pUniformGridMesh->m_ArraySeletedEdges[edgeindex];
+
+		CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+		x = pVertex->x();
+		xinterval.push_back(x);
+	}
+
+	//
+	//std::sort(xinterval.begin(),xinterval.end());
+	//std::sort(yinterval.begin(),yinterval.end());
+
+	double minimalxinterval = 1e10,minimalyinterval = 1e10;
+	int minimalxindex,minimalyindex;
+	for(int i = 0; i < xinterval.size() - 1; i++)
+	{
+		double val = xinterval[i + 1] - xinterval[i];
+		if(val < minimalxinterval)
+		{
+			minimalxinterval = val;
+			minimalxindex = i;
+		}
+	}
+
+	for(int i = 0; i < yinterval.size() - 1; i++)
+	{
+		double val = yinterval[i + 1] - yinterval[i];
+		if(val < minimalyinterval)
+		{
+			minimalyinterval = val;
+			minimalyindex = i;
+		}
+	}
+	if(xinterval.size() == 1 && yinterval.size() == 1)
+		return 0;
+
+	std::vector<int> segments;
+	std::vector<int> changedvertices;
+	if(minimalxinterval < minimalyinterval)
+	{
+		//Move The related Vertical edges.
+
+		double xnewval = (xinterval[minimalxindex + 1] + xinterval[minimalxindex]) / 2;
+
+		segments = m_VerticalSegments[minimalxindex];
+		for(int i = 0; i < segments.size(); i++)
+		{
+			edgepair = pUniformGridMesh->m_ArraySeletedEdges[segments[i]];
+
+			CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+			pVertex->x(xnewval);
+			//int index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.first = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+			
+			pVertex  = pUniformGridMesh->GetVertex(edgepair.second);
+			pVertex->x(xnewval);
+			//index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.second = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+		}
+
+		segments = m_VerticalSegments[minimalxindex + 1];
+		for(int i = 0; i < segments.size(); i++)
+		{
+			edgepair = pUniformGridMesh->m_ArraySeletedEdges[segments[i]];
+
+			CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+			pVertex->x(xnewval);
+			//int index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.first = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+
+			pVertex  = pUniformGridMesh->GetVertex(edgepair.second);
+			pVertex->x(xnewval);
+			//index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.second = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+		}
+
+		//Merge
+		//m_VerticalSegments[minimalxindex].push_back(m_VerticalSegments[minimalxindex + 1]);
+		m_VerticalSegments[minimalxindex].insert(m_VerticalSegments[minimalxindex].end(),m_VerticalSegments[minimalxindex + 1].begin(),m_VerticalSegments[minimalxindex + 1].end());
+		m_VerticalSegments.erase(m_VerticalSegments.begin() + minimalxindex + 1);
+	}else
+	{
+		//Move The two Horizontal edges.
+		double ynewval = (yinterval[minimalyindex + 1] + yinterval[minimalyindex]) / 2;
+
+		segments = m_HorizontalSegments[minimalyindex];
+		for(int i = 0; i < segments.size(); i++)
+		{
+			edgepair = pUniformGridMesh->m_ArraySeletedEdges[segments[i]];
+
+			CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+			pVertex->y(ynewval);
+			//int index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.first = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+			
+			pVertex  = pUniformGridMesh->GetVertex(edgepair.second);
+			pVertex->y(ynewval);
+			//index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.second = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+		}
+
+		segments = m_HorizontalSegments[minimalyindex + 1];
+		for(int i = 0; i < segments.size(); i++)
+		{
+			edgepair = pUniformGridMesh->m_ArraySeletedEdges[segments[i]];
+
+			CVertex3d* pVertex  = pUniformGridMesh->GetVertex(edgepair.first);
+			pVertex->y(ynewval);
+			//int index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.first = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+
+			pVertex  = pUniformGridMesh->GetVertex(edgepair.second);
+			pVertex->y(ynewval);
+			//index = SearchSamePositionVertices(pUniformGridMesh,changedvertices,pVertex->m_Flag);
+			//if(index >= 0)
+			//{
+			//	edgepair.second = index;
+			//	pUniformGridMesh->m_ArraySeletedEdges[segments[i]] = edgepair;
+			//}else
+			//	changedvertices.push_back(pVertex->m_Flag);
+		}
+
+		//Merge
+		m_HorizontalSegments[minimalyindex].insert(m_HorizontalSegments[minimalyindex].end(),m_HorizontalSegments[minimalyindex + 1].begin(),m_HorizontalSegments[minimalyindex + 1].end());
+		m_HorizontalSegments.erase(m_HorizontalSegments.begin() + minimalyindex + 1);
+	}
+	pUniformGridMesh->SetModified(TRUE);
+
+	//Is valid Mesh
+	IsValidMesh();
+
+	return 1;
+}
+void Action_PolyOmino::IsValidMesh()
+{
+	std::pair<int,int> pair;
+	//Check the valid
+	for(int i = 0; i < pUniformGridMesh->m_ArraySeletedEdges.size(); i++)
+	{
+		pair = pUniformGridMesh->m_ArraySeletedEdges[i];
+		int start = pair.first;
+		int end = pair.second;
+		CVertex3d* pStartVertex = pUniformGridMesh->GetVertex(start);
+		CVertex3d* pEndVertex = pUniformGridMesh->GetVertex(end);
+		double x1 = pStartVertex->x();
+		double y1 = pStartVertex->y();
+		double x2 = pEndVertex->x();
+		double y2 = pEndVertex->y();
+		if(fabs(y1 - y2) > 1e-8 && fabs(x1 - x2) > 1e-8)
+		{
+			ASSERT(0);
+		}
+	}
+}
+void Action_PolyOmino::OnBnClickedUniformgridProgessiveMeshIteration()
+{
+	// TODO: Add your control notification handler code he
+
+	int num = 0;
+	char filename[200];
+	while(1)
+	{	
+		if(num == 1486)
+		{			
+			int ii = 0;
+			//CMesh3d* pNewMesh = new CMesh3d();
+			//pNewMesh->Copy(pUniformGridMesh);
+			//pDoc->m_SceneGraph.Add(pNewMesh);
+			//pDoc->UpdateTreeControl();
+		}
+		//check valid
+		CheckandFixTopologyValidation(num);
+		//if(num == 972)
+		//	break;
+		//return;
+		sprintf(filename,"D:\\papers\\code\\data\\Geo\\dense\\%d.m",num);
+		pUniformGridMesh->SaveMFile(filename);
+		num++;
+		int flag = UniformSimplificationOneIteration();
+		if(!flag)
+			break;
+	}
+
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoShortestpath()
+{
+	// TODO: Add your control notification handler code here
+	if(pMesh->m_ArraySeletedVertexIndex.size() != 2)
+		return;
+	std::vector<int> path;
+	pMesh->ComputeShortestPath(pMesh->m_ArraySeletedVertexIndex[0],pMesh->m_ArraySeletedVertexIndex[1],path);
+	pMesh->m_ArraySeletedVertexIndex = path;
+	pMesh->m_showLandmarkEdge = TRUE;
+	pMesh->m_showLandmarkVertex = TRUE;
+	pDoc->UpdateAllViews(NULL);
+}
+
+void Action_PolyOmino::OnBnClickedPolyominoSaveMLandmark()
+{
+	// TODO: Add your control notification handler code here
+	CString FileName;
+	CFileDialog dlg(FALSE);
+	if(dlg.DoModal() == IDOK)
+	{
+		FileName = dlg.GetPathName();
+	}else
+		return;
+	//CString s1 = "D:\\papers\\code\\bin_Curve\\lamcc_dir_div_merge.m"; 
+	//CString s1 = "D:\\papers\\code\\bin_Curve\\USA_33.m";
+
+	std::ofstream file(FileName);
+	std::ifstream *texturefile = NULL;
+	COLORREF color;
+	double r,g,b;
+
+	//CImage m_TextureImage; 
+	for(int i  = 0; i < pMesh->NbVertex(); i++)
+	{
+
+		CVertex3d* pVertex = pMesh->GetVertex(i);
+		pVertex->m_Flag = i + 1;
+
+		//file << "Vertex " << i + 1 << " " << pVertex->m_Coord[0] << " " << pVertex->m_Coord[1] << " " << pVertex->m_Coord[2] ;
+		file << "Vertex " << pVertex->m_OriginalIndex << " " << pVertex->m_Coord[0] << " " << pVertex->m_Coord[1] << " " << pVertex->m_Coord[2] ;
+		file << " {";
+		/*if(hasvt)
+		{
+			color = m_TextureImage.GetPixel(m_TextureImage.GetWidth() * pVertex->u,m_TextureImage.GetHeight() * (1 - pVertex->v));
+
+			b = ((color & 0xff0000) >> 16);
+			g = ((color & 0x00ff00) >> 8);
+			r = (color & 0x0000ff);
+
+			file << "rgb=("<<r/255.0<<" "<<g/255.0<<" "<<b/255.0<<") ";*/
+			//file << "uv=(" << pVertex->u << " " << pVertex->v << ") ";
+			//file << "uv=(" << pVertex->m_Coord[0] << " " << pVertex->m_Coord[1] << ") ";
+		//}
+
+		file << "rgb=(" << pVertex->GetColor()->r() /255.0 << " "<< pVertex->GetColor()->g() /255.0 << " " << pVertex->GetColor()->b() /255.0<<") ";
+		if(1)
+		{
+			file << "normal=(" << pVertex->GetNormal()->x() << " "<< pVertex->GetNormal()->y() << " " << pVertex->GetNormal()->z()<<") ";
+		}
+		file << "}\n";
+	}
+	for(int i = 0; i < pMesh->NbFace(); i++)
+	{
+		CFace3d* pFace3d = pMesh->GetFace(i);
+		file << "Face " << i + 1 <<" " << pFace3d->v1()->m_OriginalIndex << " " << pFace3d->v2()->m_OriginalIndex << " " << pFace3d->v3()->m_OriginalIndex << "\n";
+	}
+
+	for(int i = 0; i < pMesh->m_LandMarkArray.size(); i++)
+	{
+		GeoMapLandMark* pLandMark = pMesh->m_LandMarkArray[i];
+		for(int j = 0; j < pLandMark->landmark_points.size() - 1;j++)
+		{
+			CVertex3d* pVertex1 = pMesh->GetVertex(pMesh->m_LandMarkArray[i]->landmark_points[j]);
+			CVertex3d* pVertex2 = pMesh->GetVertex(pMesh->m_LandMarkArray[i]->landmark_points[j + 1]);
+			file<< "Edge " << " " << pVertex1->m_OriginalIndex << " " << pVertex2->m_OriginalIndex << " {sharp landmark=("<<i<<") dir=("<<pMesh->m_LandMarkArray[i]->style<<")}" << "\n";
+		}
+	}
+	file.close();
+}

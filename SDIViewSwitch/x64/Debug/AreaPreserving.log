@@ -1,0 +1,1173 @@
+﻿  Actions_BoolOperation.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(118,82): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(118,80): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(118,78): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/Actions_BoolOperation.cpp”)
+  D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(49,22):
+  	查看对正在编译的 类 模板 实例化“CArray3d<CFace3d>”的引用
+  	D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(177,7):
+  	在编译 类 模板 成员函数“void CArray3d<CFace3d>::SetSize(int,int)”时
+  		D:\SVNNurbs\Surface_sewing\Lib3D\Mesh3d.h(455,50):
+  		请参阅 "CMesh3d::SetNbFace" 中对 "CArray3d<CFace3d>::SetSize" 的第一个引用
+  
+  FormView3.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,82): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,80): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,78): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1197,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1270,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1344,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1417,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1491,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1543,6): warning C4101: “np”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1653,1): warning C4102: “ExitLoop”: 未引用的标签
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1692,16): warning C4101: “term2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1692,9): warning C4101: “term1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1737,16): warning C4101: “term2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1737,9): warning C4101: “term1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1896,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(1897,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2082,16): warning C4101: “term2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2082,9): warning C4101: “term1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2269,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2356,9): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2377,11): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2446,9): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2467,11): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2672,9): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2693,11): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2818,18): warning C4477: “sprintf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“CString”
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2829,19): warning C4477: “sprintf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“CString”
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(2842,20): warning C4477: “sprintf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“CString”
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3385,1): warning C4102: “label”: 未引用的标签
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3494,1): warning C4102: “label”: 未引用的标签
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3646,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3647,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3661,6): warning C4101: “info”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3685,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(3686,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(4184,16): warning C4101: “term2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(4176,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(4176,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(4184,9): warning C4101: “term1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5268,2): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strlwr. See online help for details.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5282,4): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strlwr. See online help for details.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5291,6): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strlwr. See online help for details.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5388,2): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strlwr. See online help for details.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5402,4): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strlwr. See online help for details.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5411,6): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strlwr. See online help for details.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5657,17): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(5752,7): warning C4101: “statecells”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6065,10): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6096,24): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6100,18): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6104,18): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6106,63): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6314,15): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6330,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6273,31): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::EdgeHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_edge_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{24,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6328,65): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::EdgeHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_edge_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{24,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6365,77): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::operator bool': Do not use this error prone implicit cast. Compare to end-iterator or use is_valid(), instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6367,71): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6547,10): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6594,31): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::EdgeHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_edge_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{24,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6616,78): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::operator bool': Do not use this error prone implicit cast. Compare to end-iterator or use is_valid(), instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6618,77): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6619,79): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6633,108): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6637,104): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6644,104): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6648,108): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6658,109): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6662,105): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6669,105): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6673,109): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6686,31): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::EdgeHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_edge_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{24,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6730,78): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::operator bool': Do not use this error prone implicit cast. Compare to end-iterator or use is_valid(), instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6732,77): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6733,79): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6747,108): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6751,104): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6758,104): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6762,108): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6772,109): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6776,105): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6783,105): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6787,109): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::HalfedgeHandle,OpenMesh::ArrayKernel::HalfedgeHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toHalfedgeHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6856,9): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6857,9): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6858,9): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6859,9): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6806,24): warning C4101: “indexmn”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6806,15): warning C4101: “indexm0”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6806,33): warning C4101: “index0n”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6806,6): warning C4101: “index00”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6954,48): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6954,45): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6944,12): warning C4101: “v”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(6944,9): warning C4101: “u”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7226,9): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7438,12): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7439,12): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7440,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7408,54): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_vertex_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{8,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7417,119): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::operator bool': Do not use this error prone implicit cast. Compare to end-iterator or use is_valid(), instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7419,60): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7421,57): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7422,34): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7428,119): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::operator bool': Do not use this error prone implicit cast. Compare to end-iterator or use is_valid(), instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7430,60): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7432,57): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7433,34): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7602,8): warning C4101: “message”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7847,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7847,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7870,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7870,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7885,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(7885,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8406,12): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8628,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8628,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8734,31): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::EdgeHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_edge_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{24,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8728,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8728,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8956,13): warning C4101: “s2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(8956,21): warning C4101: “t2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9091,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9112,14): warning C4101: “v”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9112,11): warning C4101: “u”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9176,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9202,21): warning C4101: “t2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9202,17): warning C4101: “t1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9199,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9278,15): warning C4101: “v”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9278,12): warning C4101: “u”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9401,15): warning C4101: “v”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9401,12): warning C4101: “u”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9879,10): warning C4101: “k2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9879,6): warning C4101: “k1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10151,16): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10167,48): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_vertex_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{8,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10244,57): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_face_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{32,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10268,57): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_face_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{32,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10270,65): warning C4996: 'OpenMesh::Iterators::GenericIteratorT<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel,{&OpenMesh::ArrayKernel::has_face_status,0},{&OpenMesh::ArrayKernel::[thunk]: __cdecl OpenMesh::ArrayKernel::`vcall'{32,{flat}}' }',0}>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10272,31): warning C4996: 'OpenMesh::Iterators::GenericCirculatorT_DEPRECATED<OpenMesh::PolyConnectivity::This,OpenMesh::ArrayKernel::FaceHandle,OpenMesh::ArrayKernel::VertexHandle,OpenMesh::ArrayKernel::VertexHandle OpenMesh::Iterators::GenericCirculatorBaseT<OpenMesh::PolyConnectivity::This>::toVertexHandle(void) const>::handle': This function clutters your code. Use dereferencing operators -> and * instead.
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10318,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10318,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10560,11): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10459,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10459,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10623,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10623,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10870,9): warning C4101: “j”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(10870,6): warning C4101: “i”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11283,22): warning C4477: “sprintf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“CString”
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11378,88): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11378,55): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11382,78): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11382,45): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11397,9): warning C4101: “angle”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11943,18): warning C4101: “vscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11944,10): warning C4101: “energy”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11944,28): warning C4101: “energy1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(11943,10): warning C4101: “uscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12050,18): warning C4101: “vscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12051,10): warning C4101: “energy”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12051,28): warning C4101: “energy1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12050,10): warning C4101: “uscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12157,18): warning C4101: “vscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12158,28): warning C4101: “energy1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12157,10): warning C4101: “uscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12345,18): warning C4101: “vscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12346,28): warning C4101: “energy1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12345,10): warning C4101: “uscale”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12572,13): warning C4101: “s2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12572,21): warning C4101: “t2”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12572,9): warning C4101: “s1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(12572,17): warning C4101: “t1”: 未引用的局部变量
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(13737,28): warning C4244: “参数”: 从“double”转换到“GLint”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(13737,19): warning C4244: “参数”: 从“double”转换到“GLint”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(13741,89): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(13741,56): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(13747,78): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(13747,45): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(15741,22): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(15741,19): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(15741,16): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/FormView3.cpp”)
+  
+  GeoMapLandMark.cpp
+  RicciFlow.cpp
+  SceneGraph3d.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(118,82): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(118,80): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(118,78): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(85,66): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(85,40): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(85,14): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(86,66): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(86,40): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(86,14): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(121,66): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(121,40): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(121,14): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(122,66): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(122,40): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(122,14): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(157,66): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(157,40): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(157,14): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(158,66): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(158,40): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.cpp(158,14): warning C4244: “参数”: 从“double”转换到“const float”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/Lib3D/SceneGraph3d.cpp”)
+  D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\SVNNurbs\Surface_sewing\Lib3D\Vertex3d.h(49,22):
+  	查看对正在编译的 类 模板 实例化“CArray3d<CFace3d>”的引用
+  	D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(177,7):
+  	在编译 类 模板 成员函数“void CArray3d<CFace3d>::SetSize(int,int)”时
+  		D:\SVNNurbs\Surface_sewing\Lib3D\Mesh3d.h(455,50):
+  		请参阅 "CMesh3d::SetNbFace" 中对 "CArray3d<CFace3d>::SetSize" 的第一个引用
+  
+  ColorRamp.cpp
+  Dib.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Dib.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Dib.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Dib.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Dib.cpp(48,19): warning C4244: “初始化”: 从“ULONGLONG”转换到“DWORD”，可能丢失数据
+  (编译源文件“/Dib.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/Dib.cpp”)
+  D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.h(27,22):
+  	查看对正在编译的 类 模板 实例化“CArray3d<CTexture>”的引用
+  	D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(177,7):
+  	在编译 类 模板 成员函数“void CArray3d<CTexture>::SetSize(int,int)”时
+  		D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(69,28):
+  		请参阅 "CArray3d<CTexture>::RemoveAll" 中对 "CArray3d<CTexture>::SetSize" 的第一个引用
+  		D:\SVNNurbs\Surface_sewing\Lib3D\SceneGraph3d.h(89,52):
+  		请参阅 "CSceneGraph3d::RemoveAllTexture" 中对 "CArray3d<CTexture>::RemoveAll" 的第一个引用
+  
+  alglibinternal.cpp
+D:\SVNNurbs\alglib\src\alglibinternal.cpp(21,1): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
+  D:\SVNNurbs\alglib\src\alglibinternal.cpp(21,1):
+  之前在命令行上声明的“_CRT_SECURE_NO_WARNINGS”
+  
+D:\SVNNurbs\alglib\src\alglibinternal.cpp(21,1): warning C4603: “_CRT_SECURE_NO_WARNINGS”: 未定义宏或在预编译头使用后定义发生改变
+  (编译源文件“/alglib/src/alglibinternal.cpp”)
+  D:\SVNNurbs\alglib\src\alglibinternal.cpp(21,1):
+  将宏添加到预编译头中，而不是在此处定义
+  D:\SVNNurbs\alglib\src\alglibinternal.cpp(23,1):
+  使用预编译头
+  
+  alglibmisc.cpp
+D:\SVNNurbs\alglib\src\alglibmisc.cpp(21,1): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
+  D:\SVNNurbs\alglib\src\alglibmisc.cpp(21,1):
+  之前在命令行上声明的“_CRT_SECURE_NO_WARNINGS”
+  
+D:\SVNNurbs\alglib\src\alglibmisc.cpp(21,1): warning C4603: “_CRT_SECURE_NO_WARNINGS”: 未定义宏或在预编译头使用后定义发生改变
+  (编译源文件“/alglib/src/alglibmisc.cpp”)
+  D:\SVNNurbs\alglib\src\alglibmisc.cpp(21,1):
+  将宏添加到预编译头中，而不是在此处定义
+  D:\SVNNurbs\alglib\src\alglibmisc.cpp(23,1):
+  使用预编译头
+  
+  test_c.cpp
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\specialfunctions.h(858,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\integration.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\dataanalysis.h(5571,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3205,58): error C3861: “rdotv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3205,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3206,58): error C3861: “rdotvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3206,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3207,58): error C3861: “rdotrr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3207,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3208,58): error C3861: “rdotv2”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3208,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3260,9): error C3861: “rsetv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3262,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3265,9): error C3861: “rsetr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3267,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3270,9): error C3861: “rsetc”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3272,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3275,9): error C3861: “rsetm”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3277,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3280,9): error C3861: “isetv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3282,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3285,9): error C3861: “bsetv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3287,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3290,9): error C3861: “rsetvx”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3292,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3345,9): error C3861: “raddv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3347,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3350,9): error C3861: “raddvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3352,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3355,9): error C3861: “raddvc”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3357,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3360,9): error C3861: “raddrv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3362,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3365,9): error C3861: “raddrr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3367,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3370,9): error C3861: “raddvx”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3372,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3413,9): error C3861: “rmuladdv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3415,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3418,9): error C3861: “rnegmuladdv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3420,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3423,9): error C3861: “rcopymuladdv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3425,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3428,9): error C3861: “rcopynegmuladdv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3430,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3477,9): error C3861: “rmulv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3479,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3482,9): error C3861: “rmulr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3484,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3487,9): error C3861: “rmulvx”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3489,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3532,9): error C3861: “rsqrtv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3534,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3537,9): error C3861: “rsqrtr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3539,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3582,17): error C3861: “rmaxv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3584,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3587,17): error C3861: “rmaxabsv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3589,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3592,17): error C3861: “rmaxr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3594,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3597,17): error C3861: “rmaxabsr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3599,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3643,9): error C3861: “rmergemulv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3645,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3648,9): error C3861: “rmergemulvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3650,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3653,9): error C3861: “rmergemulrv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3655,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3660,64): error C3861: “possign”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3661,64): error C3861: “possign”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3663,9): error C3861: “rmergedivv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3665,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3670,64): error C3861: “possign”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3671,64): error C3861: “possign”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3673,9): error C3861: “rmergedivvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3675,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3680,78): error C3861: “possign”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3681,78): error C3861: “possign”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3683,9): error C3861: “rmergedivrv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3685,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3688,9): error C3861: “rmergemaxv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3690,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3693,9): error C3861: “rmergemaxvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3695,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3698,9): error C3861: “rmergemaxrv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3700,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3703,9): error C3861: “rmergeminv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3705,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3708,9): error C3861: “rmergeminvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3710,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3713,9): error C3861: “rmergeminrv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3715,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3768,9): error C3861: “rcopyv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3770,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3773,9): error C3861: “icopyv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3775,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3778,9): error C3861: “bcopyv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3780,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3783,9): error C3861: “rcopyvr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3785,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3788,9): error C3861: “rcopyrv”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3790,9): error C3861: “ae_set_error_flag”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3793,9): error C3861: “rcopyrr”: 找不到标识符
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+D:\SVNNurbs\alglib\tests\test_c.cpp(3793,9): error C1003: 错误计数超过 100；正在停止编译
+  (编译源文件“/alglib/tests/test_c.cpp”)
+  
+  BilinearTab.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,82): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,80): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,78): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/BilinearTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\BilinearTab.cpp(61,12): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
+  (编译源文件“/BilinearTab.cpp”)
+  
+  TransformationTab.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,82): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,80): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,78): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/TransformationTab.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“/TransformationTab.cpp”)
+  D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(220,20):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(49,22):
+  	查看对正在编译的 类 模板 实例化“CArray3d<CFace3d>”的引用
+  	D:\SVNNurbs\Surface_sewing\Lib3D\Array3d.h(177,7):
+  	在编译 类 模板 成员函数“void CArray3d<CFace3d>::SetSize(int,int)”时
+  		D:\SVNNurbs\Surface_sewing\lib3d\mesh3d.h(455,50):
+  		请参阅 "CMesh3d::SetNbFace" 中对 "CArray3d<CFace3d>::SetSize" 的第一个引用
+  
+  Action_AreaPreserving.cpp
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(58,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(59,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Lib3D\Vector3d.h(60,25): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,82): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,80): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\lib3d\Vertex3d.h(118,78): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(2689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\src\linalg.h(4003,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Action_AreaPreserving.cpp(518,29): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Action_AreaPreserving.cpp(519,29): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Action_AreaPreserving.cpp(699,29): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+D:\SVNNurbs\Surface_sewing\Action_AreaPreserving.cpp(700,29): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/Action_AreaPreserving.cpp”)
+  
+  Transformation.cpp
+  正在生成代码...
+D:\SVNNurbs\Surface_sewing\FormView3.cpp(9934,1): warning C4700: 使用了未初始化的局部变量“bakj”

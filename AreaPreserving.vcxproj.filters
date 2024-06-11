@@ -1,0 +1,867 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5047e378-5e49-4c6c-86fb-42e0450f7d50}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\datastructure">
+      <UniqueIdentifier>{476c026e-d992-4fe4-9837-e41dad0c2dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\meshstructure">
+      <UniqueIdentifier>{43cafbf3-e599-4b1f-bc7e-24fa67098ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nurbs">
+      <UniqueIdentifier>{8657a01b-a371-4151-b3f7-58905189d477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Optimization">
+      <UniqueIdentifier>{f59899dd-7ff5-4a20-9820-4ed592e87ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\transformationTab">
+      <UniqueIdentifier>{bdce92cf-e598-4935-8279-30753644dfb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actions">
+      <UniqueIdentifier>{6c3d7de0-f9c5-4ce9-a720-f96404d385ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\transformations">
+      <UniqueIdentifier>{4057172a-85ca-4b9a-81ba-226c2487e6c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tspline">
+      <UniqueIdentifier>{0eba6e24-ba98-430e-bd3b-2e4f8d1ad765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header Files">
+      <UniqueIdentifier>{66d23914-df59-493f-a4a9-2281feaff8a5}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Header Files\Optimization">
+      <UniqueIdentifier>{f4d2f358-6143-453d-8409-88d6e453e8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header Files\transformationTab">
+      <UniqueIdentifier>{78736f91-6a4f-4915-be89-e17f6ccc7d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header Files\Actions">
+      <UniqueIdentifier>{7af118e7-9422-48df-ba70-e33cf946049a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header Files\transformations">
+      <UniqueIdentifier>{65644e3b-618c-4b4b-a582-790ce99d9ef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header Files\Tspline">
+      <UniqueIdentifier>{02e0067b-8107-4947-96f3-10ddc8ba3180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\matlab">
+      <UniqueIdentifier>{e3847424-6660-41cb-82e5-0261a3d4d26e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{804361d0-9413-4b1b-a440-892138f35dcd}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Source Files\CDT">
+      <UniqueIdentifier>{ac98f29e-99da-4d8f-b895-ca7829168979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SVM">
+      <UniqueIdentifier>{0986e51f-6bbb-44ad-9305-448d3f92b146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stepexchange">
+      <UniqueIdentifier>{c50d8913-c687-4159-a187-a41e3d4f3bf4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ClosenessEnergy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorFormView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Complex_number.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convexFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogInputInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Disline2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Energy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FaceInputArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeoMapLandMark.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IsotropicEnergy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kdtree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshSetColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MySparseMatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MySplitterWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTreeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NurbsCurve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseNurbsCurve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsePOLY.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseSmf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseTspline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectToParameterDomain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RicciFlow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\SceneGraph3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDIViewSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDIViewSwitchDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowSurfaceParameterDomain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowTransformedParameterDomain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SplitterView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tspline_PreImageDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="urveIntersection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Array3d.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Color.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\ColorRamp.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Dib.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Material.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Point3D.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Texture.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Transform.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Utils3d.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Vector3d.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Vertex3d.cpp">
+      <Filter>Source Files\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Edge3d.cpp">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Face3d.cpp">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Mesh3d.cpp">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Mesh3d_OpenMesh.cpp">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\Object3d.cpp">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DisLine3D.cpp">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClCompile>
+    <ClCompile Include="C_NurbsSurf.cpp">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ParseNurbs.cpp">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClCompile>
+    <ClCompile Include="curve.cpp">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClCompile>
+    <ClCompile Include="InterFunction.cpp">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClCompile>
+    <ClCompile Include="Nurbs3D.cpp">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\alglibinternal.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\alglibmisc.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\ap.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\dataanalysis.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\diffequations.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\fasttransforms.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\integration.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\interpolation.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\linalg.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\optimization.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthogonalityEnergy.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\solvers.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\specialfunctions.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\src\statistics.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\alglib\tests\test_c.cpp">
+      <Filter>Source Files\Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="BilinearTab.cpp">
+      <Filter>Source Files\transformationTab</Filter>
+    </ClCompile>
+    <ClCompile Include="CompositeMobiusTab.cpp">
+      <Filter>Source Files\transformationTab</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneralBilinearTab.cpp">
+      <Filter>Source Files\transformationTab</Filter>
+    </ClCompile>
+    <ClCompile Include="MobiusTab.cpp">
+      <Filter>Source Files\transformationTab</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadraticTab.cpp">
+      <Filter>Source Files\transformationTab</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformationTab.cpp">
+      <Filter>Source Files\transformationTab</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_AreaPreserving.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_LandMark.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_LeastSquare.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_Levy_Leastsquare.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_Render.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_Bilinear.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_General.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_GeneralBilinear.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_HarmonicMapping.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_RicciFlow.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_TeichmullerMap.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_Tspline.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionsTab.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="BilinearTransformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="BsplineTransformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="CompositeMobiusTransformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneralBilinearTransformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="MobiusTransformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadraticTransformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="Transformation.cpp">
+      <Filter>Source Files\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="Tspline.cpp">
+      <Filter>Source Files\Tspline</Filter>
+    </ClCompile>
+    <ClCompile Include="tricall.cpp">
+      <Filter>Source Files\CDT</Filter>
+    </ClCompile>
+    <ClCompile Include="triangle.cpp">
+      <Filter>Source Files\CDT</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib3D\PlotPolyomino.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_ConstrainedRegistration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape_Polygon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeFile_Polygon_Header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Polyomino_Edge_Subdivision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_PolyOmino2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_DynamicQuasiconformal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_DataAnalysis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SVM\svm.cpp">
+      <Filter>Source Files\SVM</Filter>
+    </ClCompile>
+    <ClCompile Include="SVM\Predictor.cpp">
+      <Filter>Source Files\SVM</Filter>
+    </ClCompile>
+    <ClCompile Include="CFramebuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_PolyOmino.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_EdgeSwap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_Tooth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions_BoolOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_ACIS_SEWING.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_OCC_SEWING.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="unlock_license.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StepInputAPI.cpp">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClCompile>
+    <ClCompile Include="StructedStepFile.cpp">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClCompile>
+    <ClCompile Include="StructedStepFileParser.cpp">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClCompile>
+    <ClCompile Include="TextFile.cpp">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClCompile>
+    <ClCompile Include="StructedStepFileDataItem.cpp">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtility.cpp">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ParseSmf.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\SceneGraph3d.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Array3d.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Base3d.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Color.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\ColorRamp.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Material.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Point3D.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Texture.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Transform.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Utils3d.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Vector3d.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Vertex3d.h">
+      <Filter>Source Files\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Edge3d.h">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Face3d.h">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Mesh3d.h">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Object3d.h">
+      <Filter>Source Files\meshstructure</Filter>
+    </ClInclude>
+    <ClInclude Include="C_NurbsSurf.h">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ParseNurbs.h">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClInclude>
+    <ClInclude Include="Curve.h">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClInclude>
+    <ClInclude Include="disline.h">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClInclude>
+    <ClInclude Include="InterFunction.h">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClInclude>
+    <ClInclude Include="Nurbs3D.h">
+      <Filter>Source Files\Nurbs</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_Levy_Leastsquare.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_PolyOmino.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_RicciFlow.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_TeichmullerMap.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BsplineTransformation.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClosenessEnergy.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorFormView.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Complex_number.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeMobiusTransformation.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="convexFunction.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogInputInformation.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dib.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Disline2D.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FaceInputArea.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView3.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeoMapLandMark.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IsotropicEnergy.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kdtree.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\matlab\libmccdemol.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib3D\Mesh3d_OpenMesh.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshSetColor.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MySparseMatrix.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MySplitterWnd.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTreeView.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NurbsCurve.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectViewer.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenMesh.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseM.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseNurbsCurve.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsePOLY.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseTspline.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectToParameterDomain.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadraticTab.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMode.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RicciFlow.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDIViewSwitch.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDIViewSwitchDoc.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowSurfaceParameterDomain.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowTransformedParameterDomain.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitterView.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceInformation.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tspline_PreImageDialog.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="urveIntersection.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorField.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\alglibinternal.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\alglibmisc.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\ap.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\dataanalysis.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\diffequations.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="Energy.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\fasttransforms.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\integration.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\interpolation.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\linalg.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\optimization.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthogonalityEnergy.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\solvers.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\specialfunctions.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\alglib\src\statistics.h">
+      <Filter>Source Files\Header Files\Optimization</Filter>
+    </ClInclude>
+    <ClInclude Include="BilinearTab.h">
+      <Filter>Source Files\Header Files\transformationTab</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeMobiusTab.h">
+      <Filter>Source Files\Header Files\transformationTab</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneralBilinearTab.h">
+      <Filter>Source Files\Header Files\transformationTab</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneralBilinearTransformation.h">
+      <Filter>Source Files\Header Files\transformationTab</Filter>
+    </ClInclude>
+    <ClInclude Include="MobiusTab.h">
+      <Filter>Source Files\Header Files\transformationTab</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformationTab.h">
+      <Filter>Source Files\Header Files\transformationTab</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_AreaPreserving.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_LandMark.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_LeastSquare.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_Render.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_Bilinear.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_General.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_GeneralBilinear.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_HarmonicMapping.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_Tspline.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionsTab.h">
+      <Filter>Source Files\Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="BilinearTransformation.h">
+      <Filter>Source Files\Header Files\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="MobiusTransformation.h">
+      <Filter>Source Files\Header Files\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadraticTransformation.h">
+      <Filter>Source Files\Header Files\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformation.h">
+      <Filter>Source Files\Header Files\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="Tspline.h">
+      <Filter>Source Files\Header Files\Tspline</Filter>
+    </ClInclude>
+    <ClInclude Include="triangle.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_ConstrainedRegistration.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape_Polygon.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFile_Polygon_Header.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Polyomino_Edge_Subdivision.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_PolyOmino2.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_DynamicQuasiconformal.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_DataAnalysis.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SVM\svm.h">
+      <Filter>Source Files\SVM</Filter>
+    </ClInclude>
+    <ClInclude Include="SVM\Predictor.h">
+      <Filter>Source Files\SVM</Filter>
+    </ClInclude>
+    <ClInclude Include="CFramebuffer.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_EdgeSwap.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_Tooth.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions_BoolOperation.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_OCC_SEWING.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_ACIS_SEWING.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StepInputAPI.h">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClInclude>
+    <ClInclude Include="StructedStepFile.h">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClInclude>
+    <ClInclude Include="StructedStepFileParser.h">
+      <Filter>Source Files\stepexchange</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SDIViewSwitch.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\colorbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\scene.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SDIViewSwitch.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\importre.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\G1continuouscurvesonNURBSsurfaces\facerepameterization\res\SDIViewSwitch.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Action_LeastSquare.htm" />
+    <None Include="res\html_act.htm" />
+    <None Include="phong_s1.cg" />
+  </ItemGroup>
+</Project>
