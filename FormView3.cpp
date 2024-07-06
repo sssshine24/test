@@ -52,6 +52,7 @@
 //#include <openglut.h>
 #define SHOWTRACEINFORMATION
 #include <gl/glut.h>
+#include <EntityList.h>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -2881,6 +2882,13 @@ void CFormView3::UpdateTreeControl()
 									HTREEITEM item = pTreeControl->InsertItem(pPolygon->filename, NULL, NULL);
 									m_ArraySurfaceItems.push_back(item);
 									pTreeControl->SetCheck(item, pPolygon->m_Show);
+								}
+								else if (type == TYPE_BREP_ACIS)
+								{
+									EntityList* pEntityList = (EntityList*)pDoc->m_SceneGraph.GetAt(i);
+									HTREEITEM item = pTreeControl->InsertItem(pEntityList->filename, NULL, NULL);
+									m_ArraySurfaceItems.push_back(item);
+									pTreeControl->SetCheck(item, pEntityList->m_Show);
 								}
 	}
 }

@@ -709,6 +709,7 @@
 #define IDC_BUTTON_CHECKTEETH           1704
 #define IDC_BUTTON_FIXGAP               1705
 #define IDC_BUTTON_SEWING               1706
+#define IDC_BUTTON_ACIS_TWOSURFACE      1707
 #define ID_VIEW_FORMVIEW1               32771
 #define ID_VIEW_FORMVIEW2               32772
 #define ID_VIEW_EDITVIEW                32773
@@ -868,7 +869,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        232
 #define _APS_NEXT_COMMAND_VALUE         61248
-#define _APS_NEXT_CONTROL_VALUE         1697
+#define _APS_NEXT_CONTROL_VALUE         1698
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

@@ -1,6 +1,6 @@
 // SDIViewSwitch.h : main header file for the SDIVIEWSWITCH application
 //
-
+#include "stdafx.h"
 #if !defined(AFX_SDIVIEWSWITCH_H__CB97F4C1_1752_11D2_B134_00C04FB9CA2B__INCLUDED_)
 #define AFX_SDIVIEWSWITCH_H__CB97F4C1_1752_11D2_B134_00C04FB9CA2B__INCLUDED_
 

@@ -3,6 +3,7 @@
 #include "afxcmn.h"
 #include "afxwin.h"
 #include "ap.h"
+#include "resource.h"
 class Action_acis_sewing :
 	public CPropertyPage
 {
@@ -19,6 +20,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
+	afx_msg void OnBnClickedLoadTwoSurfaces();
 	afx_msg void OnBnClickedFixGap();
 };
 

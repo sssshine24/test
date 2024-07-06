@@ -11,6 +11,7 @@
 #ifndef _OBJECT3D_
 #define _OBJECT3D_
 #include "Transform.h"
+#include "Point3D.h"
 class CObject3d 
 {
 public :

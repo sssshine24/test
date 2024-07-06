@@ -53,6 +53,10 @@
 #include "mt_stitch_opts.hxx"
 #include "mt_stitch_hndl.hxx"
 #include <mt_stitch_apis.hxx>
+#include <body.hxx>
+//#include "Lib3D/SceneGraph3d.h"
+#include "CParseSTEP.h"
+#include "Lib3D/SceneGraph3d.h"
 
 IMPLEMENT_DYNAMIC(Action_acis_sewing, CPropertyPage)
 Action_acis_sewing::Action_acis_sewing()
@@ -78,6 +82,7 @@ void Action_acis_sewing::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(Action_acis_sewing, CPropertyPage)
 	ON_BN_CLICKED(IDC_BUTTON_FIXGAP, &Action_acis_sewing::OnBnClickedFixGap)
+    ON_BN_CLICKED(IDC_BUTTON_ACIS_TWOSURFACE, &Action_acis_sewing::OnBnClickedLoadTwoSurfaces)
 END_MESSAGE_MAP()
 
 int check_outcome(const outcome& api_result)
@@ -110,7 +115,7 @@ int test_gaps()
             // 目标ACIS文档对象
             SPAIAcisDocument dst;
             // 创建源文档对象，并设置输入格式
-            SPAIDocument src("D:\\Desktop\\untighten.step");
+            SPAIDocument src("D:\\Desktop\\step\\untighten.step");
             src.SetType("step");
 
             // 创建转换器对象，开始转换过程
@@ -129,8 +134,15 @@ int test_gaps()
             }
             else
             {
-                std::cerr << "获取实体成功。" << std::endl;
-                std::cerr << "获得实体的数量为：" << pAcisEntities->iteration_count() << std::endl;
+                std::cout << "获取实体成功。" << std::endl;
+                std::cout << "获得实体的数量为：" << pAcisEntities->iteration_count() << std::endl;
+                int count1 = pAcisEntities->count();
+                int count2 = pAcisEntities->iteration_count();
+                const char* name1 = pAcisEntities->first()->type_name();
+                const char* name2 = pAcisEntities->next()->type_name();
+                BODY* pBody = (BODY*)pAcisEntities->first();
+
+                const char* name3 = pAcisEntities->next()->type_name();
 
                 AcisOptions* aopts = NULL;
                 stitch_input_handle* sih = NULL;
@@ -188,6 +200,24 @@ int test_gaps()
     // 停止ACIS模型处理器
     api_stop_modeller();
     return result;
+}
+void Action_acis_sewing::OnBnClickedLoadTwoSurfaces()
+{
+    CSceneGraph3d m_SceneGraph;
+    CParseSTEP CParseStep;
+    int result = CParseStep.Run_STEP("D:\\Desktop\\step\\untighten.step", &m_SceneGraph);
+    // 检查 Run_STEP 是否成功
+    if (result == 1) 
+    {
+        // 成功加载后绘制场景图
+        m_SceneGraph.glDraw();
+        AfxMessageBox("Run_Step Succeed");
+    }
+    else 
+    {
+        // 错误处理
+        AfxMessageBox("Run_Step Failed");
+    }
 }
 void Action_acis_sewing::OnBnClickedFixGap()
 {

@@ -20,6 +20,7 @@
 #include "ParseTspline.h"
 #include "stepInputAPI.h"
 #include "ParsePOLY.h"
+#include "CParseSTEP.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -1004,6 +1005,12 @@ BOOL CSDIViewSwitchDoc::OnOpenDocument(LPCTSTR lpszPathName)
 			m_SceneGraph.CalculateNormalPerFace();
 			m_SceneGraph.CalculateNormalPerVertex();
 		}
+	}else
+	if (extension == ".step")
+	{
+		CParseSTEP parser;
+
+		parser.Run_STEP((char*)lpszPathName, &m_SceneGraph);
 	}
 
 	UpdateTreeControl();

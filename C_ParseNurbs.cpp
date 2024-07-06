@@ -25,7 +25,7 @@ int CParseNurbs::Run(char *filename, CSceneGraph3d *pSceneGraph)
 
 	std::ifstream file(filename);
 	//跳过一行
-//	file.getline(s, 100);
+    //file.getline(s, 100);
 	//读入顶点数和面数
 	file>>m_controlx>>m_controly;
 	CNurbsSuface* pSurf=new CNurbsSuface();

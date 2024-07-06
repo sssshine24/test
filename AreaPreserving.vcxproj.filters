@@ -453,6 +453,15 @@
     <ClCompile Include="StringUtility.cpp">
       <Filter>Source Files\stepexchange</Filter>
     </ClCompile>
+    <ClCompile Include="CParseSTEP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SVNMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ParseSmf.h">
@@ -832,6 +841,15 @@
     </ClInclude>
     <ClInclude Include="StructedStepFileParser.h">
       <Filter>Source Files\stepexchange</Filter>
+    </ClInclude>
+    <ClInclude Include="CParseSTEP.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityList.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SVNMesh.h">
+      <Filter>Source Files\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
