@@ -69,7 +69,8 @@ public:
 	CString m_ComboSelectContent;
 	int     m_ComboSelectIndex;
 
-	std::vector<HTREEITEM> m_ArraySurfaceItems;
+	//std::vector<HTREEITEM> m_ArraySurfaceItems;
+	//std::map<HTREEITEM, CObject3d*> m_ArrayTreeItemObjectMap;
 	CComboBoxEx m_SelectComboBox;
 
 /*//优化的工具类

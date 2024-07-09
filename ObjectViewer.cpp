@@ -37,6 +37,7 @@ void ObjectViewer::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_SLIDERMOVESPEED, m_MoveSpeedSlider);
 	DDX_Control(pDX, IDC_SLIDERFOV, m_FovySlider);
+	DDX_Control(pDX, IDC_Objects, m_tree);
 }
 
 
@@ -54,6 +55,7 @@ BEGIN_MESSAGE_MAP(ObjectViewer, CPropertyPage)
 	ON_BN_CLICKED(ID_OPENMESH_CLEAR_VERTEX_SELECTION, &ObjectViewer::OnBnClickedOpenmeshClearVertexSelection)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDERFOV, &ObjectViewer::OnNMCustomdrawSliderfov)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDERMOVESPEED, &ObjectViewer::OnNMCustomdrawSlidermovespeed)
+	ON_NOTIFY(TVN_SELCHANGED, IDC_Objects, &ObjectViewer::OnTvnSelchangedObjects)
 END_MESSAGE_MAP()
 
 
@@ -73,6 +75,7 @@ void ObjectViewer::OnBnClickedIsoparametricLine()
 			pView->Invalidate(TRUE);
 	}
 }
+//右键选中树控件节点来调用其他菜单功能
 
 void ObjectViewer::OnNMRClickObjects(NMHDR *pNMHDR, LRESULT *pResult)
 {
@@ -93,8 +96,12 @@ void ObjectViewer::OnNMRClickObjects(NMHDR *pNMHDR, LRESULT *pResult)
 	HTREEITEM hItem = pTreeControl->HitTest(clientpoint,&uFlag);
 	if((hItem!= NULL) && ((TVHT_ONITEM & uFlag) && (TVHT_ONITEMLABEL & uFlag)))
 	{
-		treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
-		p_FormView3->currentindex = treeitem - p_FormView3->m_ArraySurfaceItems.begin();
+		auto itor = pDoc->m_ArrayTreeItemObjectMap.find(hItem);
+		//treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
+		if (itor == pDoc->m_ArrayTreeItemObjectMap.end())
+			return;
+
+		p_FormView3->currentindex = itor->second->m_ScenegraphIndex;
 
 		if(p_FormView3->currentindex >= pDoc->m_SceneGraph.NbObject() || p_FormView3->currentindex < 0)
 		{
@@ -149,6 +156,16 @@ void ObjectViewer::OnNMRClickObjects(NMHDR *pNMHDR, LRESULT *pResult)
 					popup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, screenPoint.x, screenPoint.y, AfxGetMainWnd());
 					popup->Detach();
 				}
+				else			
+					 if (pDoc->m_SceneGraph.GetAt(p_FormView3->currentindex)->GetType() == TYPE_BREP_ACIS_FACE)
+					{
+						CMenu menu;
+						VERIFY(menu.LoadMenu(IDR_MENU7));
+						CMenu* popup = menu.GetSubMenu(0);
+						ASSERT(popup != NULL);
+						popup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, screenPoint.x, screenPoint.y, AfxGetMainWnd());
+						popup->Detach();
+					}
 		}
 
 		//popup->GetSubMenu(1)->SetCheck
@@ -234,53 +251,19 @@ void ObjectViewer::OnNMClickObjects(NMHDR *pNMHDR, LRESULT *pResult)
 		hItem = pTreeControl->GetSelectedItem();
 	if((hItem!= NULL) && ((TVHT_ONITEM & uFlag) && !(TVHT_ONITEMBUTTON & uFlag) && !(TVHT_ONITEMLABEL & uFlag)))
 	{
-		treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
-		index = treeitem - p_FormView3->m_ArraySurfaceItems.begin();
+		auto itor = pDoc->m_ArrayTreeItemObjectMap.find(hItem);
+		//treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
+		index = itor->second->m_ScenegraphIndex;
+
+		//treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
+		//index = treeitem - p_FormView3->m_ArraySurfaceItems.begin();
 
 		if(index >= pDoc->m_SceneGraph.NbObject())
 			return;
 
 		p_FormView3->currentindex = index;
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_NURBSSURFACE)
-		{
-			CNurbsSuface* pNurbsSurface = (CNurbsSuface*)pDoc->m_SceneGraph.GetAt(index);
-			pNurbsSurface->m_Show = !pNurbsSurface->m_Show; 
-		}else
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_MESH3D)
-		{
-			CMesh3d* pMesh = (CMesh3d*)pDoc->m_SceneGraph.GetAt(index);
-			pMesh->m_Show = !pMesh->m_Show; 
-		}else
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_DISLINE2D)
-		{
-			CDisline2D* pDisline = (CDisline2D*)pDoc->m_SceneGraph.GetAt(index);
-			pDisline->m_Show = !pDisline->m_Show;
-		}else
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_NURBSCURVE3D)
-		{
-			CNurbsCurve* pCurve = (CNurbsCurve*)pDoc->m_SceneGraph.GetAt(index);
-			pCurve->m_Show = !pCurve->m_Show;
-		}else
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_NURBSCURVE3D)
-		{
-			CMesh3d_OpenMesh* pMesh = (CMesh3d_OpenMesh*)pDoc->m_SceneGraph.GetAt(index);
-			pMesh->m_Show = !pMesh->m_Show;
-		}else
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_TSPLINE)
-		{
-			Tspline* pMesh = (Tspline*)pDoc->m_SceneGraph.GetAt(index);
-			pMesh->m_Show = !pMesh->m_Show;
-		}else
-		if(pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_MESH3D_OPENMESH)
-		{
-			CMesh3d_OpenMesh* pMesh = (CMesh3d_OpenMesh*)pDoc->m_SceneGraph.GetAt(index);
-			pMesh->m_Show = !pMesh->m_Show;
-		}else
-		if (pDoc->m_SceneGraph.GetAt(index)->GetType() == TYPE_POLYGON)
-		{
-			Shape_Polygon* pPolygon = (Shape_Polygon*)pDoc->m_SceneGraph.GetAt(index);
-			pPolygon->m_Show = !pPolygon->m_Show;
-		}
+		CObject3d* pNurbsSurface = (CObject3d*)pDoc->m_SceneGraph.GetAt(index);
+		pNurbsSurface->m_Show = !pNurbsSurface->m_Show;
 
 		POSITION pos = pDoc->GetFirstViewPosition();
 		while (pos != NULL)
@@ -292,8 +275,9 @@ void ObjectViewer::OnNMClickObjects(NMHDR *pNMHDR, LRESULT *pResult)
 	}else
 	if(hItem)
 	{
-		treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
-		index = treeitem - p_FormView3->m_ArraySurfaceItems.begin();
+		auto itor = pDoc->m_ArrayTreeItemObjectMap.find(hItem);
+		//treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),hItem);
+		index = itor->second->m_ScenegraphIndex;
 
 		if(index >= pDoc->m_SceneGraph.NbObject())
 			return;
@@ -432,5 +416,15 @@ void ObjectViewer::OnNMCustomdrawSlidermovespeed(NMHDR* pNMHDR, LRESULT* pResult
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
 	// TODO: 在此添加控件通知处理程序代码
+	*pResult = 0;
+}
+
+//选中树控件子节点进行操作
+
+void ObjectViewer::OnTvnSelchangedObjects(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	// TODO: 在此添加控件通知处理程序代码
+	
 	*pResult = 0;
 }

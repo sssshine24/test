@@ -213,10 +213,10 @@ public:
 	TsplineMesh* pmesh;
 
 	//
-	void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
+	//void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
 
 	//
-	CTransform *GetTransform(void) { return &m_Transform; }
+	//CTransform *GetTransform(void) { return &m_Transform; }
 
 	//
 	void GetBoundingBox(Vector3D &lower, Vector3D &upper);

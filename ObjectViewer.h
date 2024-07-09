@@ -38,4 +38,6 @@ public:
 	afx_msg void OnBnClickedOpenmeshClearVertexSelection();
 	afx_msg void OnNMCustomdrawSliderfov(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnNMCustomdrawSlidermovespeed(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnTvnSelchangedObjects(NMHDR* pNMHDR, LRESULT* pResult);
+	CTreeCtrl m_tree;
 };

@@ -11,12 +11,19 @@
 #ifndef _OBJECT3D_
 #define _OBJECT3D_
 #include "Transform.h"
+#include "Point3D.h"
 class CObject3d 
 {
 public :
 	int type;
 	CString filename;
 	CString name;
+
+	HTREEITEM pTreeItem;
+
+	CObject3d* pParentObject;
+
+	int m_ScenegraphIndex;
 
 	unsigned int m_ListOpenGL;
 	unsigned int m_ListDone;
@@ -44,6 +51,9 @@ public :
 		filename = "Mesh";
 		type=-1;
 		m_IsMove = 1;
+		pTreeItem = NULL;
+		m_ScenegraphIndex = -1;
+		pParentObject = NULL;
 	}
 	virtual ~CObject3d() {}
 
@@ -51,9 +61,14 @@ public :
 	virtual int GetType();
 	virtual int glBuildList();
 	virtual int glDraw();
+	virtual void UpdateTreeControl(CTreeCtrl* pTreeControl);
 	int SetTransform(float m_xTranslation, float m_yTranslation, float m_zTranslation,
 		float m_xRotation, float m_yRotation, float m_zRotation,
 		float m_xScaling, float m_yScaling, float m_zScaling);
+
+	// Transform
+	void SetTransform(CTransform& transform) { m_Transform.Copy(transform); }
+	CTransform* GetTransform(void) { return &m_Transform; }
 
 };
 

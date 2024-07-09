@@ -1,4 +1,5 @@
 #pragma once
+#include <afxstr.h>
 class CSceneGraph3d;;
 class CParseNurbsCurve
 {

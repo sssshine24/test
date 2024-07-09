@@ -73,6 +73,8 @@ public:
 	// The scene
 	CSceneGraph3d m_SceneGraph,m_SceneGraph1;
 
+	std::map<HTREEITEM, CObject3d*> m_ArrayTreeItemObjectMap;
+
 	int				  m_BezierNum;
 	int	m_Hyperbolanum;
 

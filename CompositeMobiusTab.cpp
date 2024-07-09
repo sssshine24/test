@@ -94,70 +94,6 @@ void CompositeMobiusTab::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollB
 
 void CompositeMobiusTab::OnBnClickedButtonCompositeMobiusUpdate()
 {
-	// TODO: Add your control notification handler code here
-	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)p_FormView3->GetDocument();
-	ASSERT_VALID(pDoc);
-	if(pDoc->m_SceneGraph.NbObject() == 0)
-		return;
-
-	CTreeCtrl* pTreeControl = (CTreeCtrl*)p_FormView3->objTab.GetDlgItem(IDC_Objects);
-
-	vector<HTREEITEM>::iterator treeitem;
-	treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),pTreeControl->GetSelectedItem());
-
-	int index = treeitem - p_FormView3->m_ArraySurfaceItems.begin();
-	if(index < 0 || index >= pDoc->m_SceneGraph.NbObject())
-		index = 0;
-
-	if(pDoc->m_SceneGraph.GetAt(index)->GetType() != TYPE_NURBSSURFACE)
-		return;
-
-	CNurbsSuface* pSurf = (CNurbsSuface*)pDoc->m_SceneGraph.GetAt(index);
-	ptransformation = pSurf->ptransformation;
-
-	if(ptransformation->m_ReparameterizationType != compositemobius)
-		return;
-
-	CompositeMobiusTransformation *pCompositeMobiusTrans = (CompositeMobiusTransformation*)ptransformation;
-
-	//Update the limits of the edits.
-	m_Spin_Uknot.SetRange(0,pCompositeMobiusTrans->uknot.size() - 1);
-	m_Spin_Vknot.SetRange(0,pCompositeMobiusTrans->vknot.size() - 1);
-	m_Spin_Sknot.SetRange(0,pCompositeMobiusTrans->sknot.size() - 1);
-	m_Spin_Tknot.SetRange(0,pCompositeMobiusTrans->tknot.size() - 1);
-	m_Spin_Alpha.SetRange(0,pCompositeMobiusTrans->alpha.size() - 1);
-	m_Spin_Beta.SetRange(0,pCompositeMobiusTrans->beta.size() - 1);
-
-	//update the range of slider.
-	m_Slide_Uknot.SetRange(1,99);
-	m_Slide_Vknot.SetRange(1,99);
-	m_Slide_Sknot.SetRange(1,99);
-	m_Slide_Tknot.SetRange(1,99);
-	m_Slide_Alpha.SetRange(1,99);
-	m_Slide_Beta.SetRange(1,99);
-
-	//set the value of slider
-	m_Slide_Uknot.SetPos(pCompositeMobiusTrans->uknot[0] * 100);
-	m_Slide_Vknot.SetPos(pCompositeMobiusTrans->vknot[0] * 100);
-	m_Slide_Sknot.SetPos(pCompositeMobiusTrans->sknot[0] * 100);
-	m_Slide_Tknot.SetPos(pCompositeMobiusTrans->tknot[0] * 100);
-	m_Slide_Alpha.SetPos(pCompositeMobiusTrans->alpha[0] * 100);
-	m_Slide_Beta.SetPos(pCompositeMobiusTrans->beta[0] * 100);
-
-	//set value of text
-	char message[100];
-	sprintf(message,"%5.2f",pCompositeMobiusTrans->uknot[0]);
-	m_Text_Uknot.SetWindowText(message);
-	sprintf(message,"%5.2f",pCompositeMobiusTrans->vknot[0]);
-	m_Text_Vknot.SetWindowText(message);
-	sprintf(message,"%5.2f",pCompositeMobiusTrans->sknot[0]);
-	m_Text_Sknot.SetWindowText(message);
-	sprintf(message,"%5.2f",pCompositeMobiusTrans->tknot[0]);
-	m_Text_Tknot.SetWindowText(message);
-	sprintf(message,"%5.2f",pCompositeMobiusTrans->alpha[0]);
-	m_Text_Alpha.SetWindowText(message);
-	sprintf(message,"%5.2f",pCompositeMobiusTrans->beta[0]);
-	m_Text_Beta.SetWindowText(message);
 }
 
 void CompositeMobiusTab::UpdateSliderPosition(HWND hwndFrom)
@@ -410,31 +346,5 @@ void CompositeMobiusTab::OnNMReleasedcaptureSliderCompositeUknot(NMHDR *pNMHDR, 
 
 void CompositeMobiusTab::OnBnClickedButtonGenerateCompositesurface()
 {
-	// TODO: Add your control notification handler code here
-	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)p_FormView3->GetDocument();
-	ASSERT_VALID(pDoc);
-	if(pDoc->m_SceneGraph.NbObject() == 0)
-		return;
-
-	CTreeCtrl* pTreeControl = (CTreeCtrl*)p_FormView3->objTab.GetDlgItem(IDC_Objects);
-
-	vector<HTREEITEM>::iterator treeitem;
-	treeitem = find(p_FormView3->m_ArraySurfaceItems.begin(),p_FormView3->m_ArraySurfaceItems.end(),pTreeControl->GetSelectedItem());
-
-	int index = treeitem - p_FormView3->m_ArraySurfaceItems.begin();
-	if(index < 0 || index >= pDoc->m_SceneGraph.NbObject())
-		index = 0;
-
-	if(pDoc->m_SceneGraph.GetAt(index)->GetType() != TYPE_NURBSSURFACE)
-		return;
-
-	CNurbsSuface* pSurf = (CNurbsSuface*)pDoc->m_SceneGraph.GetAt(index);
-	C_NurbsSurf* pSurface = pSurf->Converte_C_NurbsSurface();
-	C_NurbsSurf* pNewSurface = pSurface->GetCompositeMobiusTransformedSurface((CompositeMobiusTransformation*)ptransformation);
-	CNurbsSuface* pNewCNSurface = pNewSurface->GetCNurbsSurface();
-	pNewCNSurface->SetTransform(*pSurf->GetTransform());
-	pNewCNSurface->filename = "CompositeOptimizedSurface";
-	pDoc->m_SceneGraph.Add(pNewCNSurface);
-	pDoc->UpdateTreeControl();
-	pDoc->UpdateAllViews(NULL);
+	
 }

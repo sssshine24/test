@@ -83,6 +83,8 @@
 #define IDD_DIALOG_OCC                  226
 #define IDD_DIALOG_ACIS                 228
 #define IDD_DIALOG10                    230
+#define IDR_MENU8                       233
+#define IDR_MENU7                       233
 #define IDC_RADIO1                      1000
 #define IDC_LEVY_UNIFORM_BOUNDARY       1001
 #define IDC_RADIO2                      1002
@@ -709,6 +711,7 @@
 #define IDC_BUTTON_CHECKTEETH           1704
 #define IDC_BUTTON_FIXGAP               1705
 #define IDC_BUTTON_SEWING               1706
+#define IDC_BUTTON_ACIS_TWOSURFACE      1707
 #define ID_VIEW_FORMVIEW1               32771
 #define ID_VIEW_FORMVIEW2               32772
 #define ID_VIEW_EDITVIEW                32773
@@ -866,9 +869,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        232
-#define _APS_NEXT_COMMAND_VALUE         61248
-#define _APS_NEXT_CONTROL_VALUE         1697
+#define _APS_NEXT_RESOURCE_VALUE        233
+#define _APS_NEXT_COMMAND_VALUE         61251
+#define _APS_NEXT_CONTROL_VALUE         1698
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

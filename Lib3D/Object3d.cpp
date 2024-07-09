@@ -22,6 +22,20 @@ int CObject3d::GetType()
 	return type;
 }
 
+
+void CObject3d::UpdateTreeControl(CTreeCtrl* pTreeControl)
+{
+	char name[200];
+	CString path = filename;
+	path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
+	sprintf(name, "%s", path);
+	if(pParentObject)
+		pTreeItem = pTreeControl->InsertItem(name, pParentObject->pTreeItem);
+	else
+		pTreeItem = pTreeControl->InsertItem(name, NULL,NULL);
+}
+
+
 //********************************************
 // glBuildList
 //********************************************

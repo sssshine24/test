@@ -52,6 +52,7 @@
 //#include <openglut.h>
 #define SHOWTRACEINFORMATION
 #include <gl/glut.h>
+#include <EntityList.h>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -2805,83 +2806,21 @@ void CFormView3::UpdateTreeControl()
 
 	CTreeCtrl* pTreeControl = (CTreeCtrl*)objTab.GetDlgItem(IDC_Objects);
 	pTreeControl->DeleteAllItems();
-	m_ArraySurfaceItems.clear();
-	char name[200];
+	//m_ArraySurfaceItems.clear();
+	pDoc->m_ArrayTreeItemObjectMap.clear();
+
 	for (int i = 0; i < num; i++)
 	{
-		int type = pDoc->m_SceneGraph.GetAt(i)->GetType();
-		if (type == TYPE_NURBSSURFACE)
-		{
-			CNurbsSuface* pNurbsSurface = (CNurbsSuface*)pDoc->m_SceneGraph.GetAt(i);
-			CString path = pNurbsSurface->filename;
-			path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
-			sprintf(name, "%s", path);
-			HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
-			m_ArraySurfaceItems.push_back(item);
-			pTreeControl->SetCheck(item, pNurbsSurface->m_Show);
-		}
-		else
-			if (type == TYPE_MESH3D)
-			{
-				CMesh3d* pMesh3D = (CMesh3d*)pDoc->m_SceneGraph.GetAt(i);
-				CString path = pMesh3D->filename;
-				path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
-				sprintf(name, "%s", path);
-				CString cname(name);
-				pMesh3D->SetName(cname);
-				HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
-				m_ArraySurfaceItems.push_back(item);
-				pTreeControl->SetCheck(item, pMesh3D->m_Show);
-			}
-			else
-				if (type == TYPE_TSPLINE)
-				{
-					Tspline* pNurbsSurface = (Tspline*)pDoc->m_SceneGraph.GetAt(i);
-					CString path = pNurbsSurface->filename;
-					path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
-					sprintf(name, "%s", path);
-					HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
-					m_ArraySurfaceItems.push_back(item);
-					pTreeControl->SetCheck(item, pNurbsSurface->m_Show);
-				}
-				else
-					if (type == TYPE_DISLINE2D)
-					{
-						CDisline2D* pDisline = (CDisline2D*)pDoc->m_SceneGraph.GetAt(i);
-						pDisline->filename = "Disline2D";
-						sprintf(name, "Disline2D");
-						HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
-						m_ArraySurfaceItems.push_back(item);
-						pTreeControl->SetCheck(item, pDisline->m_Show);
-					}
-					else
-						if (type == TYPE_NURBSCURVE3D)
-						{
-							CNurbsCurve* pCurve = (CNurbsCurve*)pDoc->m_SceneGraph.GetAt(i);
-							pCurve->filename = "NurbsCurve3D";
-							sprintf(name, "NurbsCurve3D");
-							HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
-							m_ArraySurfaceItems.push_back(item);
-							pTreeControl->SetCheck(item, pCurve->m_Show);
-						}
-						else
-							if (type == TYPE_MESH3D_OPENMESH)
-							{
-								CMesh3d_OpenMesh* pMesh = (CMesh3d_OpenMesh*)pDoc->m_SceneGraph.GetAt(i);
-								//pMesh->filename = "Mesh3D";
-								//sprintf(name,"Mesh3D");
-								HTREEITEM item = pTreeControl->InsertItem(pMesh->filename, NULL, NULL);
-								m_ArraySurfaceItems.push_back(item);
-								pTreeControl->SetCheck(item, pMesh->m_Show);
-							}
-							else
-								if (type == TYPE_POLYGON)
-								{
-									Shape_Polygon* pPolygon = (Shape_Polygon*)pDoc->m_SceneGraph.GetAt(i);
-									HTREEITEM item = pTreeControl->InsertItem(pPolygon->filename, NULL, NULL);
-									m_ArraySurfaceItems.push_back(item);
-									pTreeControl->SetCheck(item, pPolygon->m_Show);
-								}
+		//int type = pDoc->m_SceneGraph.GetAt(i)->GetType();
+
+		CObject3d* pObject = pDoc->m_SceneGraph.GetAt(i);
+		pObject->m_ScenegraphIndex = i;
+
+		pObject->UpdateTreeControl(pTreeControl);
+		//m_ArraySurfaceItems.push_back(item);
+		pDoc->m_ArrayTreeItemObjectMap.insert(std::make_pair(pObject->pTreeItem, pObject));
+
+		pTreeControl->SetCheck(pObject->pTreeItem, pObject->m_Show);
 	}
 }
 
@@ -15711,26 +15650,7 @@ void CFormView3::OnActionsKillcurrentt()
 }
 void CFormView3::UpdateReadTree()
 {
-	CSDIViewSwitchDoc* pDoc = (CSDIViewSwitchDoc*)GetDocument();
-	ASSERT_VALID(pDoc);
-	int num = pDoc->m_SceneGraph.NbObject();
 
-	CTreeCtrl* pTreeControl = (CTreeCtrl*)objTab.GetDlgItem(IDC_Objects);
-	pTreeControl->DeleteAllItems();
-	m_ArraySurfaceItems.clear();
-	//char name[200];
-	for (int i = 0; i < num; i++)
-	{
-		int type = pDoc->m_SceneGraph.GetAt(i)->GetType();
-		if (type == TYPE_MESH3D)
-		{
-			CMesh3d* pMesh3D = (CMesh3d*)pDoc->m_SceneGraph.GetAt(i);
-			CString cname = pMesh3D->GetName();
-			HTREEITEM item = pTreeControl->InsertItem(cname, NULL, NULL);
-			m_ArraySurfaceItems.push_back(item);
-			pTreeControl->SetCheck(item, pMesh3D->m_Show);
-		}
-	}
 }
 #define MAX_CHAR        128
 void CFormView3::drawOpenglString(double x, double y, double z, const char* str)

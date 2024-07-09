@@ -93,6 +93,8 @@ public :
 	//Build List
 	void glBuildList();
 	void SetModifyFlag(int flag){m_Modified = flag;}
+
+	
 };
 
 #endif // _SCENEGRAPH_3D_

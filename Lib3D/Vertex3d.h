@@ -6,7 +6,7 @@
 // Created : 10/12/97
 // Modified : 29/04/98
 //********************************************
-
+#include "stdafx.h"
 #ifndef _VERTEX_3D_
 #define _VERTEX_3D_
 

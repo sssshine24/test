@@ -496,10 +496,6 @@ public :
 	int WriteFileRaw(CFile &file);
 	int  ReadFile(CFile &file);
 
-	// Transform
-	void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
-	CTransform *GetTransform(void) { return &m_Transform; }
-
 	// Range
 	void Range(int coord,float *min,float *max); 
 	void Range(int coord,float min,float max); 

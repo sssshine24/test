@@ -184,8 +184,8 @@ public:
 	CNurbsSuface();
 	virtual ~CNurbsSuface();
 	virtual int glDraw();
-	void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
-	CTransform *GetTransform(void) { return &m_Transform; }
+	//void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
+	//CTransform *GetTransform(void) { return &m_Transform; }
 	C_RationalBezierCurve3D * GetUCurve(double v);
 	C_RationalBezierCurve3D *GetVCurve(double u);
 	int     GetUIntervalIndex(double u);

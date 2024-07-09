@@ -13,6 +13,7 @@
 #include "SceneGraph3d.h"
 #include "math.h"
 #include "../FormView3.h"
+#include "glew.h"
 
 #define MIN(a,b) (a<b?a:b)
 #define MAX(a,b) (a>b?a:b)

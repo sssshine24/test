@@ -211,8 +211,8 @@ public:
 	CMesh3d* ConvertMesh3d();
 
 	// Transform
-	void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
-	CTransform *GetTransform(void) { return &m_Transform; }
+	//void SetTransform(CTransform &transform) { m_Transform.Copy(transform); }
+	//CTransform *GetTransform(void) { return &m_Transform; }
 
 	//
 	int glDraw();

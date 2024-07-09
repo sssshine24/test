@@ -207,7 +207,7 @@ BEGIN
         MENUITEM "ShowColorBoundary",           ID_SURFACE_SHOWCOLORBOUNDARY, CHECKED
         MENUITEM "ShowIsoParameterCurves",      ID_SURFACE_SHOWISOPARAMETERCURVES, CHECKED
         MENUITEM "ShowSubdivisionCurves",       ID_SURFACE_SHOWSUBDIVISIONCURVES, CHECKED
-        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE
+        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE, CHECKED
         MENUITEM "OnlyShowMe",                  ID_SURFACE_ONLYSHOWME
         MENUITEM "ShowOptimalIsoParameterCurves", ID_SURFACE_SHOWOPTIMALISOPARAMETERCURVES, CHECKED
         MENUITEM "ShowControlPointNetwork",     ID_SURFACE_SHOWCONTROLPOINTNETWORK
@@ -233,6 +233,29 @@ BEGIN
     POPUP "Zoom"
     BEGIN
         MENUITEM "ZoomAll",                     ID_ZOOM_ZOOMALL
+    END
+END
+
+IDR_MENU7 MENU
+BEGIN
+    POPUP "Surface"
+    BEGIN
+        MENUITEM "Show Parameter",              ID_SURFACE_SHOWPARAMETER
+        MENUITEM "ShowSurfaceInformation",      ID_SURFACE_SHOWSURFACEINFORMATION
+        MENUITEM "Subdivide",                   ID_SURFACE_SUBDIVIDE
+        MENUITEM "Normalize",                   ID_SURFACE_NORMALIZE
+        MENUITEM "Save as ...",                 ID_SURFACE_SAVEAS
+        MENUITEM "Save as TM file...",          32817
+        MENUITEM "Delete",                      ID_SURFACE_DELETE
+        MENUITEM "PovRay",                      ID_SURFACE_POVRAY
+        MENUITEM "ConvertToTspline",            ID_SURFACE_CONVERTTOTSPLINE
+        MENUITEM "ComputeConformalEnergy",      ID_SURFACE_COMPUTECONFORMALENERGY
+        MENUITEM SEPARATOR
+        MENUITEM "ShowCoordinateAxis",          IDC_ShowCoordinateAxis_Object
+        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE, CHECKED
+        MENUITEM "OnlyShowMe",                  ID_SURFACE_ONLYSHOWME
+        MENUITEM "ShowControlPointNetwork",     ID_SURFACE_SHOWCONTROLPOINTNETWORK
+        MENUITEM "ShowColorOrthogonality",      ID_SURFACE_SHOWCOLORORTHOGONALITY
     END
 END
 
@@ -488,14 +511,15 @@ IDD_DIALOG_OCC DIALOGEX 0, 0, 230, 224
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Sewing",IDC_BUTTON_SEWING,49,35,50,14
+    PUSHBUTTON      "Sewing",IDC_BUTTON_SEWING,55,36,50,14
 END
 
 IDD_DIALOG_ACIS DIALOGEX 0, 0, 266, 248
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Fix Gap",IDC_BUTTON_FIXGAP,55,36,50,14
+    PUSHBUTTON      "Fix Gap",IDC_BUTTON_FIXGAP,46,43,50,14
+    PUSHBUTTON      "Load Two Surface",IDC_BUTTON_ACIS_TWOSURFACE,15,7,73,14
 END
 
 IDD_DIALOG10 DIALOGEX 0, 0, 310, 176
@@ -611,6 +635,7 @@ BEGIN
         RIGHTMARGIN, 259
         TOPMARGIN, 7
         BOTTOMMARGIN, 241
+        HORZGUIDE, 57
     END
 
     IDD_DIALOG10, DIALOG

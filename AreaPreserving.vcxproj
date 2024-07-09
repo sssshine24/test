@@ -244,7 +244,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>D:\SVNNurbs\alglib\src;..\MeshLib\Core;..\MeshLib\algorithm;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include;D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\atlmfc\include;D:\Program Files\OpenMesh 7.1\include;D:\Program Files\MATLAB\R2021b\extern\include;D:\SVNNurbs\freeglut\include;D:\SVNNurbs\opencv\build\include;D:\SVNNurbs\glew-2.1.0\include;D:\SVNNurbs\src;D:\SVNNurbs\ACIS\include;D:\SVNNurbs\StepExchange\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\atlmfc\include;E:\SVNNurbs\alglib\src;E:\SVNNurbs\OpenMesh 7.1\include;E:\SVNNurbs\MATLAB\extern\include;E:\SVNNurbs\freeglut\include;E:\SVNNurbs\opencv\build\include;E:\SVNNurbs\glew-2.1.0\include;E:\SVNNurbs\ACIS\include;E:\SVNNurbs\StepExchange\include;E:\SVNNurbs\Surface_sewing\Lib3D;E:\SVNNurbs\glew-2.1.0\include\GL;E:\SVNNurbs\Surface_sewing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -268,7 +268,7 @@
       <AdditionalDependencies>opengl32.lib;OpenMeshCored.lib;OpenMeshToolsd.lib;libeng.lib;libmx.lib;opencv_world340d.lib;glew32.lib;glew32s.lib;Shlwapi.lib;SpaACISd.lib;SPAIInteropd.lib;SPAIAcisd.lib;SPAIopUtilitiesd.lib;SPAXAcisPMIEntitiesd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>x64/Debug/SDIViewSwitch.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>D:\SVNNurbs\Surface_sewing\glew-2.1.0\lib\Release\x64;D:\Program Files\MATLAB\R2021b\extern\lib\win64\microsoft;D:\Program Files\OpenMesh 7.1\lib;D:\SVNNurbs\glew-2.1.0\lib\Release\x64;D:\SVNNurbs\opencv\build\x64\vc15\lib;D:\SVNNurbs\freeglut\lib\x64;D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\atlmfc\lib;D:\Program Files\MATLAB\R2021b\bin\win64;D:\SVNNurbs\ACIS\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\atlmfc\lib;E:\SVNNurbs\OpenMesh 7.1\lib;E:\SVNNurbs\glew-2.1.0\lib\Release\x64;E:\SVNNurbs\opencv\build\x64\vc15\lib;E:\SVNNurbs\freeglut\lib\x64;E:\SVNNurbs\MATLAB\bin\win64;E:\SVNNurbs\ACIS\lib;E:\SVNNurb\MATLAB\extern\lib\win64\microsoft;E:\SVNNurbs\MATLAB\extern\lib\win64\mingw64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>Debug/SwitchSplit.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -297,9 +297,12 @@
     <ClCompile Include="ColorFormView.cpp" />
     <ClCompile Include="Complex_number.cpp" />
     <ClCompile Include="convexFunction.cpp" />
+    <ClCompile Include="CParseSTEP.cpp" />
     <ClCompile Include="DialogInputInformation.cpp" />
     <ClCompile Include="Disline2D.cpp" />
     <ClCompile Include="Energy.cpp" />
+    <ClCompile Include="EntityList.cpp" />
+    <ClCompile Include="Entity_FACE_ACIS.cpp" />
     <ClCompile Include="FaceInputArea.cpp" />
     <ClCompile Include="FormView3.cpp" />
     <ClCompile Include="GeoMapLandMark.cpp" />
@@ -346,6 +349,7 @@
     <ClCompile Include="SurfaceInformation.cpp" />
     <ClCompile Include="SVM\Predictor.cpp" />
     <ClCompile Include="SVM\svm.cpp" />
+    <ClCompile Include="SVNMesh.cpp" />
     <ClCompile Include="TextFile.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="tricall.cpp" />
@@ -430,6 +434,9 @@
     <ClInclude Include="Action_PolyOmino2.h" />
     <ClInclude Include="Action_Tooth.h" />
     <ClInclude Include="CFramebuffer.h" />
+    <ClInclude Include="CParseSTEP.h" />
+    <ClInclude Include="EntityList.h" />
+    <ClInclude Include="Entity_FACE_ACIS.h" />
     <ClInclude Include="ParseSmf.h" />
     <ClInclude Include="Lib3D\SceneGraph3d.h" />
     <ClInclude Include="Lib3D\Array3d.h" />
@@ -505,6 +512,7 @@
     <ClInclude Include="SurfaceInformation.h" />
     <ClInclude Include="SVM\Predictor.h" />
     <ClInclude Include="SVM\svm.h" />
+    <ClInclude Include="SVNMesh.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="Tspline_PreImageDialog.h" />
     <ClInclude Include="urveIntersection.h" />
