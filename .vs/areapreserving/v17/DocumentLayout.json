@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "E:\\SVNNurbs\\Surface_sewing\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|E:\\SVNNurbs\\Surface_sewing\\ObjectViewer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:ObjectViewer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -85,6 +86,125 @@
     {
       "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|E:\\SVNNurbs\\Surface_sewing\\MyTreeView.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:MyTreeView.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+=======
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\EntityList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:EntityList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\EntityList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:EntityList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\CParseSTEP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:CParseSTEP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Actions_ConstrainedRegistration.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Actions_ConstrainedRegistration.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Action_ACIS_SEWING.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Action_ACIS_SEWING.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\C_ParseNurbs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:C_ParseNurbs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\CParseSTEP.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:CParseSTEP.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SVNNurbs\\ACIS\\include\\SPAIArgumentParsing.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\ObjectViewer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:ObjectViewer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\ObjectViewer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:ObjectViewer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\atlmfc\\src\\mfc\\docmgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Action_ACIS_SEWING.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Action_ACIS_SEWING.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\ParseNurbsCurve.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:ParseNurbsCurve.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\SDIViewSwitch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:SDIViewSwitch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\StdAfx.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:StdAfx.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Nurbs3D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Nurbs3D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\SVNMesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:SVNMesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\SVNMesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:SVNMesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\FormView3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:FormView3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Base3d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Lib3D\\Base3d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\SDIViewSwitchDoc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:SDIViewSwitchDoc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Nurbs3D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Nurbs3D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\BilinearTab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:BilinearTab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\CompositeMobiusTab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:CompositeMobiusTab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\C_ParseNurbs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:C_ParseNurbs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Windows Kits\\10\\Source\\10.0.17763.0\\ucrt\\startup\\assert.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Vertex3d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Lib3D\\Vertex3d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Vector3d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:Lib3D\\Vector3d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|D:\\SVNNurbs\\Surface_sewing\\ParseNurbsCurve.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{47ADAF26-1806-4243-8C22-90544801FD35}|AreaPreserving.vcxproj|solutionrelative:ParseNurbsCurve.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SVNNurbs\\ACIS\\include\\intrapi.hxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     }
   ],
   "DocumentGroupContainers": [
@@ -94,6 +214,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 17,
           "Children": [
             {
@@ -251,10 +372,159 @@
               "ViewState": "AQIAAAMAAAAAAAAAAAAAACUAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-07T09:00:41.577Z"
+=======
+          "SelectedChildIndex": 31,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Base3d.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Base3d.h",
+              "RelativeDocumentMoniker": "Lib3D\\Base3d.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Base3d.h",
+              "RelativeToolTip": "Lib3D\\Base3d.h",
+              "ViewState": "AQIAACIAAAAAAAAAAAAmwDIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-25T13:17:18.216Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ObjectViewer.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\ObjectViewer.h",
+              "RelativeDocumentMoniker": "ObjectViewer.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\ObjectViewer.h",
+              "RelativeToolTip": "ObjectViewer.h",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAACMAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-05T15:15:13.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ObjectViewer.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\ObjectViewer.cpp",
+              "RelativeDocumentMoniker": "ObjectViewer.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\ObjectViewer.cpp",
+              "RelativeToolTip": "ObjectViewer.cpp",
+              "ViewState": "AQIAAEQBAAAAAAAAAAAUwLQBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-05T14:56:21.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SPAIArgumentParsing.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\ACIS\\include\\SPAIArgumentParsing.h",
+              "RelativeDocumentMoniker": "..\\ACIS\\include\\SPAIArgumentParsing.h",
+              "ToolTip": "D:\\SVNNurbs\\ACIS\\include\\SPAIArgumentParsing.h",
+              "RelativeToolTip": "..\\ACIS\\include\\SPAIArgumentParsing.h",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAAAEQAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-26T09:17:03.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SDIViewSwitch.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\SDIViewSwitch.cpp",
+              "RelativeDocumentMoniker": "SDIViewSwitch.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\SDIViewSwitch.cpp",
+              "RelativeToolTip": "SDIViewSwitch.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAjwAcAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-26T09:05:19.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StdAfx.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\StdAfx.h",
+              "RelativeDocumentMoniker": "StdAfx.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\StdAfx.h",
+              "RelativeToolTip": "StdAfx.h",
+              "ViewState": "AQIAABEAAAAAAAAAAAAvwBYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-26T08:59:28.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Actions_ConstrainedRegistration.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Actions_ConstrainedRegistration.cpp",
+              "RelativeDocumentMoniker": "Actions_ConstrainedRegistration.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Actions_ConstrainedRegistration.cpp",
+              "RelativeToolTip": "Actions_ConstrainedRegistration.cpp",
+              "ViewState": "AQIAAEsDAAAAAAAAAAAAAFcDAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-26T01:52:32.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "BilinearTab.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\BilinearTab.cpp",
+              "RelativeDocumentMoniker": "BilinearTab.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\BilinearTab.cpp",
+              "RelativeToolTip": "BilinearTab.cpp",
+              "ViewState": "AQIAADkAAAAAAAAAAABIwEAAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-25T13:17:10.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CompositeMobiusTab.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\CompositeMobiusTab.cpp",
+              "RelativeDocumentMoniker": "CompositeMobiusTab.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\CompositeMobiusTab.cpp",
+              "RelativeToolTip": "CompositeMobiusTab.cpp",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAcwG8AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-25T13:16:40.28Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "FormView3.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\FormView3.cpp",
+              "RelativeDocumentMoniker": "FormView3.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\FormView3.cpp",
+              "RelativeToolTip": "FormView3.cpp",
+              "ViewState": "AQIAADcLAAAAAAAAAAAWwD4LAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-25T13:15:15.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "vector",
+              "DocumentMoniker": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\include\\vector",
+              "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\include\\vector",
+              "ToolTip": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\include\\vector",
+              "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\include\\vector",
+              "ViewState": "AQIAAL0GAAAAAAAAAAASwMQGAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-25T13:06:45.984Z"
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
+<<<<<<< HEAD
               "Title": "SDIViewSwitchDoc.cpp",
               "DocumentMoniker": "E:\\SVNNurbs\\Surface_sewing\\SDIViewSwitchDoc.cpp",
               "RelativeDocumentMoniker": "SDIViewSwitchDoc.cpp",
@@ -263,10 +533,153 @@
               "ViewState": "AQIAAI0AAAAAAAAAAAAMwJsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-07T09:00:22.695Z"
+=======
+              "Title": "docmgr.cpp",
+              "DocumentMoniker": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\atlmfc\\src\\mfc\\docmgr.cpp",
+              "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\atlmfc\\src\\mfc\\docmgr.cpp",
+              "ToolTip": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\atlmfc\\src\\mfc\\docmgr.cpp",
+              "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.16.27023\\atlmfc\\src\\mfc\\docmgr.cpp",
+              "ViewState": "AQIAABcEAAAAAAAAAAApwB8EAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-25T12:52:55.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "assert.cpp",
+              "DocumentMoniker": "D:\\Windows Kits\\10\\Source\\10.0.17763.0\\ucrt\\startup\\assert.cpp",
+              "RelativeDocumentMoniker": "..\\..\\Windows Kits\\10\\Source\\10.0.17763.0\\ucrt\\startup\\assert.cpp",
+              "ToolTip": "D:\\Windows Kits\\10\\Source\\10.0.17763.0\\ucrt\\startup\\assert.cpp",
+              "RelativeToolTip": "..\\..\\Windows Kits\\10\\Source\\10.0.17763.0\\ucrt\\startup\\assert.cpp",
+              "ViewState": "AQIAALQBAAAAAAAAAAASwLsBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-25T12:52:25.021Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SVNMesh.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\SVNMesh.cpp",
+              "RelativeDocumentMoniker": "SVNMesh.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\SVNMesh.cpp",
+              "RelativeToolTip": "SVNMesh.cpp",
+              "ViewState": "AQIAAAUAAAAAAAAAAABIwBEAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-25T12:09:38.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SVNMesh.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\SVNMesh.h",
+              "RelativeDocumentMoniker": "SVNMesh.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\SVNMesh.h",
+              "RelativeToolTip": "SVNMesh.h",
+              "ViewState": "AQIAABgAAAAAAAAAAABIwCIAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-25T12:00:17.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Vertex3d.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Vertex3d.h",
+              "RelativeDocumentMoniker": "Lib3D\\Vertex3d.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Vertex3d.h",
+              "RelativeToolTip": "Lib3D\\Vertex3d.h",
+              "ViewState": "AQIAACMAAAAAAAAAAAAUwCUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-23T08:52:13.063Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "intrapi.hxx",
+              "DocumentMoniker": "D:\\SVNNurbs\\ACIS\\include\\intrapi.hxx",
+              "RelativeDocumentMoniker": "..\\ACIS\\include\\intrapi.hxx",
+              "ToolTip": "D:\\SVNNurbs\\ACIS\\include\\intrapi.hxx",
+              "RelativeToolTip": "..\\ACIS\\include\\intrapi.hxx",
+              "ViewState": "AQIAABoJAAAAAAAAAAAWwCIJAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-21T08:26:17.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Nurbs3D.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Nurbs3D.h",
+              "RelativeDocumentMoniker": "Nurbs3D.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Nurbs3D.h",
+              "RelativeToolTip": "Nurbs3D.h",
+              "ViewState": "AQIAAK8AAAAAAAAAAAAWwLcAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-21T08:26:12.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "SDIViewSwitchDoc.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\SDIViewSwitchDoc.cpp",
+              "RelativeDocumentMoniker": "SDIViewSwitchDoc.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\SDIViewSwitchDoc.cpp",
+              "RelativeToolTip": "SDIViewSwitchDoc.cpp",
+              "ViewState": "AQIAAFMDAAAAAAAAAAASwFsDAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T07:02:27.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "C_ParseNurbs.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\C_ParseNurbs.h",
+              "RelativeDocumentMoniker": "C_ParseNurbs.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\C_ParseNurbs.h",
+              "RelativeToolTip": "C_ParseNurbs.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwgAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-21T06:56:05.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "C_ParseNurbs.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\C_ParseNurbs.cpp",
+              "RelativeDocumentMoniker": "C_ParseNurbs.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\C_ParseNurbs.cpp",
+              "RelativeToolTip": "C_ParseNurbs.cpp",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwIIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T04:05:31.209Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Action_ACIS_SEWING.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Action_ACIS_SEWING.cpp",
+              "RelativeDocumentMoniker": "Action_ACIS_SEWING.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Action_ACIS_SEWING.cpp",
+              "RelativeToolTip": "Action_ACIS_SEWING.cpp",
+              "ViewState": "AQIAANEAAAAAAAAAAAAAANcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T13:05:27.218Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ParseNurbsCurve.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\ParseNurbsCurve.h",
+              "RelativeDocumentMoniker": "ParseNurbsCurve.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\ParseNurbsCurve.h",
+              "RelativeToolTip": "ParseNurbsCurve.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-21T03:49:28.359Z"
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
+<<<<<<< HEAD
               "Title": "SDIViewSwitch.cpp",
               "DocumentMoniker": "E:\\SVNNurbs\\Surface_sewing\\SDIViewSwitch.cpp",
               "RelativeDocumentMoniker": "SDIViewSwitch.cpp",
@@ -275,10 +688,33 @@
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-07T09:00:19.311Z"
+=======
+              "Title": "ParseNurbsCurve.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\ParseNurbsCurve.cpp",
+              "RelativeDocumentMoniker": "ParseNurbsCurve.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\ParseNurbsCurve.cpp",
+              "RelativeToolTip": "ParseNurbsCurve.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T03:47:09.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Nurbs3D.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Nurbs3D.cpp",
+              "RelativeDocumentMoniker": "Nurbs3D.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Nurbs3D.cpp",
+              "RelativeToolTip": "Nurbs3D.cpp",
+              "ViewState": "AQIAABkJAAAAAAAAAAAWwCoJAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T02:43:02.103Z"
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+<<<<<<< HEAD
               "Title": "SceneGraph3d.h",
               "DocumentMoniker": "E:\\SVNNurbs\\Surface_sewing\\Lib3D\\SceneGraph3d.h",
               "RelativeDocumentMoniker": "Lib3D\\SceneGraph3d.h",
@@ -287,10 +723,33 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-07-07T09:00:16.478Z"
+=======
+              "Title": "CParseSTEP.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\CParseSTEP.cpp",
+              "RelativeDocumentMoniker": "CParseSTEP.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\CParseSTEP.cpp",
+              "RelativeToolTip": "CParseSTEP.cpp",
+              "ViewState": "AQIAADEAAAAAAAAAAAAgwHQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T13:06:32.749Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CParseSTEP.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\CParseSTEP.h",
+              "RelativeDocumentMoniker": "CParseSTEP.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\CParseSTEP.h",
+              "RelativeToolTip": "CParseSTEP.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-20T13:18:25.867Z"
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+<<<<<<< HEAD
               "Title": "SceneGraph3d.cpp",
               "DocumentMoniker": "E:\\SVNNurbs\\Surface_sewing\\Lib3D\\SceneGraph3d.cpp",
               "RelativeDocumentMoniker": "Lib3D\\SceneGraph3d.cpp",
@@ -311,10 +770,33 @@
               "ViewState": "AQIAAEkAAAAAAAAAAAAMwFcAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-07T09:00:02.519Z",
+=======
+              "Title": "EntityList.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\EntityList.h",
+              "RelativeDocumentMoniker": "EntityList.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\EntityList.h",
+              "RelativeToolTip": "EntityList.h",
+              "ViewState": "AQIAABcAAAAAAAAAAAAWwB8AAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-20T13:15:23.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EntityList.cpp",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\EntityList.cpp",
+              "RelativeDocumentMoniker": "EntityList.cpp",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\EntityList.cpp",
+              "RelativeToolTip": "EntityList.cpp",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAmwEUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T13:08:51.314Z",
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 3,
               "Title": "ObjectViewer.h",
               "DocumentMoniker": "E:\\SVNNurbs\\Surface_sewing\\ObjectViewer.h",
@@ -348,6 +830,29 @@
               "ViewState": "AQIAABIBAAAAAAAAAAAMwCMBAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-07T08:57:09.137Z"
+=======
+              "DocumentIndex": 11,
+              "Title": "Action_ACIS_SEWING.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Action_ACIS_SEWING.h",
+              "RelativeDocumentMoniker": "Action_ACIS_SEWING.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Action_ACIS_SEWING.h",
+              "RelativeToolTip": "Action_ACIS_SEWING.h",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-20T13:06:24.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Vector3d.h",
+              "DocumentMoniker": "D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Vector3d.h",
+              "RelativeDocumentMoniker": "Lib3D\\Vector3d.h",
+              "ToolTip": "D:\\SVNNurbs\\Surface_sewing\\Lib3D\\Vector3d.h",
+              "RelativeToolTip": "Lib3D\\Vector3d.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-20T14:18:09.318Z"
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
             }
           ]
         }

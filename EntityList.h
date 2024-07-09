@@ -3,11 +3,19 @@
 #include <Object3d.h>
 #include <SVNMesh.h>
 class ENTITY_LIST;
+<<<<<<< HEAD
 class EntityList_ACIS : public CObject3d
 {
 public:
 	EntityList_ACIS();
 	~EntityList_ACIS();
+=======
+class EntityList : public CObject3d
+{
+public:
+	EntityList();
+	~EntityList();
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 
 	ENTITY_LIST* pAcisEntities;
 

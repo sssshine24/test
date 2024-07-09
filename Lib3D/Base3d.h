@@ -48,8 +48,12 @@ enum {TYPE_OBJECT3D,
 			TYPE_NURBSCURVE3D,
 			TYPE_MESH3D_OPENMESH,
 			TYPE_POLYGON,
+<<<<<<< HEAD
 			TYPE_BREP_ACIS,
 			TYPE_BREP_ACIS_FACE};
+=======
+			TYPE_BREP_ACIS};
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 
 // Normal binding
 enum {NORMAL_PER_VERTEX,

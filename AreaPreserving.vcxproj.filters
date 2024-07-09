@@ -462,9 +462,12 @@
     <ClCompile Include="SVNMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Entity_FACE_ACIS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ParseSmf.h">
@@ -854,9 +857,12 @@
     <ClInclude Include="SVNMesh.h">
       <Filter>Source Files\Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Entity_FACE_ACIS.h">
       <Filter>Source Files\Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDIViewSwitch.rc">

@@ -2811,6 +2811,7 @@ void CFormView3::UpdateTreeControl()
 
 	for (int i = 0; i < num; i++)
 	{
+<<<<<<< HEAD
 		//int type = pDoc->m_SceneGraph.GetAt(i)->GetType();
 
 		CObject3d* pObject = pDoc->m_SceneGraph.GetAt(i);
@@ -2821,6 +2822,88 @@ void CFormView3::UpdateTreeControl()
 		pDoc->m_ArrayTreeItemObjectMap.insert(std::make_pair(pObject->pTreeItem, pObject));
 
 		pTreeControl->SetCheck(pObject->pTreeItem, pObject->m_Show);
+=======
+		int type = pDoc->m_SceneGraph.GetAt(i)->GetType();
+		if (type == TYPE_NURBSSURFACE)
+		{
+			CNurbsSuface* pNurbsSurface = (CNurbsSuface*)pDoc->m_SceneGraph.GetAt(i);
+			CString path = pNurbsSurface->filename;
+			path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
+			sprintf(name, "%s", path);
+			HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
+			m_ArraySurfaceItems.push_back(item);
+			pTreeControl->SetCheck(item, pNurbsSurface->m_Show);
+		}
+		else
+			if (type == TYPE_MESH3D)
+			{
+				CMesh3d* pMesh3D = (CMesh3d*)pDoc->m_SceneGraph.GetAt(i);
+				CString path = pMesh3D->filename;
+				path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
+				sprintf(name, "%s", path);
+				CString cname(name);
+				pMesh3D->SetName(cname);
+				HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
+				m_ArraySurfaceItems.push_back(item);
+				pTreeControl->SetCheck(item, pMesh3D->m_Show);
+			}
+			else
+				if (type == TYPE_TSPLINE)
+				{
+					Tspline* pNurbsSurface = (Tspline*)pDoc->m_SceneGraph.GetAt(i);
+					CString path = pNurbsSurface->filename;
+					path = path.Right(path.GetLength() - path.ReverseFind('\\') - 1);
+					sprintf(name, "%s", path);
+					HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
+					m_ArraySurfaceItems.push_back(item);
+					pTreeControl->SetCheck(item, pNurbsSurface->m_Show);
+				}
+				else
+					if (type == TYPE_DISLINE2D)
+					{
+						CDisline2D* pDisline = (CDisline2D*)pDoc->m_SceneGraph.GetAt(i);
+						pDisline->filename = "Disline2D";
+						sprintf(name, "Disline2D");
+						HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
+						m_ArraySurfaceItems.push_back(item);
+						pTreeControl->SetCheck(item, pDisline->m_Show);
+					}
+					else
+						if (type == TYPE_NURBSCURVE3D)
+						{
+							CNurbsCurve* pCurve = (CNurbsCurve*)pDoc->m_SceneGraph.GetAt(i);
+							pCurve->filename = "NurbsCurve3D";
+							sprintf(name, "NurbsCurve3D");
+							HTREEITEM item = pTreeControl->InsertItem(name, NULL, NULL);
+							m_ArraySurfaceItems.push_back(item);
+							pTreeControl->SetCheck(item, pCurve->m_Show);
+						}
+						else
+							if (type == TYPE_MESH3D_OPENMESH)
+							{
+								CMesh3d_OpenMesh* pMesh = (CMesh3d_OpenMesh*)pDoc->m_SceneGraph.GetAt(i);
+								//pMesh->filename = "Mesh3D";
+								//sprintf(name,"Mesh3D");
+								HTREEITEM item = pTreeControl->InsertItem(pMesh->filename, NULL, NULL);
+								m_ArraySurfaceItems.push_back(item);
+								pTreeControl->SetCheck(item, pMesh->m_Show);
+							}
+							else
+								if (type == TYPE_POLYGON)
+								{
+									Shape_Polygon* pPolygon = (Shape_Polygon*)pDoc->m_SceneGraph.GetAt(i);
+									HTREEITEM item = pTreeControl->InsertItem(pPolygon->filename, NULL, NULL);
+									m_ArraySurfaceItems.push_back(item);
+									pTreeControl->SetCheck(item, pPolygon->m_Show);
+								}
+								else if (type == TYPE_BREP_ACIS)
+								{
+									EntityList* pEntityList = (EntityList*)pDoc->m_SceneGraph.GetAt(i);
+									HTREEITEM item = pTreeControl->InsertItem(pEntityList->filename, NULL, NULL);
+									m_ArraySurfaceItems.push_back(item);
+									pTreeControl->SetCheck(item, pEntityList->m_Show);
+								}
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 	}
 }
 

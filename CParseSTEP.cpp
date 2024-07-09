@@ -29,7 +29,10 @@
 #include "transf.hxx"
 #include "vertex.hxx"
 #include <SVNMesh.h>
+<<<<<<< HEAD
 #include <Entity_FACE_ACIS.h>
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 //#include "mainwindow.h"
 
 // CSceneGraph3d ¿‡
@@ -137,8 +140,11 @@ static void get_triangles_from_faceted_faces(ENTITY_LIST& faces, std::vector<SVN
         nF++;
     }
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 int CParseSTEP::get_FaceList_from_EntityList(ENTITY_LIST* pAcisEntities, ENTITY_LIST* pFaceEntities)
 {
     ENTITY_LIST facelist;
@@ -153,7 +159,11 @@ int CParseSTEP::get_FaceList_from_EntityList(ENTITY_LIST* pAcisEntities, ENTITY_
     }
     return 1;
 }
+<<<<<<< HEAD
 void CParseSTEP::SaveObjFile(char* filename, EntityList_ACIS* pEntityList)
+=======
+void CParseSTEP::SaveObjFile(char* filename, EntityList* pEntityList)
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 {
     std::ofstream file(filename);
 
@@ -214,7 +224,11 @@ int CParseSTEP::Run_STEP(char* filename, CSceneGraph3d* pSceneGraph)
     
 
 
+<<<<<<< HEAD
     EntityList_ACIS* pEntityList = new EntityList_ACIS();
+=======
+    EntityList* pEntityList = new EntityList();
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     pEntityList->pAcisEntities = pAcisEntities;
 
     facet_entitylist(*pAcisEntities);
@@ -226,7 +240,11 @@ int CParseSTEP::Run_STEP(char* filename, CSceneGraph3d* pSceneGraph)
     //static void get_triangles_from_faceted_faces(ENTITY_LIST & faces, std::vector<SVNMesh::FaceMesh>&faceData, std::vector<float>&coords, std::vector<int>&triangles, std::vector<float>&normalCoords) {
     get_triangles_from_faceted_faces(*pFaceEntities, pEntityList->faceData, pEntityList->coords, pEntityList->triangles, pEntityList->normalCoords);
 
+<<<<<<< HEAD
    // SaveObjFile("D:\\1.obj",pEntityList);
+=======
+    SaveObjFile("D:\\1.obj",pEntityList);
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     //SPAposition min_pt, max_pt;
     //api_get_entity_box(*pAcisEntities, min_pt, max_pt);
     Vector3D m_lower, m_upper;
@@ -272,13 +290,28 @@ int CParseSTEP::Run_STEP(char* filename, CSceneGraph3d* pSceneGraph)
 
     if (pSceneGraph->NbObject() >= 1)
     {
+<<<<<<< HEAD
         CObject3d* pSurface = (CObject3d*)pSceneGraph->GetAt(0);
         pEntityList->SetTransform(*pSurface->GetTransform());
+=======
+        if (pSceneGraph->GetAt(0)->GetType() == TYPE_NURBSSURFACE)
+        {
+            CNurbsSuface* pSurface = (CNurbsSuface*)pSceneGraph->GetAt(0);
+            pEntityList->SetTransform(*pSurface->GetTransform());
+        }
+        else
+            if (pSceneGraph->GetAt(0)->GetType() == TYPE_MESH3D)
+            {
+                CMesh3d* pSurface = (CMesh3d*)pSceneGraph->GetAt(0);
+                pEntityList->SetTransform(*pSurface->GetTransform());
+            }
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     }
     else
     pEntityList->SetTransform(transform);
     pEntityList->filename = "ACIS_Model";
     pSceneGraph->Add(pEntityList);
+<<<<<<< HEAD
 
     //add childs
     for (auto entity : *pFaceEntities)
@@ -292,6 +325,8 @@ int CParseSTEP::Run_STEP(char* filename, CSceneGraph3d* pSceneGraph)
         pSceneGraph->Add(pEntity);
     }
 
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     return 1;
 }
 

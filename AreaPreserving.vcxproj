@@ -244,7 +244,11 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\atlmfc\include;E:\SVNNurbs\alglib\src;E:\SVNNurbs\OpenMesh 7.1\include;E:\SVNNurbs\MATLAB\extern\include;E:\SVNNurbs\freeglut\include;E:\SVNNurbs\opencv\build\include;E:\SVNNurbs\glew-2.1.0\include;E:\SVNNurbs\ACIS\include;E:\SVNNurbs\StepExchange\include;E:\SVNNurbs\Surface_sewing\Lib3D;E:\SVNNurbs\glew-2.1.0\include\GL;E:\SVNNurbs\Surface_sewing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\SVNNurbs\alglib\src;..\MeshLib\Core;..\MeshLib\algorithm;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include;D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\atlmfc\include;D:\Program Files\OpenMesh 7.1\include;D:\Program Files\MATLAB\R2021b\extern\include;D:\SVNNurbs\freeglut\include;D:\SVNNurbs\opencv\build\include;D:\SVNNurbs\glew-2.1.0\include;D:\SVNNurbs\src;D:\SVNNurbs\ACIS\include;D:\SVNNurbs\StepExchange\include;D:\SVNNurbs\Surface_sewing\Lib3D;D:\SVNNurbs\glew-2.1.0\include\GL;D:\SVNNurbs\Surface_sewing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -302,7 +306,10 @@
     <ClCompile Include="Disline2D.cpp" />
     <ClCompile Include="Energy.cpp" />
     <ClCompile Include="EntityList.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Entity_FACE_ACIS.cpp" />
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     <ClCompile Include="FaceInputArea.cpp" />
     <ClCompile Include="FormView3.cpp" />
     <ClCompile Include="GeoMapLandMark.cpp" />
@@ -436,7 +443,10 @@
     <ClInclude Include="CFramebuffer.h" />
     <ClInclude Include="CParseSTEP.h" />
     <ClInclude Include="EntityList.h" />
+<<<<<<< HEAD
     <ClInclude Include="Entity_FACE_ACIS.h" />
+=======
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
     <ClInclude Include="ParseSmf.h" />
     <ClInclude Include="Lib3D\SceneGraph3d.h" />
     <ClInclude Include="Lib3D\Array3d.h" />

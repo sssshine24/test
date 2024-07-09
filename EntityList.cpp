@@ -6,18 +6,30 @@
 #include <GL/gl.h>
 #include <Base3d.h>
 
+<<<<<<< HEAD
 EntityList_ACIS::EntityList_ACIS()
 {
 	type = TYPE_BREP_ACIS;
 }
 EntityList_ACIS::~EntityList_ACIS()
+=======
+EntityList::EntityList()
+{
+	type = TYPE_BREP_ACIS;
+}
+EntityList::~EntityList()
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 {
 
 }
 //********************************************
 // glDraw
 //********************************************
+<<<<<<< HEAD
 void EntityList_ACIS::glRenderTriangulation()
+=======
+void EntityList::glRenderTriangulation()
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 {
 	if (!m_ListDone || m_Modified)
 		BuildTriangulationList();
@@ -34,7 +46,11 @@ void EntityList_ACIS::glRenderTriangulation()
 		return;
 	}
 }
+<<<<<<< HEAD
 void EntityList_ACIS::BuildTriangulationList()
+=======
+void EntityList::BuildTriangulationList()
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 {
 	if (!m_Modified && m_ListDone)
 		return ;
@@ -92,7 +108,11 @@ void EntityList_ACIS::BuildTriangulationList()
 	m_ListDone = 1;
 	m_Modified = 0;
 }
+<<<<<<< HEAD
 void EntityList_ACIS::ComputeBoundingBox(Vector3D& lower, Vector3D& upper)
+=======
+void EntityList::ComputeBoundingBox(Vector3D& lower, Vector3D& upper)
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 {
 	int n = coords.size() / 3;
 	if (n == 0)
@@ -118,10 +138,15 @@ void EntityList_ACIS::ComputeBoundingBox(Vector3D& lower, Vector3D& upper)
 			upper[2] = coords[i * 3 + 2];
 	}
 }
+<<<<<<< HEAD
 int EntityList_ACIS::glDraw()
 {
 	return 0;
 
+=======
+int EntityList::glDraw()
+{
+>>>>>>> 4d531c4dcf38db10b06bd94d29ba52f86eb4a186
 	if (!m_Show)
 		return 0;
 
